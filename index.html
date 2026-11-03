@@ -1,0 +1,2435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#006A60">
+  <title>WalletPro — Material Finance Manager</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts & Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+          colors: {
+            md: {
+              bg: '#F7F9FC',
+              surface: '#FFFFFF',
+              primary: '#006A60',
+              primaryContainer: '#74F8E5',
+              onPrimaryContainer: '#00201C',
+              secondary: '#4A635F',
+              secondaryContainer: '#CCE8E2',
+              danger: '#BA1A1A',
+              dangerContainer: '#FFDAD6'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #F7F9FC; color: #191C1B; -webkit-tap-highlight-color: transparent; transition: background-color 0.2s, color 0.2s; }
+    .material-symbols-rounded { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .m3-card { background: #FFFFFF; border-radius: 1.25rem; border: 1px solid rgba(0, 106, 96, 0.08); box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 4px 12px rgba(0, 106, 96, 0.03); }
+    .nav-active { background-color: #CCE8E2; color: #00201C; font-weight: 600; }
+
+    /* Material Dark Mode Overrides */
+    html.dark body { background-color: #0F1413; color: #E0E3E1; }
+    html.dark .m3-card { background-color: #18201F; border-color: rgba(116, 248, 229, 0.12); box-shadow: none; }
+    html.dark aside, html.dark header, html.dark nav.md\:hidden { background-color: #141B1A !important; border-color: #24302E !important; }
+    html.dark .nav-active { background-color: #004F47 !important; color: #74F8E5 !important; }
+    html.dark .text-slate-900, html.dark .text-slate-800 { color: #F1F5F9 !important; }
+    html.dark .text-slate-700, html.dark .text-slate-600 { color: #CBD5E1 !important; }
+    html.dark .text-slate-500, html.dark .text-slate-400 { color: #94A3B8 !important; }
+    html.dark .bg-white { background-color: #18201F !important; }
+    html.dark .bg-slate-50, html.dark .bg-slate-50\/70, html.dark .bg-slate-100 { background-color: #202B29 !important; }
+    html.dark .border-slate-100, html.dark .border-slate-200, html.dark .border-slate-200\/70, html.dark .border-slate-200\/80, html.dark .border-slate-200\/60 { border-color: #2A3836 !important; }
+    html.dark input, html.dark select, html.dark textarea { background-color: #202B29 !important; color: #F1F5F9 !important; border-color: #2F3E3C !important; }
+  </style>
+</head>
+<body class="h-screen flex flex-col md:flex-row overflow-hidden select-none">
+
+  <!-- SIDEBAR NAVIGATION (Desktop) -->
+  <aside class="hidden md:flex flex-col w-64 bg-white border-r border-slate-200/80 p-4 shrink-0 justify-between">
+    <div>
+      <div class="flex items-center justify-between px-3 py-3 mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-teal-700 flex items-center justify-center text-white shadow-md shadow-teal-700/20">
+            <span class="material-symbols-rounded">account_balance_wallet</span>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg leading-tight text-slate-900">Wallet<span class="text-teal-700">Pro</span></h1>
+            <span class="text-[11px] font-semibold uppercase tracking-wider px-1.5 py-0.5 bg-teal-50 text-teal-700 rounded-md">PWA + Sync</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="space-y-1" id="desktop-nav">
+        <button onclick="switchTab('dashboard')" data-tab="dashboard" class="nav-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-2xl text-sm text-slate-600 hover:bg-slate-100 transition-all">
+          <span class="material-symbols-rounded">space_dashboard</span> Dashboard
+        </button>
+        <button onclick="switchTab('records')" data-tab="records" class="nav-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-2xl text-sm text-slate-600 hover:bg-slate-100 transition-all">
+          <span class="material-symbols-rounded">receipt_long</span> Records
+        </button>
+        <button onclick="switchTab('budgets')" data-tab="budgets" class="nav-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-2xl text-sm text-slate-600 hover:bg-slate-100 transition-all">
+          <span class="material-symbols-rounded">pie_chart</span> Smart Budgets
+        </button>
+        <button onclick="switchTab('planned')" data-tab="planned" class="nav-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-2xl text-sm text-slate-600 hover:bg-slate-100 transition-all">
+          <span class="material-symbols-rounded">event_repeat</span> Planned & Goals
+        </button>
+        <button onclick="switchTab('rent')" data-tab="rent" class="nav-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-2xl text-sm text-slate-600 hover:bg-slate-100 transition-all">
+          <span class="material-symbols-rounded">real_estate_agent</span> Rent & Lease
+        </button>
+        <button onclick="switchTab('analytics')" data-tab="analytics" class="nav-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-2xl text-sm text-slate-600 hover:bg-slate-100 transition-all">
+          <span class="material-symbols-rounded">monitoring</span> 50/30/20 & Reports
+        </button>
+        <button onclick="switchTab('settings')" data-tab="settings" class="nav-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-2xl text-sm text-slate-600 hover:bg-slate-100 transition-all">
+          <span class="material-symbols-rounded">tune</span> Categories & Data
+        </button>
+      </nav>
+    </div>
+
+    <div class="space-y-3">
+      <!-- Sidebar Profile Card -->
+      <button onclick="openAuthModal()" class="w-full p-3 bg-slate-50 hover:bg-teal-50/60 rounded-2xl border border-slate-200/70 flex items-center gap-3 text-left transition">
+        <div id="sidebar-avatar" class="w-9 h-9 rounded-xl bg-teal-700 text-white flex items-center justify-center font-bold text-sm shrink-0">
+          <span class="material-symbols-rounded text-lg">person</span>
+        </div>
+        <div class="min-w-0 flex-1">
+          <p id="sidebar-user-name" class="text-xs font-bold text-slate-800 truncate">Local Guest</p>
+          <p id="sidebar-sync-status" class="text-[11px] text-slate-500 flex items-center gap-1 truncate">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> Offline Mode
+          </p>
+        </div>
+        <span class="material-symbols-rounded text-slate-400 text-base">chevron_right</span>
+      </button>
+
+      <!-- Active Billing Cycle Picker -->
+      <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200/60 space-y-1.5">
+        <div class="flex items-center justify-between text-xs text-slate-500">
+          <span>Billing Cycle</span>
+          <button onclick="switchTab('settings')" class="text-[11px] font-bold text-teal-700 hover:underline">Edit Start Day</button>
+        </div>
+        <input type="month" id="global-month" onchange="changeMonth(this.value)" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-teal-600">
+        <p id="cycle-range-badge" class="text-[11px] text-slate-500 font-medium pt-0.5 truncate"></p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <div class="flex-1 flex flex-col h-full overflow-hidden">
+    <!-- Top App Bar -->
+    <header class="bg-white/80 backdrop-blur-md border-b border-slate-200/70 px-4 md:px-8 py-3.5 flex items-center justify-between shrink-0 z-10">
+      <div class="flex items-center gap-3">
+        <div class="md:hidden w-9 h-9 rounded-xl bg-teal-700 flex items-center justify-center text-white">
+          <span class="material-symbols-rounded text-xl">account_balance_wallet</span>
+        </div>
+        <div>
+          <h2 id="view-title" class="text-lg md:text-xl font-bold text-slate-900">Dashboard</h2>
+          <p id="view-subtitle" class="text-xs text-slate-500 hidden sm:block">Real-time multi-account overview & insights</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <input type="month" id="mobile-month" onchange="changeMonth(this.value)" class="md:hidden bg-slate-100 border-none rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-800">
+        
+        <!-- PWA Install Button (Shown when installable) -->
+        <button onclick="installPWA()" id="pwa-install-btn" class="hidden items-center gap-1 px-3 py-2 rounded-2xl bg-teal-50 hover:bg-teal-100 text-teal-800 text-xs font-bold transition" title="Install App">
+          <span class="material-symbols-rounded text-base">install_mobile</span>
+          <span class="hidden lg:inline">Install App</span>
+        </button>
+
+        <!-- Dark Theme Toggle -->
+        <button onclick="toggleDarkMode()" class="p-2 rounded-2xl bg-slate-100 hover:bg-slate-200/70 text-slate-700 transition" title="Toggle Dark Mode">
+          <span id="dark-mode-icon" class="material-symbols-rounded text-lg">dark_mode</span>
+        </button>
+
+        <!-- Dedicated Manual Sync Button (Shown when signed in) -->
+        <button onclick="syncAllManual()" id="header-manual-sync-btn" class="hidden items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200/80 text-xs font-bold transition active:scale-95" title="Sync all local and cloud data now">
+          <span id="manual-sync-icon" class="material-symbols-rounded text-base">sync</span>
+          <span id="manual-sync-text">Sync Now</span>
+        </button>
+
+        <!-- Account / Cloud Profile Button -->
+        <button onclick="openAuthModal()" id="header-profile-btn" class="flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-slate-100 hover:bg-slate-200/70 text-slate-700 text-xs font-semibold transition">
+          <span id="header-profile-icon" class="material-symbols-rounded text-base text-slate-500">account_circle</span>
+          <span id="header-profile-text" class="hidden sm:inline">Sign In</span>
+        </button>
+
+        <button onclick="openRecordModal()" class="flex items-center gap-1.5 bg-teal-700 hover:bg-teal-800 text-white px-4 py-2.5 rounded-2xl font-semibold text-xs sm:text-sm shadow-md shadow-teal-700/20 active:scale-95 transition-all">
+          <span class="material-symbols-rounded text-lg">add</span>
+          <span class="hidden sm:inline">Add Record</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Scrollable Views Container -->
+    <main class="flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-10 space-y-6 max-w-7xl w-full mx-auto">
+
+      <!-- VIEW 1: DASHBOARD -->
+      <section id="view-dashboard" class="view-section space-y-6">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500">Spending, Asset & Credit Accounts</h3>
+            <button onclick="openAccountModal()" class="text-xs font-semibold text-teal-700 hover:underline flex items-center gap-1">
+              <span class="material-symbols-rounded text-sm">add_circle</span> New Account
+            </button>
+          </div>
+          <div id="accounts-strip" class="flex gap-3.5 overflow-x-auto no-scrollbar pb-2"></div>
+        </div>
+
+        <!-- 5 KPI Cards including Safe-to-Spend Daily Allowance -->
+        <div class="grid grid-cols-2 lg:grid-cols-5 gap-3.5" id="dashboard-kpis"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="m3-card p-5 lg:col-span-5 flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h3 class="font-bold text-slate-800">Expense Structure</h3>
+                <p id="dash-cycle-label" class="text-xs text-slate-500">Current billing cycle breakdown</p>
+              </div>
+              <button onclick="switchTab('analytics')" class="text-xs font-semibold text-teal-700 hover:underline">50/30/20 Report</button>
+            </div>
+            <div class="relative h-56 flex items-center justify-center">
+              <canvas id="dashCategoryChart"></canvas>
+            </div>
+            <div id="dash-Insight-box" class="mt-4 p-3 rounded-xl bg-teal-50/70 border border-teal-200/60 text-xs text-teal-900 flex items-center gap-2.5"></div>
+          </div>
+
+          <div class="m3-card p-5 lg:col-span-7 flex flex-col">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h3 class="font-bold text-slate-800">Recent Transactions</h3>
+                <p class="text-xs text-slate-500">Latest activity across all accounts</p>
+              </div>
+              <button onclick="switchTab('records')" class="text-xs font-semibold text-teal-700 hover:underline">See All</button>
+            </div>
+            <div id="dash-recent-records" class="space-y-2.5 flex-1"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 2: RECORDS (SEARCH & FILTERS) -->
+      <section id="view-records" class="view-section hidden space-y-5">
+        <div class="m3-card p-4 space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+            <div class="relative sm:col-span-2">
+              <span class="material-symbols-rounded absolute left-3.5 top-2.5 text-slate-400 text-lg">search</span>
+              <input type="text" id="filter-search" oninput="renderRecords()" placeholder="Search payee, note, #tags..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-teal-600">
+            </div>
+            <select id="filter-account" onchange="renderRecords()" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-teal-600"></select>
+            <select id="filter-category" onchange="renderRecords()" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-teal-600"></select>
+            <select id="filter-type" onchange="renderRecords()" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-teal-600">
+              <option value="all">All Types</option>
+              <option value="expense">Expenses Only</option>
+              <option value="income">Income Only</option>
+              <option value="transfer">Transfers Only</option>
+            </select>
+          </div>
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 text-xs text-slate-500">
+            <label class="flex items-center gap-1.5 cursor-pointer">
+              <input type="checkbox" id="filter-all-months" onchange="renderRecords()" class="rounded text-teal-700 focus:ring-0">
+              <span>Search across all billing cycles</span>
+            </label>
+            <div id="records-filter-summary" class="font-semibold text-slate-700"></div>
+          </div>
+        </div>
+        <div id="records-list-container" class="space-y-3"></div>
+      </section>
+
+      <!-- VIEW 3: SMART BUDGETS -->
+      <section id="view-budgets" class="view-section hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 m3-card p-5 bg-gradient-to-r from-teal-900 to-teal-700 text-white">
+          <div>
+            <h3 class="text-lg font-bold">Cycle Smart Budgets</h3>
+            <p id="budget-cycle-sub" class="text-xs text-teal-100">Proactive tracking with 80% warning & overspending alerts</p>
+          </div>
+          <button onclick="openBudgetModal()" class="self-start sm:self-auto bg-white text-teal-900 px-4 py-2 rounded-xl text-xs font-bold shadow-sm hover:bg-teal-50 transition">
+            + Create Category Budget
+          </button>
+        </div>
+        <div id="budgets-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+      </section>
+
+      <!-- VIEW 4: PLANNED PAYMENTS (AUTO-RECURRING), GOALS & DEBTS -->
+      <section id="view-planned" class="view-section hidden space-y-8">
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900">Planned & Auto-Recurring Payments</h3>
+              <p class="text-xs text-slate-500">Marking a recurring bill paid automatically schedules the next cycle's due date</p>
+            </div>
+            <button onclick="openPlannedModal()" class="bg-teal-50 text-teal-800 hover:bg-teal-100 px-3.5 py-2 rounded-xl text-xs font-bold transition">+ Add Planned Bill</button>
+          </div>
+          <div id="planned-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900">Savings Goals</h3>
+              <p class="text-xs text-slate-500">Track dedicated funds for trips, gadgets, or emergency reserves</p>
+            </div>
+            <button onclick="openGoalModal()" class="bg-teal-50 text-teal-800 hover:bg-teal-100 px-3.5 py-2 rounded-xl text-xs font-bold transition">+ New Goal</button>
+          </div>
+          <div id="goals-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900">Debts & Loan Tracker</h3>
+              <p class="text-xs text-slate-500">Track money you lent to friends or borrowed</p>
+            </div>
+            <button onclick="openDebtModal()" class="bg-teal-50 text-teal-800 hover:bg-teal-100 px-3.5 py-2 rounded-xl text-xs font-bold transition">+ Add Debt/Loan</button>
+          </div>
+          <div id="debts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+      </section>
+
+      <!-- VIEW 5: RENT & LEASE MANAGER -->
+      <section id="view-rent" class="view-section hidden space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Lease & Security Deposit Vault -->
+          <div class="m3-card p-5 lg:col-span-5 space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-bold text-slate-900">Lease & Security Deposit Vault</h3>
+                <p class="text-xs text-slate-500">Track rental agreement, HRA details & refundable deposit</p>
+              </div>
+              <span class="material-symbols-rounded text-teal-700">real_estate_agent</span>
+            </div>
+
+            <form onsubmit="saveRentLease(event)" class="space-y-3">
+              <div class="grid grid-cols-2 gap-2.5">
+                <div>
+                  <label class="text-xs font-semibold text-slate-500">Monthly Rent</label>
+                  <input type="number" id="rent-amount" placeholder="18000" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm font-bold">
+                </div>
+                <div>
+                  <label class="text-xs font-semibold text-slate-500">Maintenance / Water</label>
+                  <input type="number" id="rent-maint" placeholder="1500" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-2.5">
+                <div>
+                  <label class="text-xs font-semibold text-slate-500">Security Deposit Paid</label>
+                  <input type="number" id="rent-deposit" placeholder="50000" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+                </div>
+                <div>
+                  <label class="text-xs font-semibold text-slate-500">Pay From Account</label>
+                  <select id="rent-account" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm"></select>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-2.5">
+                <div>
+                  <label class="text-xs font-semibold text-slate-500">Landlord Name</label>
+                  <input type="text" id="rent-landlord" placeholder="Name for receipt" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+                </div>
+                <div>
+                  <label class="text-xs font-semibold text-slate-500">Landlord PAN (HRA)</label>
+                  <input type="text" id="rent-pan" placeholder="ABCDE1234F" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm uppercase">
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-2.5">
+                <div>
+                  <label class="text-xs font-semibold text-slate-500">Lease Start Date</label>
+                  <input type="date" id="rent-start" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+                </div>
+                <div>
+                  <label class="text-xs font-semibold text-slate-500">Lease Renewal Date</label>
+                  <input type="date" id="rent-end" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+                </div>
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-slate-500">Annual Escalation %</label>
+                <input type="number" step="0.5" id="rent-escalation" placeholder="5" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+              </div>
+              <div class="flex gap-2 pt-2">
+                <button type="submit" class="flex-1 bg-teal-700 hover:bg-teal-800 text-white py-2.5 rounded-xl text-xs font-bold">Save Lease Details</button>
+                <button type="button" onclick="logMonthlyRentQuick()" class="bg-teal-50 hover:bg-teal-100 text-teal-800 px-3.5 py-2.5 rounded-xl text-xs font-bold">Log Cycle Rent</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right Column: Lease Summary + Move-in / Rental Checklist -->
+          <div class="lg:col-span-7 space-y-6">
+            <div id="rent-summary-cards" class="grid grid-cols-1 sm:grid-cols-3 gap-3.5"></div>
+
+            <div class="m3-card p-5 space-y-4">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="font-bold text-slate-900">Rented Home Setup & recurring Items</h3>
+                  <p class="text-xs text-slate-500">Track move-in purchases, brokerage, appliances, or society deposits</p>
+                </div>
+              </div>
+              <form onsubmit="addRentItem(event)" class="grid grid-cols-1 sm:grid-cols-4 gap-2">
+                <input type="text" id="ri-title" required placeholder="Item (e.g., Brokerage, Fridge, Gas Deposit)" class="sm:col-span-2 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+                <input type="number" id="ri-cost" required placeholder="Cost" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+                <button type="submit" class="bg-teal-700 text-white rounded-xl px-3 py-2 text-xs font-bold hover:bg-teal-800">+ Add Item</button>
+              </form>
+              <div id="rent-items-list" class="space-y-2 max-h-64 overflow-y-auto"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 6: ANALYTICS, 50/30/20 & CASHFLOW -->
+      <section id="view-analytics" class="view-section hidden space-y-6">
+        <!-- 50/30/20 Needs-Wants-Savings Breakdown -->
+        <div class="m3-card p-5 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h3 class="font-bold text-slate-900">50/30/20 Needs–Wants–Savings Breakdown</h3>
+              <p class="text-xs text-slate-500">Compares your cycle spending & savings against the ideal 50% Needs / 30% Wants / 20% Savings rule</p>
+            </div>
+            <span id="rule-income-basis" class="text-xs font-bold px-3 py-1 rounded-xl bg-teal-50 text-teal-800"></span>
+          </div>
+          <div id="breakdown-503020" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="m3-card p-5">
+            <h3 class="font-bold text-slate-800 mb-1">6-Cycle Cash Flow Trend</h3>
+            <p class="text-xs text-slate-500 mb-4">Income vs Expense comparison across billing cycles</p>
+            <div class="h-64">
+              <canvas id="cashflowTrendChart"></canvas>
+            </div>
+          </div>
+          <div class="m3-card p-5">
+            <h3 class="font-bold text-slate-800 mb-1">Category Spending Ranking</h3>
+            <p class="text-xs text-slate-500 mb-4">Where your money went in the current billing cycle</p>
+            <div id="category-ranking-list" class="space-y-3 max-h-64 overflow-y-auto pr-1"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 7: SETTINGS, BILLING CYCLE, CATEGORIES & BACKUP -->
+      <section id="view-settings" class="view-section hidden space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="m3-card p-5 space-y-4">
+            <div>
+              <h3 class="font-bold text-slate-800">Categories & 50/30/20 Bucket Manager</h3>
+              <p class="text-xs text-slate-500">Assign expense categories to Needs (50%), Wants (30%), or Savings (20%)</p>
+            </div>
+            <form onsubmit="saveCategory(event)" class="grid grid-cols-1 sm:grid-cols-5 gap-2">
+              <input type="text" id="cat-name" required placeholder="Category Name" class="sm:col-span-2 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+              <select id="cat-type" onchange="toggleCatGroupSelect()" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+              </select>
+              <select id="cat-group" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+                <option value="needs">Needs (50%)</option>
+                <option value="wants">Wants (30%)</option>
+                <option value="savings">Savings (20%)</option>
+              </select>
+              <button type="submit" class="bg-teal-700 text-white rounded-xl px-3 py-2 text-xs font-bold hover:bg-teal-800">+ Add</button>
+            </form>
+            <div id="settings-categories-list" class="divide-y divide-slate-100 max-h-72 overflow-y-auto"></div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="m3-card p-5 space-y-4">
+              <h3 class="font-bold text-slate-800">Billing Cycle, Theme & Preferences</h3>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-sm font-semibold text-slate-800">Billing Cycle Start Day</span>
+                  <p class="text-xs text-slate-500">Set day of month (1–28) when your salary/billing cycle starts</p>
+                </div>
+                <input type="number" min="1" max="28" id="pref-cycle-day" onchange="updateCycleStartDay(this.value)" class="w-20 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm font-bold text-center">
+              </div>
+
+              <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-sm text-slate-600">Primary Currency Symbol</span>
+                <select id="pref-currency" onchange="updateCurrency(this.value)" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold">
+                  <option value="₹">₹ (INR)</option>
+                  <option value="$">$ (USD)</option>
+                  <option value="€">€ (EUR)</option>
+                  <option value="£">£ (GBP)</option>
+                </select>
+              </div>
+
+              <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <div>
+                  <p class="text-sm font-semibold text-slate-800">Appearance Theme</p>
+                  <p class="text-xs text-slate-500">Switch between Material Light and Dark mode</p>
+                </div>
+                <button onclick="toggleDarkMode()" class="bg-slate-100 hover:bg-slate-200 text-slate-800 px-3.5 py-2 rounded-xl text-xs font-bold">
+                  Toggle Dark Mode
+                </button>
+              </div>
+
+              <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <div>
+                  <p class="text-sm font-semibold text-slate-800">User Profile & Cloud Sync</p>
+                  <p class="text-xs text-slate-500">Sign in or manually push/pull your financial data</p>
+                </div>
+                <button onclick="openAuthModal()" class="bg-teal-50 text-teal-800 hover:bg-teal-100 px-3.5 py-2 rounded-xl text-xs font-bold">
+                  Manage Account
+                </button>
+              </div>
+            </div>
+
+            <div class="m3-card p-5 space-y-4">
+              <h3 class="font-bold text-slate-800">Backup, Export & Clear</h3>
+              <p class="text-xs text-slate-500">Export your ledger anytime as CSV for spreadsheets or JSON for full snapshot restore.</p>
+              <div class="flex flex-wrap gap-2.5">
+                <button onclick="exportCSV()" class="flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 px-3.5 py-2 rounded-xl text-xs font-bold">
+                  <span class="material-symbols-rounded text-base">download</span> Export CSV
+                </button>
+                <button onclick="exportJSON()" class="flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 px-3.5 py-2 rounded-xl text-xs font-bold">
+                  <span class="material-symbols-rounded text-base">data_object</span> Backup JSON
+                </button>
+                <label class="flex items-center gap-1.5 bg-teal-50 hover:bg-teal-100 text-teal-800 px-3.5 py-2 rounded-xl text-xs font-bold cursor-pointer">
+                  <span class="material-symbols-rounded text-base">upload_file</span> Restore JSON
+                  <input type="file" accept=".json" onchange="importJSON(event)" class="hidden">
+                </label>
+                <button onclick="clearAllLocalData()" class="flex items-center gap-1.5 bg-red-50 hover:bg-red-100 text-red-700 px-3.5 py-2 rounded-xl text-xs font-bold ml-auto">
+                  <span class="material-symbols-rounded text-base">delete_forever</span> Wipe All Local Data
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- BOTTOM NAVIGATION BAR (Mobile) -->
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 px-1 py-1.5 flex justify-around items-center z-20">
+      <button onclick="switchTab('dashboard')" data-tab="dashboard" class="nav-btn flex flex-col items-center py-1 px-2 rounded-xl text-slate-500">
+        <span class="material-symbols-rounded text-xl">space_dashboard</span>
+        <span class="text-[10px] font-medium mt-0.5">Home</span>
+      </button>
+      <button onclick="switchTab('records')" data-tab="records" class="nav-btn flex flex-col items-center py-1 px-2 rounded-xl text-slate-500">
+        <span class="material-symbols-rounded text-xl">receipt_long</span>
+        <span class="text-[10px] font-medium mt-0.5">Records</span>
+      </button>
+      <button onclick="switchTab('budgets')" data-tab="budgets" class="nav-btn flex flex-col items-center py-1 px-2 rounded-xl text-slate-500">
+        <span class="material-symbols-rounded text-xl">pie_chart</span>
+        <span class="text-[10px] font-medium mt-0.5">Budgets</span>
+      </button>
+      <button onclick="switchTab('planned')" data-tab="planned" class="nav-btn flex flex-col items-center py-1 px-2 rounded-xl text-slate-500">
+        <span class="material-symbols-rounded text-xl">event_repeat</span>
+        <span class="text-[10px] font-medium mt-0.5">Planned</span>
+      </button>
+      <button onclick="switchTab('rent')" data-tab="rent" class="nav-btn flex flex-col items-center py-1 px-2 rounded-xl text-slate-500">
+        <span class="material-symbols-rounded text-xl">real_estate_agent</span>
+        <span class="text-[10px] font-medium mt-0.5">Rent</span>
+      </button>
+      <button onclick="switchTab('analytics')" data-tab="analytics" class="nav-btn flex flex-col items-center py-1 px-2 rounded-xl text-slate-500">
+        <span class="material-symbols-rounded text-xl">monitoring</span>
+        <span class="text-[10px] font-medium mt-0.5">50/30/20</span>
+      </button>
+      <button onclick="switchTab('settings')" data-tab="settings" class="nav-btn flex flex-col items-center py-1 px-2 rounded-xl text-slate-500">
+        <span class="material-symbols-rounded text-xl">tune</span>
+        <span class="text-[10px] font-medium mt-0.5">More</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- MODAL: USER PROFILE & MANUAL CLOUD SYNC -->
+  <div id="modal-auth" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center">
+            <span class="material-symbols-rounded">cloud_sync</span>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900">User Account & Cloud Sync</h3>
+            <p class="text-[11px] text-slate-500">Connected to mh-finance-manager</p>
+          </div>
+        </div>
+        <button onclick="closeModal('modal-auth')" class="text-slate-400 hover:text-slate-600"><span class="material-symbols-rounded">close</span></button>
+      </div>
+
+      <div id="auth-alert" class="hidden p-3 rounded-xl text-xs font-medium"></div>
+
+      <div id="auth-view-account" class="space-y-4">
+        <div id="auth-logged-out" class="space-y-4">
+          <button onclick="loginWithGoogle()" class="w-full flex items-center justify-center gap-2.5 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 py-2.5 px-4 rounded-2xl text-xs font-bold shadow-2xs transition">
+            <span class="material-symbols-rounded text-base text-teal-700">account_circle</span>
+            Continue with Google
+          </button>
+
+          <div class="relative flex py-1 items-center">
+            <div class="grow border-t border-slate-200"></div>
+            <span class="shrink mx-3 text-[11px] text-slate-400 uppercase font-semibold">Or Email / Password</span>
+            <div class="grow border-t border-slate-200"></div>
+          </div>
+
+          <form onsubmit="handleEmailAuth(event)" class="space-y-3">
+            <div>
+              <label class="text-xs font-semibold text-slate-500">Display Name (for new sign-up)</label>
+              <input type="text" id="auth-name" placeholder="e.g., Raj" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-slate-500">Email Address</label>
+              <input type="email" id="auth-email" required placeholder="you@example.com" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-slate-500">Password</label>
+              <input type="password" id="auth-password" required minlength="6" placeholder="Min 6 characters" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+            </div>
+            <div class="grid grid-cols-2 gap-2.5 pt-1">
+              <button type="submit" onclick="document.getElementById('auth-action').value='login'" class="bg-teal-700 hover:bg-teal-800 text-white py-2.5 rounded-xl text-xs font-bold">Sign In</button>
+              <button type="submit" onclick="document.getElementById('auth-action').value='signup'" class="bg-teal-50 hover:bg-teal-100 text-teal-800 py-2.5 rounded-xl text-xs font-bold">Create Account</button>
+            </div>
+            <input type="hidden" id="auth-action" value="login">
+          </form>
+        </div>
+
+        <div id="auth-logged-in" class="hidden space-y-4">
+          <div class="p-4 rounded-2xl bg-teal-50/70 border border-teal-200/60 flex items-center gap-3">
+            <div id="modal-user-avatar" class="w-12 h-12 rounded-2xl bg-teal-700 text-white flex items-center justify-center font-bold text-lg">R</div>
+            <div class="min-w-0 flex-1">
+              <h4 id="modal-user-name" class="font-bold text-slate-900 truncate">User</h4>
+              <p id="modal-user-email" class="text-xs text-slate-600 truncate">user@example.com</p>
+              <p id="modal-last-sync" class="text-[11px] text-teal-700 font-semibold mt-0.5">Manual Cloud Sync Ready</p>
+            </div>
+          </div>
+
+          <button onclick="syncAllManual()" class="w-full flex items-center justify-center gap-2 bg-teal-700 hover:bg-teal-800 text-white py-3 rounded-2xl text-xs font-bold shadow-md shadow-teal-700/20 transition">
+            <span class="material-symbols-rounded text-base">sync</span>
+            Sync All Now (Smart Push / Pull)
+          </button>
+
+          <div class="grid grid-cols-2 gap-2.5">
+            <button onclick="pushStateToCloud()" class="flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 py-2.5 rounded-xl text-xs font-bold">
+              <span class="material-symbols-rounded text-base">cloud_upload</span> Force Push to Cloud
+            </button>
+            <button onclick="pullStateFromCloud()" class="flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 py-2.5 rounded-xl text-xs font-bold">
+              <span class="material-symbols-rounded text-base">cloud_download</span> Force Pull from Cloud
+            </button>
+          </div>
+
+          <button onclick="logoutFirebase()" class="w-full bg-rose-50 hover:bg-rose-100 text-rose-700 py-2.5 rounded-xl text-xs font-bold">
+            Sign Out (Keep Local Copy)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD / EDIT RECORD -->
+  <div id="modal-record" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-xl">
+      <div class="flex items-center justify-between">
+        <h3 id="record-modal-title" class="text-lg font-bold text-slate-900">New Transaction</h3>
+        <button onclick="closeModal('modal-record')" class="text-slate-400 hover:text-slate-600"><span class="material-symbols-rounded">close</span></button>
+      </div>
+      <form id="form-record" onsubmit="saveRecord(event)" class="space-y-3.5">
+        <input type="hidden" id="rec-id">
+        <div class="grid grid-cols-3 gap-1.5 bg-slate-100 p-1 rounded-2xl">
+          <button type="button" onclick="setRecordType('expense')" id="type-btn-expense" class="py-2 rounded-xl text-xs font-bold transition">Expense</button>
+          <button type="button" onclick="setRecordType('income')" id="type-btn-income" class="py-2 rounded-xl text-xs font-bold transition">Income</button>
+          <button type="button" onclick="setRecordType('transfer')" id="type-btn-transfer" class="py-2 rounded-xl text-xs font-bold transition">Transfer</button>
+        </div>
+        <input type="hidden" id="rec-type" value="expense">
+
+        <div>
+          <label class="text-xs font-semibold text-slate-500">Amount</label>
+          <input type="number" step="0.01" id="rec-amount" required placeholder="0.00" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-xl font-bold text-slate-900 focus:outline-none focus:border-teal-600">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs font-semibold text-slate-500">Account</label>
+            <select id="rec-account" required class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm"></select>
+          </div>
+          <div id="wrap-cat">
+            <label class="text-xs font-semibold text-slate-500">Category</label>
+            <select id="rec-category" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm"></select>
+          </div>
+          <div id="wrap-to-account" class="hidden">
+            <label class="text-xs font-semibold text-slate-500">To Account</label>
+            <select id="rec-to-account" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm"></select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs font-semibold text-slate-500">Date</label>
+            <input type="date" id="rec-date" required class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-slate-500">Payee / Merchant</label>
+            <input type="text" id="rec-payee" placeholder="e.g., Grocery, Fuel, Client" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs font-semibold text-slate-500">Note</label>
+            <input type="text" id="rec-note" placeholder="Optional details" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-slate-500">Labels (comma separated)</label>
+            <input type="text" id="rec-tags" placeholder="trip, tax, family" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+          </div>
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeModal('modal-record')" class="px-4 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100">Cancel</button>
+          <button type="submit" class="bg-teal-700 hover:bg-teal-800 text-white px-6 py-2.5 rounded-xl text-xs font-bold shadow-md">Save Record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD ACCOUNT (WITH CREDIT CARD BILLING CYCLE & GRACE PERIOD TRACKER) -->
+  <div id="modal-account" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 space-y-4 shadow-xl">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-bold text-slate-900">Add Spending Account</h3>
+        <button onclick="closeModal('modal-account')" class="text-slate-400 hover:text-slate-600"><span class="material-symbols-rounded">close</span></button>
+      </div>
+      <form onsubmit="saveAccount(event)" class="space-y-3.5">
+        <div>
+          <label class="text-xs font-semibold text-slate-500">Account Name</label>
+          <input type="text" id="acc-name" required placeholder="e.g., HDFC Bank, ICICI Credit Card" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs font-semibold text-slate-500">Account Type</label>
+            <select id="acc-type" onchange="toggleCreditCardFields()" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+              <option value="Bank">Bank Account</option>
+              <option value="Cash">Cash Wallet</option>
+              <option value="Credit">Credit Card</option>
+              <option value="Savings">Savings / FD</option>
+              <option value="Investment">Investment</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-slate-500">Initial Balance</label>
+            <input type="number" step="0.01" id="acc-init" required value="0" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+          </div>
+        </div>
+
+        <!-- Credit Card Specific Billing Cycle & Grace Period Fields -->
+        <div id="credit-extra-fields" class="hidden space-y-3 p-3 rounded-2xl bg-slate-50 border border-slate-200">
+          <div>
+            <label class="text-xs font-semibold text-slate-500">Total Credit Limit</label>
+            <input type="number" id="acc-limit" placeholder="150000" class="w-full mt-1 bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-sm">
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="text-[11px] font-semibold text-slate-500">Statement Day (1-28)</label>
+              <input type="number" min="1" max="28" id="acc-stmt-day" placeholder="12" class="w-full mt-1 bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-sm">
+            </div>
+            <div>
+              <label class="text-[11px] font-semibold text-slate-500">Payment Due Day (1-28)</label>
+              <input type="number" min="1" max="28" id="acc-due-day" placeholder="2" class="w-full mt-1 bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-sm">
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="text-xs font-semibold text-slate-500">Card Theme Color</label>
+          <input type="color" id="acc-color" value="#006A60" class="w-full mt-1 h-10 rounded-xl cursor-pointer">
+        </div>
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeModal('modal-account')" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600">Cancel</button>
+          <button type="submit" class="bg-teal-700 text-white px-5 py-2 rounded-xl text-xs font-bold">Create Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: SMART BUDGET -->
+  <div id="modal-budget" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 space-y-4 shadow-xl">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-bold text-slate-900">Set Cycle Category Budget</h3>
+        <button onclick="closeModal('modal-budget')" class="text-slate-400 hover:text-slate-600"><span class="material-symbols-rounded">close</span></button>
+      </div>
+      <form onsubmit="saveBudget(event)" class="space-y-3.5">
+        <div>
+          <label class="text-xs font-semibold text-slate-500">Expense Category</label>
+          <select id="bud-category" required class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm"></select>
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-500">Cycle Spending Limit</label>
+          <input type="number" step="1" id="bud-limit" required placeholder="10000" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm font-bold">
+        </div>
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeModal('modal-budget')" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600">Cancel</button>
+          <button type="submit" class="bg-teal-700 text-white px-5 py-2 rounded-xl text-xs font-bold">Save Budget</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: PLANNED PAYMENT (WITH AUTO-RECURRING FREQUENCY) -->
+  <div id="modal-planned" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 space-y-4 shadow-xl">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-bold text-slate-900">Add Planned / Recurring Bill</h3>
+        <button onclick="closeModal('modal-planned')" class="text-slate-400 hover:text-slate-600"><span class="material-symbols-rounded">close</span></button>
+      </div>
+      <form onsubmit="savePlanned(event)" class="space-y-3">
+        <input type="text" id="plan-title" required placeholder="Title (e.g., Broadband, Rent, Netflix)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+        <div class="grid grid-cols-2 gap-2">
+          <input type="number" step="0.01" id="plan-amount" required placeholder="Amount" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+          <input type="date" id="plan-due" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <select id="plan-account" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm"></select>
+          <select id="plan-category" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm"></select>
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-500">Auto-Recurring Frequency</label>
+          <select id="plan-recurrence" class="w-full mt-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold">
+            <option value="monthly">Monthly (Auto-creates next month on pay)</option>
+            <option value="quarterly">Quarterly (Every 3 months)</option>
+            <option value="yearly">Yearly (Annual renewal)</option>
+            <option value="once">One-Time Bill Only</option>
+          </select>
+        </div>
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeModal('modal-planned')" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600">Cancel</button>
+          <button type="submit" class="bg-teal-700 text-white px-5 py-2 rounded-xl text-xs font-bold">Schedule</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: SAVINGS GOAL -->
+  <div id="modal-goal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 space-y-4 shadow-xl">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-bold text-slate-900">New Savings Goal</h3>
+        <button onclick="closeModal('modal-goal')" class="text-slate-400 hover:text-slate-600"><span class="material-symbols-rounded">close</span></button>
+      </div>
+      <form onsubmit="saveGoal(event)" class="space-y-3">
+        <input type="text" id="goal-name" required placeholder="Goal (e.g., Emergency Fund, Roadtrip)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+        <div class="grid grid-cols-2 gap-2">
+          <input type="number" id="goal-target" required placeholder="Target Amount" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+          <input type="number" id="goal-saved" value="0" required placeholder="Already Saved" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+        </div>
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeModal('modal-goal')" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600">Cancel</button>
+          <button type="submit" class="bg-teal-700 text-white px-5 py-2 rounded-xl text-xs font-bold">Create Goal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: DEBT / LOAN -->
+  <div id="modal-debt" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 space-y-4 shadow-xl">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-bold text-slate-900">Add Debt / Loan Record</h3>
+        <button onclick="closeModal('modal-debt')" class="text-slate-400 hover:text-slate-600"><span class="material-symbols-rounded">close</span></button>
+      </div>
+      <form onsubmit="saveDebt(event)" class="space-y-3">
+        <input type="text" id="debt-person" required placeholder="Person / Institution Name" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+        <div class="grid grid-cols-2 gap-2">
+          <select id="debt-type" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+            <option value="lent">I Lent (Owed to me)</option>
+            <option value="borrowed">I Borrowed (I owe)</option>
+          </select>
+          <input type="number" id="debt-amount" required placeholder="Amount" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+        </div>
+        <input type="text" id="debt-note" placeholder="Note / Context" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm">
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeModal('modal-debt')" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600">Cancel</button>
+          <button type="submit" class="bg-teal-700 text-white px-5 py-2 rounded-xl text-xs font-bold">Save Entry</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Firebase / Google API Configuration (external, excluded from VCS) -->
+  <script src="firebase-config.js"></script>
+
+  <!-- APPLICATION + FIREBASE MODULAR SCRIPT -->
+  <script type="module">
+    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signInWithPopup,
+      GoogleAuthProvider,
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword,
+      updateProfile,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      getDoc
+    } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+    // Firebase Configuration — loaded from firebase-config.js (excluded from VCS)
+    // See firebase-config.example.js for the template.
+    const FIREBASE_CONFIG = window.FIREBASE_CONFIG;
+
+    const STORAGE_KEY = 'walletpro_m3_blank_v2';
+
+    let state = null;
+    let activeMonth = getCurrentYearMonth();
+    let hasUnsavedCloudChanges = false;
+    let dashChartInstance = null;
+    let trendChartInstance = null;
+    let deferredPwaPrompt = null;
+
+    // Cloud Sync State (Manual Only)
+    let fbApp = null;
+    let fbAuth = null;
+    let fbDb = null;
+    let currentUser = null;
+
+    function getCurrentYearMonth() {
+      const now = new Date();
+      return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+    }
+
+    // Blank Slate State with 50/30/20 Category Groups, Billing Cycle Start Day & Rent Manager
+    function createBlankState() {
+      return {
+        updatedAt: 0,
+        lastSyncedAt: 0,
+        currency: '₹',
+        cycleStartDay: 1,
+        darkMode: false,
+        accounts: [],
+        categories: [
+          { id: 'cat_inc_1', name: 'Salary & Income', type: 'income', group: 'income', icon: 'payments', color: '#059669' },
+          { id: 'cat_inc_2', name: 'Freelance & Business', type: 'income', group: 'income', icon: 'laptop_mac', color: '#0D9488' },
+          { id: 'cat_exp_1', name: 'Rent & Housing', type: 'expense', group: 'needs', icon: 'home', color: '#0284C7' },
+          { id: 'cat_exp_2', name: 'Groceries & Daily', type: 'expense', group: 'needs', icon: 'shopping_basket', color: '#16A34A' },
+          { id: 'cat_exp_3', name: 'Bills & Utilities', type: 'expense', group: 'needs', icon: 'bolt', color: '#DC2626' },
+          { id: 'cat_exp_4', name: 'Fuel & Commute', type: 'expense', group: 'needs', icon: 'two_wheeler', color: '#2563EB' },
+          { id: 'cat_exp_5', name: 'Food & Dining Out', type: 'expense', group: 'wants', icon: 'restaurant', color: '#EA580C' },
+          { id: 'cat_exp_6', name: 'Shopping & Lifestyle', type: 'expense', group: 'wants', icon: 'shopping_bag', color: '#9333EA' },
+          { id: 'cat_exp_7', name: 'Investments & SIP', type: 'expense', group: 'savings', icon: 'trending_up', color: '#0D9488' }
+        ],
+        records: [],
+        budgets: [],
+        planned: [],
+        goals: [],
+        debts: [],
+        rent: {
+          monthlyRent: 0,
+          maintenance: 0,
+          securityDeposit: 0,
+          accountId: '',
+          landlordName: '',
+          landlordPan: '',
+          leaseStart: '',
+          leaseEnd: '',
+          escalationPct: 5,
+          items: []
+        }
+      };
+    }
+
+    function ensureStateSchema() {
+      if (!state.cycleStartDay) state.cycleStartDay = 1;
+      if (typeof state.darkMode !== 'boolean') state.darkMode = false;
+      if (!state.rent) {
+        state.rent = { monthlyRent: 0, maintenance: 0, securityDeposit: 0, accountId: '', landlordName: '', landlordPan: '', leaseStart: '', leaseEnd: '', escalationPct: 5, items: [] };
+      }
+      if (!Array.isArray(state.rent.items)) state.rent.items = [];
+      state.categories.forEach(c => {
+        if (!c.group) c.group = c.type === 'income' ? 'income' : 'needs';
+      });
+    }
+
+    function loadState() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        try {
+          state = JSON.parse(raw);
+          ensureStateSchema();
+          hasUnsavedCloudChanges = (state.updatedAt || 0) > (state.lastSyncedAt || 0);
+        } catch {
+          state = createBlankState();
+        }
+      } else {
+        state = createBlankState();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      }
+      applyTheme();
+    }
+
+    function saveState() {
+      state.updatedAt = Date.now();
+      hasUnsavedCloudChanges = true;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      if (currentUser) {
+        updateSyncIndicator('unsaved');
+      }
+    }
+
+    // --- CUSTOM BILLING CYCLE ENGINE ---
+    function fmtDateISO(d) {
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
+
+    function getBillingCycleBounds(ym, startDay = state.cycleStartDay || 1) {
+      const [yr, mo] = ym.split('-').map(Number);
+      const day = Math.min(28, Math.max(1, Number(startDay) || 1));
+      if (day === 1) {
+        const start = new Date(yr, mo - 1, 1);
+        const end = new Date(yr, mo, 0);
+        return { startStr: fmtDateISO(start), endStr: fmtDateISO(end), startObj: start, endObj: end };
+      } else {
+        const start = new Date(yr, mo - 1, day);
+        const end = new Date(yr, mo, day - 1);
+        return { startStr: fmtDateISO(start), endStr: fmtDateISO(end), startObj: start, endObj: end };
+      }
+    }
+
+    function isDateInCycle(dateStr, ym) {
+      if (!dateStr) return false;
+      const { startStr, endStr } = getBillingCycleBounds(ym);
+      return dateStr >= startStr && dateStr <= endStr;
+    }
+
+    function getCycleRemainingDays(ym) {
+      const { startObj, endObj } = getBillingCycleBounds(ym);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const totalDays = Math.max(1, Math.round((endObj - startObj) / 86400000) + 1);
+      if (today < startObj) return totalDays;
+      if (today > endObj) return 1;
+      return Math.max(1, Math.round((endObj - today) / 86400000) + 1);
+    }
+
+    // --- DARK MODE & INSTALLABLE PWA SETUP ---
+    function applyTheme() {
+      const html = document.documentElement;
+      const icon = document.getElementById('dark-mode-icon');
+      if (state.darkMode) {
+        html.classList.add('dark');
+        if (icon) icon.textContent = 'light_mode';
+      } else {
+        html.classList.remove('dark');
+        if (icon) icon.textContent = 'dark_mode';
+      }
+    }
+
+    function toggleDarkMode() {
+      state.darkMode = !state.darkMode;
+      applyTheme();
+      saveState();
+      renderAll();
+    }
+
+    function setupPWA() {
+      const iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" rx="28" fill="#006A60"/><path d="M35 42h50v36H35z" fill="#74F8E5"/></svg>`;
+      const iconUrl = `data:image/svg+xml;base64,${btoa(iconSvg)}`;
+      const manifest = {
+        name: "WalletPro Finance Manager",
+        short_name: "WalletPro",
+        start_url: ".",
+        display: "standalone",
+        background_color: "#F7F9FC",
+        theme_color: "#006A60",
+        icons: [{ src: iconUrl, sizes: "192x192", type: "image/svg+xml" }]
+      };
+      const link = document.createElement('link');
+      link.rel = 'manifest';
+      link.href = URL.createObjectURL(new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' }));
+      document.head.appendChild(link);
+
+      if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+        const swCode = `
+          self.addEventListener('install', e => self.skipWaiting());
+          self.addEventListener('activate', e => self.clients.claim());
+          self.addEventListener('fetch', e => {});
+        `;
+        const swUrl = URL.createObjectURL(new Blob([swCode], { type: 'application/javascript' }));
+        navigator.serviceWorker.register(swUrl).catch(() => {});
+      }
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPwaPrompt = e;
+        const btn = document.getElementById('pwa-install-btn');
+        btn.classList.remove('hidden');
+        btn.classList.add('flex');
+      });
+    }
+
+    async function installPWA() {
+      if (!deferredPwaPrompt) return;
+      deferredPwaPrompt.prompt();
+      await deferredPwaPrompt.userChoice;
+      deferredPwaPrompt = null;
+      document.getElementById('pwa-install-btn').classList.add('hidden');
+    }
+
+    // --- FIREBASE INITIALIZATION & MANUAL SYNC ENGINE ---
+    function initFirebase() {
+      try {
+        fbApp = !getApps().length ? initializeApp(FIREBASE_CONFIG) : getApps()[0];
+        fbAuth = getAuth(fbApp);
+        fbDb = getFirestore(fbApp);
+
+        onAuthStateChanged(fbAuth, (user) => {
+          currentUser = user;
+          updateProfileUI(user);
+          if (user) {
+            updateSyncIndicator(hasUnsavedCloudChanges ? 'unsaved' : 'ready');
+          } else {
+            updateSyncIndicator('signed_out');
+          }
+        });
+      } catch (err) {
+        showAuthAlert(`Firebase Init Error: ${err.message}`, true);
+        updateSyncIndicator('error');
+      }
+    }
+
+    async function syncAllManual() {
+      if (!currentUser || !fbDb) {
+        openAuthModal();
+        return;
+      }
+
+      try {
+        updateSyncIndicator('syncing');
+        const userRef = doc(fbDb, 'users', currentUser.uid);
+        const snap = await getDoc(userRef);
+
+        if (!snap.exists()) {
+          state.lastSyncedAt = Date.now();
+          state.updatedAt = state.lastSyncedAt;
+          await setDoc(userRef, state);
+          hasUnsavedCloudChanges = false;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          updateSyncIndicator('synced');
+          showAuthAlert('Initial backup synced to Cloud!', false);
+          return;
+        }
+
+        const cloudData = snap.data();
+        const cloudTime = cloudData.updatedAt || 0;
+        const localTime = state.updatedAt || 0;
+
+        if (localTime >= cloudTime && hasUnsavedCloudChanges) {
+          const now = Date.now();
+          state.updatedAt = now;
+          state.lastSyncedAt = now;
+          await setDoc(userRef, state);
+          hasUnsavedCloudChanges = false;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          updateSyncIndicator('synced');
+          showAuthAlert('All local changes pushed to Cloud!', false);
+        } else if (cloudTime > localTime) {
+          state = cloudData;
+          ensureStateSchema();
+          state.lastSyncedAt = cloudTime;
+          hasUnsavedCloudChanges = false;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          applyTheme();
+          renderAll();
+          updateSyncIndicator('synced');
+          showAuthAlert('Pulled latest changes from Cloud!', false);
+        } else {
+          hasUnsavedCloudChanges = false;
+          updateSyncIndicator('synced');
+          showAuthAlert('Already up to date with Cloud.', false);
+        }
+      } catch (err) {
+        updateSyncIndicator('error');
+        showAuthAlert(`Sync failed: ${err.message}`, true);
+      }
+    }
+
+    async function pushStateToCloud() {
+      if (!currentUser || !fbDb) return;
+      try {
+        updateSyncIndicator('syncing');
+        const now = Date.now();
+        state.updatedAt = now;
+        state.lastSyncedAt = now;
+        const userRef = doc(fbDb, 'users', currentUser.uid);
+        await setDoc(userRef, state);
+        hasUnsavedCloudChanges = false;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        updateSyncIndicator('synced');
+        showAuthAlert('Local data force-pushed to Cloud Firestore!', false);
+      } catch (err) {
+        updateSyncIndicator('error');
+        showAuthAlert(`Push failed: ${err.message}`, true);
+      }
+    }
+
+    async function pullStateFromCloud() {
+      if (!currentUser || !fbDb) return;
+      try {
+        updateSyncIndicator('syncing');
+        const userRef = doc(fbDb, 'users', currentUser.uid);
+        const snap = await getDoc(userRef);
+        if (snap.exists()) {
+          state = snap.data();
+          ensureStateSchema();
+          state.lastSyncedAt = state.updatedAt || Date.now();
+          hasUnsavedCloudChanges = false;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          applyTheme();
+          renderAll();
+          updateSyncIndicator('synced');
+          showAuthAlert('Cloud data restored to this device!', false);
+        } else {
+          updateSyncIndicator('ready');
+          showAuthAlert('No cloud backup found for this account yet.', true);
+        }
+      } catch (err) {
+        updateSyncIndicator('error');
+        showAuthAlert(`Pull failed: ${err.message}`, true);
+      }
+    }
+
+    function updateProfileUI(user) {
+      const loggedOutEl = document.getElementById('auth-logged-out');
+      const loggedInEl = document.getElementById('auth-logged-in');
+      const sideName = document.getElementById('sidebar-user-name');
+      const sideAvatar = document.getElementById('sidebar-avatar');
+      const manualSyncBtn = document.getElementById('header-manual-sync-btn');
+      const profileText = document.getElementById('header-profile-text');
+
+      if (user) {
+        loggedOutEl.classList.add('hidden');
+        loggedInEl.classList.remove('hidden');
+        manualSyncBtn.classList.remove('hidden');
+        manualSyncBtn.classList.add('flex');
+
+        const name = user.displayName || user.email.split('@')[0];
+        const initial = name.charAt(0).toUpperCase();
+        sideName.textContent = name;
+        sideAvatar.textContent = initial;
+        profileText.textContent = name;
+        document.getElementById('modal-user-name').textContent = name;
+        document.getElementById('modal-user-email').textContent = user.email;
+        document.getElementById('modal-user-avatar').textContent = initial;
+      } else {
+        loggedOutEl.classList.remove('hidden');
+        loggedInEl.classList.add('hidden');
+        manualSyncBtn.classList.add('hidden');
+        manualSyncBtn.classList.remove('flex');
+        sideName.textContent = 'Local Guest';
+        profileText.textContent = 'Sign In';
+        sideAvatar.innerHTML = `<span class="material-symbols-rounded text-lg">person</span>`;
+      }
+    }
+
+    function updateSyncIndicator(status) {
+      const btn = document.getElementById('header-manual-sync-btn');
+      const icon = document.getElementById('manual-sync-icon');
+      const text = document.getElementById('manual-sync-text');
+      const sideStatus = document.getElementById('sidebar-sync-status');
+      const modalLastSync = document.getElementById('modal-last-sync');
+
+      const timeStr = state.lastSyncedAt ? new Date(state.lastSyncedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Never';
+
+      if (status === 'synced') {
+        btn.className = 'flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold transition';
+        icon.textContent = 'cloud_done';
+        icon.className = 'material-symbols-rounded text-base text-emerald-700';
+        text.textContent = 'Synced';
+        sideStatus.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Synced (${timeStr})`;
+        if (modalLastSync) modalLastSync.textContent = `Last synced at ${timeStr}`;
+      } else if (status === 'unsaved') {
+        btn.className = 'flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold transition animate-pulse';
+        icon.textContent = 'cloud_upload';
+        icon.className = 'material-symbols-rounded text-base text-amber-700';
+        text.textContent = 'Sync Now *';
+        sideStatus.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Unsynced local edits`;
+        if (modalLastSync) modalLastSync.textContent = 'Unsaved local changes — Click Sync All Now';
+      } else if (status === 'syncing') {
+        icon.textContent = 'sync';
+        icon.className = 'material-symbols-rounded text-base text-teal-700 animate-spin';
+        text.textContent = 'Syncing...';
+        sideStatus.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span> Syncing...`;
+      } else if (status === 'ready') {
+        btn.className = 'flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 text-xs font-bold transition';
+        icon.textContent = 'sync';
+        icon.className = 'material-symbols-rounded text-base text-teal-700';
+        text.textContent = 'Sync Now';
+        sideStatus.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-teal-600"></span> Manual Sync Ready`;
+      } else if (status === 'error') {
+        btn.className = 'flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold transition';
+        icon.textContent = 'cloud_alert';
+        icon.className = 'material-symbols-rounded text-base text-rose-600';
+        text.textContent = 'Retry Sync';
+        sideStatus.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> Sync Error`;
+      } else {
+        sideStatus.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> Sign in to Sync`;
+      }
+    }
+
+    function showAuthAlert(msg, isError = false) {
+      const el = document.getElementById('auth-alert');
+      el.classList.remove('hidden');
+      el.className = `p-3 rounded-xl text-xs font-semibold ${isError ? 'bg-rose-50 text-rose-700 border border-rose-200' : 'bg-teal-50 text-teal-800 border border-teal-200'}`;
+      el.textContent = msg;
+    }
+
+    function openAuthModal() {
+      document.getElementById('auth-alert').classList.add('hidden');
+      showModal('modal-auth');
+    }
+
+    async function loginWithGoogle() {
+      if (!fbAuth) return;
+      try {
+        const provider = new GoogleAuthProvider();
+        await signInWithPopup(fbAuth, provider);
+        showAuthAlert('Signed in! Click "Sync All Now" to sync your data.', false);
+      } catch (err) {
+        showAuthAlert(err.message, true);
+      }
+    }
+
+    async function handleEmailAuth(e) {
+      e.preventDefault();
+      if (!fbAuth) return;
+      const action = document.getElementById('auth-action').value;
+      const name = document.getElementById('auth-name').value.trim();
+      const email = document.getElementById('auth-email').value.trim();
+      const pass = document.getElementById('auth-password').value;
+
+      try {
+        if (action === 'signup') {
+          const cred = await createUserWithEmailAndPassword(fbAuth, email, pass);
+          if (name) await updateProfile(cred.user, { displayName: name });
+          updateProfileUI(cred.user);
+        } else {
+          await signInWithEmailAndPassword(fbAuth, email, pass);
+        }
+        showAuthAlert('Signed in! Click "Sync All Now" to push or pull data.', false);
+      } catch (err) {
+        showAuthAlert(err.message, true);
+      }
+    }
+
+    async function logoutFirebase() {
+      if (!fbAuth) return;
+      await signOut(fbAuth);
+      showAuthAlert('Signed out. Working in Local Offline mode.', false);
+    }
+
+    // --- CORE FINANCE APP LOGIC ---
+    function fmt(num) {
+      const n = Number(num) || 0;
+      return `${state.currency}${n.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+    }
+
+    function getAccountBalance(accId) {
+      const acc = state.accounts.find(a => a.id === accId);
+      if (!acc) return 0;
+      let bal = Number(acc.initialBalance) || 0;
+      state.records.forEach(r => {
+        const amt = Number(r.amount) || 0;
+        if (r.type === 'income' && r.accountId === accId) bal += amt;
+        else if (r.type === 'expense' && r.accountId === accId) bal -= amt;
+        else if (r.type === 'transfer') {
+          if (r.accountId === accId) bal -= amt;
+          if (r.toAccountId === accId) bal += amt;
+        }
+      });
+      return bal;
+    }
+
+    function getCreditCardCycleStats(acc) {
+      const bal = getAccountBalance(acc.id);
+      const used = Math.max(0, -bal);
+      const limit = Number(acc.creditLimit) || 0;
+      const utilPct = limit > 0 ? Math.round((used / limit) * 100) : 0;
+      const stmtDay = Number(acc.statementDay) || 15;
+      const dueDay = Number(acc.dueDay) || 5;
+
+      const graceDays = dueDay > stmtDay ? (dueDay - stmtDay) : (30 - stmtDay + dueDay);
+      return { used, limit, utilPct, stmtDay, dueDay, graceDays };
+    }
+
+    function getCategory(catId) {
+      return state.categories.find(c => c.id === catId) || { name: 'General', group: 'needs', icon: 'sync_alt', color: '#64748B' };
+    }
+
+    function getAccount(accId) {
+      return state.accounts.find(a => a.id === accId) || { name: 'Removed Account', color: '#64748B' };
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+      document.getElementById(`view-${tabId}`).classList.remove('hidden');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        if (btn.dataset.tab === tabId) btn.classList.add('nav-active');
+        else btn.classList.remove('nav-active');
+      });
+
+      const titles = {
+        dashboard: ['Dashboard', 'Safe-to-spend allowance, credit cycle & multi-account overview'],
+        records: ['Transactions & Ledger', 'Search, filter by tags, accounts, or billing cycles'],
+        budgets: ['Smart Budgets', 'Billing cycle category limits & proactive pacing alerts'],
+        planned: ['Planned Bills, Goals & Debts', 'Auto-recurring payments, savings targets, and IOUs'],
+        rent: ['Rent & Lease Manager', 'Security deposit vault, HRA tracker & rented home setup'],
+        analytics: ['50/30/20 & Cashflow Reports', 'Needs-Wants-Savings ratio & 6-cycle trend analysis'],
+        settings: ['Categories, Billing Cycle & Data', 'Customize cycle start day, 50/30/20 buckets, and backups']
+      };
+      document.getElementById('view-title').textContent = titles[tabId][0];
+      document.getElementById('view-subtitle').textContent = titles[tabId][1];
+      renderAll();
+    }
+
+    function changeMonth(ym) {
+      if (!ym) return;
+      activeMonth = ym;
+      document.getElementById('global-month').value = ym;
+      document.getElementById('mobile-month').value = ym;
+      renderAll();
+    }
+
+    function renderAll() {
+      const { startStr, endStr } = getBillingCycleBounds(activeMonth);
+      document.getElementById('global-month').value = activeMonth;
+      document.getElementById('mobile-month').value = activeMonth;
+      document.getElementById('pref-currency').value = state.currency;
+      document.getElementById('pref-cycle-day').value = state.cycleStartDay || 1;
+      document.getElementById('cycle-range-badge').textContent = `${startStr} → ${endStr}`;
+      document.getElementById('dash-cycle-label').textContent = `Cycle: ${startStr} to ${endStr}`;
+      document.getElementById('budget-cycle-sub').textContent = `Tracking cycle ${startStr} to ${endStr}`;
+
+      renderDashboard();
+      populateFilterDropdowns();
+      renderRecords();
+      renderBudgets();
+      renderPlannedGoalsDebts();
+      renderRentView();
+      renderAnalytics();
+      renderSettings();
+    }
+
+    function renderDashboard() {
+      const strip = document.getElementById('accounts-strip');
+      if (!state.accounts.length) {
+        strip.innerHTML = `
+          <div onclick="openAccountModal()" class="m3-card p-4 w-full border-2 border-dashed border-teal-300 bg-teal-50/30 hover:bg-teal-50/60 cursor-pointer flex items-center justify-between transition">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-2xl bg-teal-700 text-white flex items-center justify-center">
+                <span class="material-symbols-rounded">add</span>
+              </div>
+              <div>
+                <p class="text-sm font-bold text-slate-800">Add Your First Spending or Credit Account</p>
+                <p class="text-xs text-slate-500">Create a Bank, Cash Wallet, or Credit Card (with billing & grace period tracking)</p>
+              </div>
+            </div>
+            <span class="text-xs font-bold text-teal-700 px-3 py-1.5 bg-white rounded-xl border border-teal-200">+ Create</span>
+          </div>
+        `;
+      } else {
+        strip.innerHTML = state.accounts.map(acc => {
+          const bal = getAccountBalance(acc.id);
+          let creditMetaHTML = '';
+          if (acc.type === 'Credit') {
+            const cc = getCreditCardCycleStats(acc);
+            const utilColor = cc.utilPct > 30 ? 'text-rose-600' : 'text-teal-700';
+            creditMetaHTML = `
+              <div class="mt-2 pt-2 border-t border-slate-100 text-[10px] space-y-1">
+                <div class="flex justify-between">
+                  <span class="text-slate-400">Stmt: Day ${cc.stmtDay} • Due: Day ${cc.dueDay}</span>
+                  <span class="font-bold ${utilColor}">${cc.utilPct}% Util</span>
+                </div>
+                <div class="text-slate-500">Grace period: ~${cc.graceDays} days</div>
+              </div>
+            `;
+          }
+          return `
+            <div class="m3-card p-4 min-w-[235px] shrink-0 flex flex-col justify-between border-l-4" style="border-left-color: ${acc.color}">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">${acc.type}</span>
+                <button onclick="deleteAccount('${acc.id}')" title="Remove Account" class="text-slate-300 hover:text-red-500">
+                  <span class="material-symbols-rounded text-sm">delete</span>
+                </button>
+              </div>
+              <div class="my-1.5">
+                <p class="text-xs font-semibold text-slate-600 truncate">${acc.name}</p>
+                <p class="text-lg font-bold text-slate-900">${fmt(bal)}</p>
+              </div>
+              ${creditMetaHTML}
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Cycle KPIs + Safe-to-Spend Daily Allowance
+      const cycleRecs = state.records.filter(r => isDateInCycle(r.date, activeMonth));
+      const totalInc = cycleRecs.filter(r => r.type === 'income').reduce((s, r) => s + Number(r.amount), 0);
+      const totalExp = cycleRecs.filter(r => r.type === 'expense').reduce((s, r) => s + Number(r.amount), 0);
+      const netFlow = totalInc - totalExp;
+      const totalNetWorth = state.accounts.reduce((s, a) => s + getAccountBalance(a.id), 0);
+      const savingsRate = totalInc > 0 ? Math.round(((totalInc - totalExp) / totalInc) * 100) : 0;
+
+      // Safe-to-Spend Calculation
+      const totalBudgetLimit = state.budgets.reduce((s, b) => s + Number(b.limit), 0);
+      const unpaidPlannedInCycle = state.planned
+        .filter(p => !p.paid && isDateInCycle(p.dueDate, activeMonth))
+        .reduce((s, p) => s + Number(p.amount), 0);
+      const daysLeft = getCycleRemainingDays(activeMonth);
+      const spendableBase = totalBudgetLimit > 0 ? totalBudgetLimit : totalInc * 0.8;
+      const remainingPool = Math.max(0, spendableBase - totalExp - unpaidPlannedInCycle);
+      const safeDaily = remainingPool / daysLeft;
+
+      document.getElementById('dashboard-kpis').innerHTML = `
+        <div class="m3-card p-4">
+          <span class="text-xs text-slate-500 font-medium">Total Net Worth</span>
+          <p class="text-xl font-bold text-slate-900 mt-1">${fmt(totalNetWorth)}</p>
+          <span class="text-[11px] text-teal-700 font-semibold">${state.accounts.length} active account(s)</span>
+        </div>
+        <div class="m3-card p-4">
+          <span class="text-xs text-slate-500 font-medium">Cycle Income</span>
+          <p class="text-xl font-bold text-emerald-600 mt-1">+${fmt(totalInc)}</p>
+          <span class="text-[11px] text-slate-400">Start Day: ${state.cycleStartDay}</span>
+        </div>
+        <div class="m3-card p-4">
+          <span class="text-xs text-slate-500 font-medium">Cycle Expenses</span>
+          <p class="text-xl font-bold text-rose-600 mt-1">-${fmt(totalExp)}</p>
+          <span class="text-[11px] text-slate-400">${cycleRecs.filter(r => r.type === 'expense').length} transactions</span>
+        </div>
+        <div class="m3-card p-4">
+          <span class="text-xs text-slate-500 font-medium">Cycle Cash Flow</span>
+          <p class="text-xl font-bold ${netFlow >= 0 ? 'text-teal-700' : 'text-rose-600'} mt-1">${netFlow >= 0 ? '+' : ''}${fmt(netFlow)}</p>
+          <span class="text-[11px] font-semibold ${savingsRate >= 20 ? 'text-teal-700' : 'text-slate-400'}">Savings Rate: ${savingsRate}%</span>
+        </div>
+        <div class="m3-card p-4 bg-teal-50/40 border-teal-200 col-span-2 lg:col-span-1">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-teal-800 font-bold">Safe-to-Spend / Day</span>
+            <span class="material-symbols-rounded text-teal-700 text-base">shield_with_heart</span>
+          </div>
+          <p class="text-xl font-bold text-teal-900 mt-1">${fmt(safeDaily)}</p>
+          <span class="text-[11px] text-teal-700 font-medium">${daysLeft} day(s) left • ${fmt(unpaidPlannedInCycle)} bills due</span>
+        </div>
+      `;
+
+      const expByCat = {};
+      cycleRecs.filter(r => r.type === 'expense').forEach(r => {
+        expByCat[r.categoryId] = (expByCat[r.categoryId] || 0) + Number(r.amount);
+      });
+      const catIds = Object.keys(expByCat);
+      const labels = catIds.map(id => getCategory(id).name);
+      const data = catIds.map(id => expByCat[id]);
+      const colors = catIds.map(id => getCategory(id).color);
+
+      const ctx = document.getElementById('dashCategoryChart').getContext('2d');
+      if (dashChartInstance) dashChartInstance.destroy();
+      dashChartInstance = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: labels.length ? labels : ['No Expenses Yet'],
+          datasets: [{
+            data: data.length ? data : [1],
+            backgroundColor: colors.length ? colors : ['#E2E8F0'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '70%',
+          plugins: { legend: { position: 'right', labels: { boxWidth: 10, font: { size: 11 } } } }
+        }
+      });
+
+      const insightEl = document.getElementById('dash-Insight-box');
+      if (catIds.length > 0) {
+        const topCatId = catIds.sort((a, b) => expByCat[b] - expByCat[a])[0];
+        const pct = Math.round((expByCat[topCatId] / totalExp) * 100);
+        insightEl.innerHTML = `<span class="material-symbols-rounded text-teal-700">lightbulb</span>
+          <span>Top spend is <strong>${getCategory(topCatId).name}</strong> (${pct}% of cycle expenses at ${fmt(expByCat[topCatId])}).</span>`;
+      } else {
+        insightEl.innerHTML = `<span class="material-symbols-rounded text-teal-700">info</span>
+          <span>No expenses logged in this billing cycle yet.</span>`;
+      }
+
+      const recentEl = document.getElementById('dash-recent-records');
+      const sorted = [...state.records].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
+      if (!sorted.length) {
+        recentEl.innerHTML = `<div class="h-full flex flex-col items-center justify-center text-center py-10 text-slate-400">
+          <span class="material-symbols-rounded text-3xl mb-1">receipt_long</span>
+          <p class="text-xs">Your transaction ledger is empty.</p>
+        </div>`;
+      } else {
+        recentEl.innerHTML = sorted.map(r => renderRecordItemHTML(r)).join('');
+      }
+    }
+
+    function renderRecordItemHTML(r) {
+      const cat = r.type === 'transfer' ? { name: 'Transfer', icon: 'sync_alt', color: '#0284C7', group: 'savings' } : getCategory(r.categoryId);
+      const acc = getAccount(r.accountId);
+      const toAcc = r.toAccountId ? getAccount(r.toAccountId) : null;
+      const sign = r.type === 'income' ? '+' : r.type === 'expense' ? '-' : '⇄';
+      const amtColor = r.type === 'income' ? 'text-emerald-600' : r.type === 'expense' ? 'text-rose-600' : 'text-sky-600';
+
+      return `
+        <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-50/70 hover:bg-slate-100/80 transition border border-slate-100">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-10 h-10 rounded-2xl flex items-center justify-center text-white shrink-0" style="background-color: ${cat.color}">
+              <span class="material-symbols-rounded text-lg">${cat.icon || 'payments'}</span>
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <p class="text-sm font-bold text-slate-900 truncate">${r.payee || cat.name}</p>
+                <span class="text-[11px] px-2 py-0.5 rounded-md bg-white border border-slate-200 text-slate-600 font-medium">${r.type === 'transfer' && toAcc ? `${acc.name} → ${toAcc.name}` : acc.name}</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs text-slate-500 truncate mt-0.5">
+                <span>${r.date}</span>
+                ${r.note ? `<span>• ${r.note}</span>` : ''}
+                ${(r.tags || []).map(t => `<span class="text-[10px] text-teal-700 bg-teal-50 px-1.5 rounded">#${t}</span>`).join('')}
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 shrink-0 ml-2">
+            <span class="text-sm font-bold ${amtColor}">${sign}${fmt(r.amount)}</span>
+            <button onclick="openRecordModal('${r.id}')" class="text-slate-400 hover:text-teal-700 p-1"><span class="material-symbols-rounded text-base">edit</span></button>
+            <button onclick="deleteRecord('${r.id}')" class="text-slate-400 hover:text-rose-600 p-1"><span class="material-symbols-rounded text-base">delete</span></button>
+          </div>
+        </div>
+      `;
+    }
+
+    function populateFilterDropdowns() {
+      const accSel = document.getElementById('filter-account');
+      const catSel = document.getElementById('filter-category');
+      const curAcc = accSel.value || 'all';
+      const curCat = catSel.value || 'all';
+
+      accSel.innerHTML = `<option value="all">All Accounts</option>` + state.accounts.map(a => `<option value="${a.id}">${a.name}</option>`).join('');
+      catSel.innerHTML = `<option value="all">All Categories</option>` + state.categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+      accSel.value = curAcc;
+      catSel.value = curCat;
+    }
+
+    function renderRecords() {
+      const q = (document.getElementById('filter-search')?.value || '').toLowerCase().trim();
+      const accId = document.getElementById('filter-account')?.value || 'all';
+      const catId = document.getElementById('filter-category')?.value || 'all';
+      const type = document.getElementById('filter-type')?.value || 'all';
+      const allMonths = document.getElementById('filter-all-months')?.checked;
+
+      const filtered = state.records.filter(r => {
+        if (!allMonths && !isDateInCycle(r.date, activeMonth)) return false;
+        if (accId !== 'all' && r.accountId !== accId && r.toAccountId !== accId) return false;
+        if (catId !== 'all' && r.categoryId !== catId) return false;
+        if (type !== 'all' && r.type !== type) return false;
+        if (q) {
+          const catName = getCategory(r.categoryId).name.toLowerCase();
+          const hay = `${r.payee || ''} ${r.note || ''} ${(r.tags || []).join(' ')} ${catName}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      }).sort((a, b) => b.date.localeCompare(a.date));
+
+      const sumInc = filtered.filter(r => r.type === 'income').reduce((s, r) => s + Number(r.amount), 0);
+      const sumExp = filtered.filter(r => r.type === 'expense').reduce((s, r) => s + Number(r.amount), 0);
+      document.getElementById('records-filter-summary').textContent =
+        `Showing ${filtered.length} records | In: ${fmt(sumInc)} | Out: ${fmt(sumExp)}`;
+
+      const container = document.getElementById('records-list-container');
+      if (!filtered.length) {
+        container.innerHTML = `<div class="m3-card p-8 text-center text-slate-400 text-sm">No transactions found in this billing cycle.</div>`;
+        return;
+      }
+      container.innerHTML = `<div class="m3-card p-4 space-y-2.5">${filtered.map(r => renderRecordItemHTML(r)).join('')}</div>`;
+    }
+
+    function renderBudgets() {
+      const grid = document.getElementById('budgets-grid');
+      if (!state.budgets.length) {
+        grid.innerHTML = `<div class="m3-card p-8 col-span-full text-center text-slate-400 text-sm">No category budgets configured yet. Click "+ Create Category Budget" above.</div>`;
+        return;
+      }
+      const cycleRecs = state.records.filter(r => isDateInCycle(r.date, activeMonth) && r.type === 'expense');
+
+      grid.innerHTML = state.budgets.map(b => {
+        const cat = getCategory(b.categoryId);
+        const spent = cycleRecs.filter(r => r.categoryId === b.categoryId).reduce((s, r) => s + Number(r.amount), 0);
+        const limit = Number(b.limit) || 1;
+        const pct = Math.min(100, Math.round((spent / limit) * 100));
+        const rawPct = Math.round((spent / limit) * 100);
+
+        let barColor = 'bg-teal-600';
+        let badge = `<span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-teal-50 text-teal-800">On Track</span>`;
+        if (rawPct >= 100) {
+          barColor = 'bg-rose-600';
+          badge = `<span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-rose-100 text-rose-700">Overspent (${rawPct}%)</span>`;
+        } else if (rawPct >= 80) {
+          barColor = 'bg-amber-500';
+          badge = `<span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-amber-100 text-amber-800">Near Limit (${rawPct}%)</span>`;
+        }
+
+        return `
+          <div class="m3-card p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white" style="background-color:${cat.color}">
+                  <span class="material-symbols-rounded text-base">${cat.icon}</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm">${cat.name}</h4>
+                  <p class="text-xs text-slate-500">${fmt(spent)} spent of ${fmt(limit)}</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                ${badge}
+                <button onclick="deleteBudget('${b.id}')" class="text-slate-300 hover:text-rose-600"><span class="material-symbols-rounded text-base">delete</span></button>
+              </div>
+            </div>
+            <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+              <div class="h-full ${barColor} transition-all duration-300" style="width:${pct}%"></div>
+            </div>
+            <div class="flex justify-between text-xs text-slate-500">
+              <span>${ limit - spent >= 0 ? `${fmt(limit - spent)} remaining` : `${fmt(spent - limit)} over budget` }</span>
+              <span>${rawPct}%</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderPlannedGoalsDebts() {
+      const pGrid = document.getElementById('planned-grid');
+      pGrid.innerHTML = state.planned.length ? state.planned.map(p => {
+        const cat = getCategory(p.categoryId);
+        const acc = getAccount(p.accountId);
+        const recLabel = (p.recurrence || 'once').toUpperCase();
+        return `
+          <div class="m3-card p-4 flex flex-col justify-between gap-3">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-600">Due: ${p.dueDate}</span>
+                  <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-teal-50 text-teal-700">${recLabel}</span>
+                </div>
+                <h4 class="font-bold text-slate-900 mt-1.5">${p.title}</h4>
+                <p class="text-xs text-slate-500">${acc.name} • ${cat.name}</p>
+              </div>
+              <p class="font-bold text-rose-600">${fmt(p.amount)}</p>
+            </div>
+            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+              ${p.paid
+                ? `<span class="text-xs font-bold text-emerald-600 flex items-center gap-1"><span class="material-symbols-rounded text-sm">check_circle</span> Paid & Logged</span>`
+                : `<button onclick="executePlanned('${p.id}')" class="text-xs font-bold bg-teal-700 text-white px-3 py-1.5 rounded-xl hover:bg-teal-800">Mark Paid & Next</button>`
+              }
+              <button onclick="deletePlanned('${p.id}')" class="text-slate-300 hover:text-rose-600"><span class="material-symbols-rounded text-base">delete</span></button>
+            </div>
+          </div>
+        `;
+      }).join('') : `<div class="m3-card p-6 col-span-full text-center text-slate-400 text-xs">No planned bills scheduled.</div>`;
+
+      const gGrid = document.getElementById('goals-grid');
+      gGrid.innerHTML = state.goals.length ? state.goals.map(g => {
+        const pct = Math.min(100, Math.round((g.saved / g.target) * 100));
+        return `
+          <div class="m3-card p-4 space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="font-bold text-slate-900">${g.name}</h4>
+              <span class="text-xs font-bold text-teal-700">${pct}%</span>
+            </div>
+            <p class="text-xs text-slate-500">${fmt(g.saved)} saved of ${fmt(g.target)}</p>
+            <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div class="h-full bg-teal-600" style="width:${pct}%"></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <button onclick="addGoalContribution('${g.id}')" class="text-xs font-bold text-teal-700 hover:underline">+ Add Deposit</button>
+              <button onclick="deleteGoal('${g.id}')" class="text-slate-300 hover:text-rose-600"><span class="material-symbols-rounded text-base">delete</span></button>
+            </div>
+          </div>
+        `;
+      }).join('') : `<div class="m3-card p-6 col-span-full text-center text-slate-400 text-xs">No active savings goals.</div>`;
+
+      const dGrid = document.getElementById('debts-grid');
+      dGrid.innerHTML = state.debts.length ? state.debts.map(d => `
+        <div class="m3-card p-4 flex flex-col justify-between gap-2">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded ${d.type === 'lent' ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}">
+                ${d.type === 'lent' ? 'Owed to Me' : 'I Owe'}
+              </span>
+              <h4 class="font-bold text-slate-900 mt-1">${d.person}</h4>
+              <p class="text-xs text-slate-500">${d.note || ''}</p>
+            </div>
+            <p class="font-bold ${d.type === 'lent' ? 'text-emerald-600' : 'text-rose-600'}">${fmt(d.amount)}</p>
+          </div>
+          <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+            ${d.settled
+              ? `<span class="text-xs font-bold text-slate-400">Settled</span>`
+              : `<button onclick="settleDebt('${d.id}')" class="text-xs font-bold text-teal-700 hover:underline">Mark Settled</button>`
+            }
+            <button onclick="deleteDebt('${d.id}')" class="text-slate-300 hover:text-rose-600"><span class="material-symbols-rounded text-base">delete</span></button>
+          </div>
+        </div>
+      `).join('') : `<div class="m3-card p-6 col-span-full text-center text-slate-400 text-xs">No debts or loans tracked.</div>`;
+    }
+
+    // --- RENT & LEASE MANAGER VIEW ---
+    function renderRentView() {
+      const r = state.rent || {};
+      const accSel = document.getElementById('rent-account');
+      accSel.innerHTML = `<option value="">Select Account</option>` + state.accounts.map(a => `<option value="${a.id}">${a.name}</option>`).join('');
+      accSel.value = r.accountId || '';
+
+      document.getElementById('rent-amount').value = r.monthlyRent || '';
+      document.getElementById('rent-maint').value = r.maintenance || '';
+      document.getElementById('rent-deposit').value = r.securityDeposit || '';
+      document.getElementById('rent-landlord').value = r.landlordName || '';
+      document.getElementById('rent-pan').value = r.landlordPan || '';
+      document.getElementById('rent-start').value = r.leaseStart || '';
+      document.getElementById('rent-end').value = r.leaseEnd || '';
+      document.getElementById('rent-escalation').value = r.escalationPct ?? 5;
+
+      const monthlyTotal = (Number(r.monthlyRent) || 0) + (Number(r.maintenance) || 0);
+      const nextEscalatedRent = Math.round((Number(r.monthlyRent) || 0) * (1 + (Number(r.escalationPct) || 0) / 100));
+      let daysToRenewal = 'Not set';
+      if (r.leaseEnd) {
+        const diff = Math.ceil((new Date(r.leaseEnd) - new Date()) / 86400000);
+        daysToRenewal = diff >= 0 ? `${diff} days left` : `Expired ${Math.abs(diff)}d ago`;
+      }
+
+      document.getElementById('rent-summary-cards').innerHTML = `
+        <div class="m3-card p-4">
+          <span class="text-xs text-slate-500">Total Monthly Outflow</span>
+          <p class="text-lg font-bold text-slate-900 mt-1">${fmt(monthlyTotal)}</p>
+          <span class="text-[11px] text-slate-400">Rent + Maintenance</span>
+        </div>
+        <div class="m3-card p-4">
+          <span class="text-xs text-slate-500">Refundable Deposit Vault</span>
+          <p class="text-lg font-bold text-teal-700 mt-1">${fmt(r.securityDeposit || 0)}</p>
+          <span class="text-[11px] text-slate-400">Landlord: ${r.landlordName || 'N/A'}</span>
+        </div>
+        <div class="m3-card p-4">
+          <span class="text-xs text-slate-500">Lease Renewal & Escalation</span>
+          <p class="text-lg font-bold text-amber-600 mt-1">${daysToRenewal}</p>
+          <span class="text-[11px] text-slate-400">Next Rent (~${r.escalationPct || 5}%): ${fmt(nextEscalatedRent)}</span>
+        </div>
+      `;
+
+      const itemsList = document.getElementById('rent-items-list');
+      if (!r.items || !r.items.length) {
+        itemsList.innerHTML = `<p class="text-xs text-slate-400 py-4 text-center">No move-in or rental setup items added yet.</p>`;
+      } else {
+        itemsList.innerHTML = r.items.map(item => `
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+            <div class="flex items-center gap-2.5">
+              <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleRentItem('${item.id}')" class="rounded text-teal-700">
+              <span class="text-sm font-semibold ${item.done ? 'line-through text-slate-400' : 'text-slate-800'}">${item.title}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-bold text-slate-900">${fmt(item.cost)}</span>
+              <button onclick="deleteRentItem('${item.id}')" class="text-slate-300 hover:text-rose-600"><span class="material-symbols-rounded text-base">delete</span></button>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    function saveRentLease(e) {
+      e.preventDefault();
+      state.rent = {
+        ...state.rent,
+        monthlyRent: parseFloat(document.getElementById('rent-amount').value) || 0,
+        maintenance: parseFloat(document.getElementById('rent-maint').value) || 0,
+        securityDeposit: parseFloat(document.getElementById('rent-deposit').value) || 0,
+        accountId: document.getElementById('rent-account').value,
+        landlordName: document.getElementById('rent-landlord').value.trim(),
+        landlordPan: document.getElementById('rent-pan').value.trim().toUpperCase(),
+        leaseStart: document.getElementById('rent-start').value,
+        leaseEnd: document.getElementById('rent-end').value,
+        escalationPct: parseFloat(document.getElementById('rent-escalation').value) || 0
+      };
+      saveState();
+      renderAll();
+      alert('Lease & rent configuration saved!');
+    }
+
+    function logMonthlyRentQuick() {
+      const r = state.rent;
+      const total = (Number(r.monthlyRent) || 0) + (Number(r.maintenance) || 0);
+      if (!total) return alert('Please set your Monthly Rent amount first.');
+      const accId = r.accountId || (state.accounts[0] && state.accounts[0].id);
+      if (!accId) return alert('Please create a Spending Account first.');
+      const rentCat = state.categories.find(c => c.name.toLowerCase().includes('rent')) || state.categories.find(c => c.type === 'expense');
+
+      state.records.push({
+        id: `rec_${Date.now()}`,
+        type: 'expense',
+        amount: total,
+        accountId: accId,
+        categoryId: rentCat ? rentCat.id : null,
+        date: fmtDateISO(new Date()),
+        payee: r.landlordName || 'Landlord Rent',
+        note: `Rent (${fmt(r.monthlyRent)}) + Maint (${fmt(r.maintenance)})${r.landlordPan ? ` | PAN: ${r.landlordPan}` : ''}`,
+        tags: ['rent', 'hra', 'housing']
+      });
+      saveState();
+      renderAll();
+      alert('Monthly rent & maintenance logged to transactions!');
+    }
+
+    function addRentItem(e) {
+      e.preventDefault();
+      state.rent.items.push({
+        id: `ri_${Date.now()}`,
+        title: document.getElementById('ri-title').value.trim(),
+        cost: parseFloat(document.getElementById('ri-cost').value) || 0,
+        done: false
+      });
+      e.target.reset();
+      saveState();
+      renderRentView();
+    }
+
+    function toggleRentItem(id) {
+      const item = state.rent.items.find(x => x.id === id);
+      if (item) item.done = !item.done;
+      saveState();
+      renderRentView();
+    }
+
+    function deleteRentItem(id) {
+      state.rent.items = state.rent.items.filter(x => x.id !== id);
+      saveState();
+      renderRentView();
+    }
+
+    // --- 50/30/20 & ANALYTICS VIEW ---
+    function renderAnalytics() {
+      const cycleRecs = state.records.filter(r => isDateInCycle(r.date, activeMonth));
+      const cycleInc = cycleRecs.filter(r => r.type === 'income').reduce((s, r) => s + Number(r.amount), 0);
+
+      let needsAmt = 0, wantsAmt = 0, savingsAmt = 0;
+      cycleRecs.forEach(r => {
+        const amt = Number(r.amount) || 0;
+        if (r.type === 'expense') {
+          const grp = getCategory(r.categoryId).group || 'needs';
+          if (grp === 'needs') needsAmt += amt;
+          else if (grp === 'wants') wantsAmt += amt;
+          else if (grp === 'savings') savingsAmt += amt;
+        } else if (r.type === 'transfer') {
+          const toAcc = getAccount(r.toAccountId);
+          if (toAcc && (toAcc.type === 'Savings' || toAcc.type === 'Investment')) {
+            savingsAmt += amt;
+          }
+        }
+      });
+
+      const base = cycleInc > 0 ? cycleInc : Math.max(1, needsAmt + wantsAmt + savingsAmt);
+      document.getElementById('rule-income-basis').textContent = cycleInc > 0 ? `Based on Cycle Income: ${fmt(cycleInc)}` : `Based on Total Outflow: ${fmt(base)}`;
+
+      const buckets = [
+        { label: 'Needs (Essentials)', actual: needsAmt, targetPct: 50, color: 'bg-sky-600', badgeBg: 'bg-sky-50 text-sky-800' },
+        { label: 'Wants (Lifestyle)', actual: wantsAmt, targetPct: 30, color: 'bg-purple-600', badgeBg: 'bg-purple-50 text-purple-800' },
+        { label: 'Savings & Investments', actual: savingsAmt, targetPct: 20, color: 'bg-emerald-600', badgeBg: 'bg-emerald-50 text-emerald-800' }
+      ];
+
+      document.getElementById('breakdown-503020').innerHTML = buckets.map(b => {
+        const targetAmt = (base * b.targetPct) / 100;
+        const actualPct = Math.round((b.actual / base) * 100);
+        const barW = Math.min(100, Math.round((b.actual / Math.max(1, targetAmt)) * 100));
+        return `
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-800">${b.label}</span>
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded-md ${b.badgeBg}">Target: ${b.targetPct}% (${fmt(targetAmt)})</span>
+            </div>
+            <div class="flex items-baseline justify-between">
+              <p class="text-lg font-bold text-slate-900">${fmt(b.actual)}</p>
+              <span class="text-xs font-bold text-slate-500">${actualPct}% of base</span>
+            </div>
+            <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+              <div class="h-full ${b.color}" style="width:${barW}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // 6-Cycle Bar Chart
+      const [yr, mo] = activeMonth.split('-').map(Number);
+      const months = [];
+      for (let i = 5; i >= 0; i--) {
+        const d = new Date(yr, mo - 1 - i, 1);
+        months.push(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`);
+      }
+
+      const incSeries = months.map(m => state.records.filter(r => isDateInCycle(r.date, m) && r.type === 'income').reduce((s, r) => s + Number(r.amount), 0));
+      const expSeries = months.map(m => state.records.filter(r => isDateInCycle(r.date, m) && r.type === 'expense').reduce((s, r) => s + Number(r.amount), 0));
+
+      const ctx = document.getElementById('cashflowTrendChart').getContext('2d');
+      if (trendChartInstance) trendChartInstance.destroy();
+      trendChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: months,
+          datasets: [
+            { label: 'Income', data: incSeries, backgroundColor: '#0D9488', borderRadius: 6 },
+            { label: 'Expense', data: expSeries, backgroundColor: '#E11D48', borderRadius: 6 }
+          ]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+      });
+
+      const cycleExp = cycleRecs.filter(r => r.type === 'expense');
+      const totalExp = cycleExp.reduce((s, r) => s + Number(r.amount), 0) || 1;
+      const byCat = {};
+      cycleExp.forEach(r => { byCat[r.categoryId] = (byCat[r.categoryId] || 0) + Number(r.amount); });
+
+      const sortedCats = Object.entries(byCat).sort((a, b) => b[1] - a[1]);
+      document.getElementById('category-ranking-list').innerHTML = sortedCats.length ? sortedCats.map(([cid, amt]) => {
+        const c = getCategory(cid);
+        const pct = Math.round((amt / totalExp) * 100);
+        return `
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50">
+            <div class="flex items-center gap-2.5">
+              <span class="w-3 h-3 rounded-full" style="background:${c.color}"></span>
+              <span class="text-sm font-semibold text-slate-800">${c.name}</span>
+              <span class="text-[10px] uppercase px-1.5 py-0.5 rounded bg-white border border-slate-200 text-slate-500">${c.group || 'needs'}</span>
+            </div>
+            <div class="text-right">
+              <span class="text-sm font-bold text-slate-900">${fmt(amt)}</span>
+              <span class="text-xs text-slate-400 ml-1">(${pct}%)</span>
+            </div>
+          </div>
+        `;
+      }).join('') : `<p class="text-xs text-slate-400">No expenses logged in this billing cycle.</p>`;
+    }
+
+    function renderSettings() {
+      document.getElementById('settings-categories-list').innerHTML = state.categories.map(c => `
+        <div class="py-2.5 flex items-center justify-between text-sm">
+          <div class="flex items-center gap-2.5">
+            <span class="w-3 h-3 rounded-full" style="background:${c.color}"></span>
+            <span class="font-semibold text-slate-800">${c.name}</span>
+            <span class="text-[10px] uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-500">${c.type}</span>
+            ${c.type === 'expense' ? `<span class="text-[10px] uppercase px-2 py-0.5 rounded bg-teal-50 text-teal-700 font-bold">${c.group || 'needs'}</span>` : ''}
+          </div>
+          <button onclick="deleteCategory('${c.id}')" class="text-slate-300 hover:text-rose-600"><span class="material-symbols-rounded text-base">delete</span></button>
+        </div>
+      `).join('');
+    }
+
+    // --- MODAL & CRUD HANDLERS ---
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+      document.getElementById(id).classList.remove('flex');
+    }
+    function showModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+      document.getElementById(id).classList.add('flex');
+    }
+
+    function toggleCreditCardFields() {
+      const isCredit = document.getElementById('acc-type').value === 'Credit';
+      document.getElementById('credit-extra-fields').classList.toggle('hidden', !isCredit);
+    }
+
+    function toggleCatGroupSelect() {
+      const isExp = document.getElementById('cat-type').value === 'expense';
+      document.getElementById('cat-group').classList.toggle('hidden', !isExp);
+    }
+
+    function setRecordType(type) {
+      document.getElementById('rec-type').value = type;
+      ['expense', 'income', 'transfer'].forEach(t => {
+        const btn = document.getElementById(`type-btn-${t}`);
+        if (t === type) btn.className = 'py-2 rounded-xl text-xs font-bold bg-white text-teal-800 shadow-xs transition';
+        else btn.className = 'py-2 rounded-xl text-xs font-bold text-slate-500 transition';
+      });
+
+      const isTransfer = type === 'transfer';
+      document.getElementById('wrap-cat').classList.toggle('hidden', isTransfer);
+      document.getElementById('wrap-to-account').classList.toggle('hidden', !isTransfer);
+
+      const catSelect = document.getElementById('rec-category');
+      catSelect.innerHTML = state.categories
+        .filter(c => c.type === (type === 'income' ? 'income' : 'expense'))
+        .map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+    }
+
+    function openRecordModal(editId = null) {
+      if (!state.accounts.length) {
+        alert('Please create at least one Spending Account first.');
+        openAccountModal();
+        return;
+      }
+
+      const accOpts = state.accounts.map(a => `<option value="${a.id}">${a.name}</option>`).join('');
+      document.getElementById('rec-account').innerHTML = accOpts;
+      document.getElementById('rec-to-account').innerHTML = accOpts;
+
+      if (editId) {
+        const r = state.records.find(x => x.id === editId);
+        if (!r) return;
+        document.getElementById('record-modal-title').textContent = 'Edit Transaction';
+        document.getElementById('rec-id').value = r.id;
+        setRecordType(r.type);
+        document.getElementById('rec-amount').value = r.amount;
+        document.getElementById('rec-account').value = r.accountId;
+        if (r.categoryId) document.getElementById('rec-category').value = r.categoryId;
+        if (r.toAccountId) document.getElementById('rec-to-account').value = r.toAccountId;
+        document.getElementById('rec-date').value = r.date;
+        document.getElementById('rec-payee').value = r.payee || '';
+        document.getElementById('rec-note').value = r.note || '';
+        document.getElementById('rec-tags').value = (r.tags || []).join(', ');
+      } else {
+        document.getElementById('record-modal-title').textContent = 'New Transaction';
+        document.getElementById('form-record').reset();
+        document.getElementById('rec-id').value = '';
+        setRecordType('expense');
+        document.getElementById('rec-date').value = fmtDateISO(new Date());
+      }
+      showModal('modal-record');
+    }
+
+    function saveRecord(e) {
+      e.preventDefault();
+      const id = document.getElementById('rec-id').value || `rec_${Date.now()}`;
+      const type = document.getElementById('rec-type').value;
+      const rec = {
+        id,
+        type,
+        amount: parseFloat(document.getElementById('rec-amount').value),
+        accountId: document.getElementById('rec-account').value,
+        categoryId: type === 'transfer' ? null : document.getElementById('rec-category').value,
+        toAccountId: type === 'transfer' ? document.getElementById('rec-to-account').value : null,
+        date: document.getElementById('rec-date').value,
+        payee: document.getElementById('rec-payee').value.trim(),
+        note: document.getElementById('rec-note').value.trim(),
+        tags: document.getElementById('rec-tags').value.split(',').map(s => s.trim()).filter(Boolean)
+      };
+
+      const idx = state.records.findIndex(x => x.id === id);
+      if (idx >= 0) state.records[idx] = rec;
+      else state.records.push(rec);
+
+      saveState();
+      closeModal('modal-record');
+      renderAll();
+    }
+
+    function deleteRecord(id) {
+      state.records = state.records.filter(r => r.id !== id);
+      saveState();
+      renderAll();
+    }
+
+    function openAccountModal() {
+      toggleCreditCardFields();
+      showModal('modal-account');
+    }
+    function saveAccount(e) {
+      e.preventDefault();
+      const type = document.getElementById('acc-type').value;
+      state.accounts.push({
+        id: `acc_${Date.now()}`,
+        name: document.getElementById('acc-name').value.trim(),
+        type,
+        initialBalance: parseFloat(document.getElementById('acc-init').value) || 0,
+        color: document.getElementById('acc-color').value,
+        creditLimit: type === 'Credit' ? (parseFloat(document.getElementById('acc-limit').value) || 0) : 0,
+        statementDay: type === 'Credit' ? (parseInt(document.getElementById('acc-stmt-day').value) || 15) : null,
+        dueDay: type === 'Credit' ? (parseInt(document.getElementById('acc-due-day').value) || 5) : null
+      });
+      e.target.reset();
+      saveState();
+      closeModal('modal-account');
+      renderAll();
+    }
+    function deleteAccount(id) {
+      if (!confirm('Remove this account?')) return;
+      state.accounts = state.accounts.filter(a => a.id !== id);
+      saveState();
+      renderAll();
+    }
+
+    function openBudgetModal() {
+      document.getElementById('bud-category').innerHTML = state.categories
+        .filter(c => c.type === 'expense')
+        .map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+      showModal('modal-budget');
+    }
+    function saveBudget(e) {
+      e.preventDefault();
+      const catId = document.getElementById('bud-category').value;
+      const limit = parseFloat(document.getElementById('bud-limit').value);
+      const existing = state.budgets.find(b => b.categoryId === catId);
+      if (existing) existing.limit = limit;
+      else state.budgets.push({ id: `bud_${Date.now()}`, categoryId: catId, limit });
+      e.target.reset();
+      saveState();
+      closeModal('modal-budget');
+      renderAll();
+    }
+    function deleteBudget(id) {
+      state.budgets = state.budgets.filter(b => b.id !== id);
+      saveState();
+      renderAll();
+    }
+
+    function openPlannedModal() {
+      if (!state.accounts.length) {
+        alert('Please create an account first.');
+        openAccountModal();
+        return;
+      }
+      document.getElementById('plan-account').innerHTML = state.accounts.map(a => `<option value="${a.id}">${a.name}</option>`).join('');
+      document.getElementById('plan-category').innerHTML = state.categories.filter(c => c.type === 'expense').map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+      document.getElementById('plan-due').value = fmtDateISO(new Date());
+      showModal('modal-planned');
+    }
+    function savePlanned(e) {
+      e.preventDefault();
+      state.planned.push({
+        id: `plan_${Date.now()}`,
+        title: document.getElementById('plan-title').value.trim(),
+        amount: parseFloat(document.getElementById('plan-amount').value),
+        dueDate: document.getElementById('plan-due').value,
+        accountId: document.getElementById('plan-account').value,
+        categoryId: document.getElementById('plan-category').value,
+        recurrence: document.getElementById('plan-recurrence').value || 'once',
+        paid: false
+      });
+      e.target.reset();
+      saveState();
+      closeModal('modal-planned');
+      renderAll();
+    }
+
+    // Auto-Recurring Engine: Logs current payment and schedules next cycle bill automatically
+    function executePlanned(id) {
+      const p = state.planned.find(x => x.id === id);
+      if (!p || p.paid) return;
+      p.paid = true;
+      state.records.push({
+        id: `rec_${Date.now()}`,
+        type: 'expense',
+        amount: p.amount,
+        accountId: p.accountId,
+        categoryId: p.categoryId,
+        date: p.dueDate,
+        payee: p.title,
+        note: `Auto-logged (${p.recurrence || 'once'} bill)`,
+        tags: ['planned', 'recurring']
+      });
+
+      if (p.recurrence && p.recurrence !== 'once') {
+        const d = new Date(p.dueDate);
+        if (p.recurrence === 'monthly') d.setMonth(d.getMonth() + 1);
+        else if (p.recurrence === 'quarterly') d.setMonth(d.getMonth() + 3);
+        else if (p.recurrence === 'yearly') d.setFullYear(d.getFullYear() + 1);
+
+        state.planned.push({
+          id: `plan_${Date.now() + 1}`,
+          title: p.title,
+          amount: p.amount,
+          dueDate: fmtDateISO(d),
+          accountId: p.accountId,
+          categoryId: p.categoryId,
+          recurrence: p.recurrence,
+          paid: false
+        });
+      }
+
+      saveState();
+      renderAll();
+    }
+    function deletePlanned(id) {
+      state.planned = state.planned.filter(x => x.id !== id);
+      saveState();
+      renderAll();
+    }
+
+    function openGoalModal() { showModal('modal-goal'); }
+    function saveGoal(e) {
+      e.preventDefault();
+      state.goals.push({
+        id: `goal_${Date.now()}`,
+        name: document.getElementById('goal-name').value.trim(),
+        target: parseFloat(document.getElementById('goal-target').value),
+        saved: parseFloat(document.getElementById('goal-saved').value) || 0
+      });
+      e.target.reset();
+      saveState();
+      closeModal('modal-goal');
+      renderAll();
+    }
+    function addGoalContribution(id) {
+      const g = state.goals.find(x => x.id === id);
+      const val = prompt(`Add deposit amount toward "${g.name}":`, '1000');
+      if (val && !isNaN(val)) {
+        g.saved += parseFloat(val);
+        saveState();
+        renderAll();
+      }
+    }
+    function deleteGoal(id) {
+      state.goals = state.goals.filter(x => x.id !== id);
+      saveState();
+      renderAll();
+    }
+
+    function openDebtModal() { showModal('modal-debt'); }
+    function saveDebt(e) {
+      e.preventDefault();
+      state.debts.push({
+        id: `debt_${Date.now()}`,
+        person: document.getElementById('debt-person').value.trim(),
+        type: document.getElementById('debt-type').value,
+        amount: parseFloat(document.getElementById('debt-amount').value),
+        note: document.getElementById('debt-note').value.trim(),
+        settled: false
+      });
+      e.target.reset();
+      saveState();
+      closeModal('modal-debt');
+      renderAll();
+    }
+    function settleDebt(id) {
+      const d = state.debts.find(x => x.id === id);
+      if (d) d.settled = true;
+      saveState();
+      renderAll();
+    }
+    function deleteDebt(id) {
+      state.debts = state.debts.filter(x => x.id !== id);
+      saveState();
+      renderAll();
+    }
+
+    function saveCategory(e) {
+      e.preventDefault();
+      const colors = ['#0D9488', '#2563EB', '#9333EA', '#EA580C', '#DC2626', '#16A34A'];
+      const type = document.getElementById('cat-type').value;
+      const group = type === 'income' ? 'income' : document.getElementById('cat-group').value;
+      state.categories.push({
+        id: `cat_${Date.now()}`,
+        name: document.getElementById('cat-name').value.trim(),
+        type,
+        group,
+        icon: 'label',
+        color: colors[state.categories.length % colors.length]
+      });
+      document.getElementById('cat-name').value = '';
+      saveState();
+      renderAll();
+    }
+    function deleteCategory(id) {
+      state.categories = state.categories.filter(c => c.id !== id);
+      saveState();
+      renderAll();
+    }
+
+    function updateCurrency(sym) {
+      state.currency = sym;
+      saveState();
+      renderAll();
+    }
+
+    function updateCycleStartDay(day) {
+      const d = Math.min(28, Math.max(1, parseInt(day) || 1));
+      state.cycleStartDay = d;
+      saveState();
+      renderAll();
+    }
+
+    function exportCSV() {
+      const rows = [['Date', 'Type', 'Account', 'Category', '50-30-20 Group', 'Amount', 'Payee', 'Note', 'Tags']];
+      state.records.forEach(r => {
+        const cat = getCategory(r.categoryId);
+        rows.push([
+          r.date,
+          r.type,
+          getAccount(r.accountId).name,
+          cat.name,
+          cat.group || '',
+          r.amount,
+          `"${(r.payee || '').replace(/"/g, '""')}"`,
+          `"${(r.note || '').replace(/"/g, '""')}"`,
+          `"${(r.tags || []).join(', ')}"`
+        ]);
+      });
+      const csv = rows.map(r => r.join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `walletpro_records_${activeMonth}.csv`;
+      a.click();
+    }
+
+    function exportJSON() {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `walletpro_backup_${activeMonth}.json`;
+      a.click();
+    }
+
+    function importJSON(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = evt => {
+        try {
+          state = JSON.parse(evt.target.result);
+          ensureStateSchema();
+          saveState();
+          applyTheme();
+          renderAll();
+          alert('Backup restored locally! Click "Sync Now" if you wish to push it to Cloud.');
+        } catch {
+          alert('Invalid JSON backup file.');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function clearAllLocalData() {
+      if (confirm('Wipe all local accounts, records, budgets, and goals back to a blank state?')) {
+        state = createBlankState();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        hasUnsavedCloudChanges = false;
+        applyTheme();
+        renderAll();
+      }
+    }
+
+    // Expose handlers to global scope
+    Object.assign(window, {
+      switchTab, changeMonth, openRecordModal, closeModal, setRecordType, saveRecord, deleteRecord,
+      openAccountModal, saveAccount, deleteAccount, openBudgetModal, saveBudget, deleteBudget,
+      openPlannedModal, savePlanned, executePlanned, deletePlanned, openGoalModal, saveGoal,
+      addGoalContribution, deleteGoal, openDebtModal, saveDebt, settleDebt, deleteDebt,
+      saveCategory, deleteCategory, updateCurrency, updateCycleStartDay, toggleDarkMode,
+      toggleCreditCardFields, toggleCatGroupSelect, saveRentLease, logMonthlyRentQuick,
+      addRentItem, toggleRentItem, deleteRentItem, installPWA,
+      exportCSV, exportJSON, importJSON, clearAllLocalData,
+      renderRecords, openAuthModal, loginWithGoogle, handleEmailAuth, logoutFirebase,
+      syncAllManual, pushStateToCloud, pullStateFromCloud
+    });
+
+    // Boot Application
+    loadState();
+    setupPWA();
+    switchTab('dashboard');
+    initFirebase();
+  </script>
+</body>
+</html>
