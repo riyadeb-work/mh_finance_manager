@@ -1,0 +1,6483 @@
+{
+  "updatedAt": 1794206742030,
+  "lastSyncedAt": 0,
+  "currency": "₹",
+  "cycleStartDay": 1,
+  "darkMode": false,
+  "accounts": [
+    {
+      "id": "acc_credit_spents",
+      "name": "Credit Spents",
+      "type": "Credit",
+      "initialBalance": 0,
+      "color": "#FFA000",
+      "creditLimit": 100000,
+      "statementDay": 15,
+      "dueDay": 5
+    },
+    {
+      "id": "acc_office",
+      "name": "Office",
+      "type": "Cash",
+      "initialBalance": 0,
+      "color": "#1565C0",
+      "creditLimit": 0,
+      "statementDay": null,
+      "dueDay": null
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat_inc_1",
+      "name": "Salary & Income",
+      "type": "income",
+      "group": "income",
+      "icon": "payments",
+      "color": "#059669"
+    },
+    {
+      "id": "cat_inc_2",
+      "name": "Freelance & Business",
+      "type": "income",
+      "group": "income",
+      "icon": "laptop_mac",
+      "color": "#0D9488"
+    },
+    {
+      "id": "cat_e_01",
+      "name": "Online Food Orders",
+      "type": "expense",
+      "group": "wants",
+      "icon": "delivery_dining",
+      "color": "#EA580C"
+    },
+    {
+      "id": "cat_e_02",
+      "name": "Dining Out",
+      "type": "expense",
+      "group": "wants",
+      "icon": "restaurant",
+      "color": "#F97316"
+    },
+    {
+      "id": "cat_e_03",
+      "name": "Street Food & Quick Bites",
+      "type": "expense",
+      "group": "wants",
+      "icon": "lunch_dining",
+      "color": "#FB923C"
+    },
+    {
+      "id": "cat_e_04",
+      "name": "Snacks & Beverages",
+      "type": "expense",
+      "group": "wants",
+      "icon": "local_cafe",
+      "color": "#FDBA74"
+    },
+    {
+      "id": "cat_e_05",
+      "name": "Sweets & Bakery",
+      "type": "expense",
+      "group": "wants",
+      "icon": "cake",
+      "color": "#F59E0B"
+    },
+    {
+      "id": "cat_e_06",
+      "name": "Groceries & Raw Food",
+      "type": "expense",
+      "group": "needs",
+      "icon": "shopping_basket",
+      "color": "#16A34A"
+    },
+    {
+      "id": "cat_e_07",
+      "name": "Household Essentials",
+      "type": "expense",
+      "group": "needs",
+      "icon": "cleaning_services",
+      "color": "#15803D"
+    },
+    {
+      "id": "cat_e_08",
+      "name": "Kitchen & Dining Supplies",
+      "type": "expense",
+      "group": "needs",
+      "icon": "kitchen",
+      "color": "#14532D"
+    },
+    {
+      "id": "cat_e_09",
+      "name": "Home Furnishing & Decor",
+      "type": "expense",
+      "group": "wants",
+      "icon": "chair",
+      "color": "#7C3AED"
+    },
+    {
+      "id": "cat_e_10",
+      "name": "Home Appliances",
+      "type": "expense",
+      "group": "needs",
+      "icon": "microwave",
+      "color": "#6D28D9"
+    },
+    {
+      "id": "cat_e_11",
+      "name": "Home Repairs & Maintenance",
+      "type": "expense",
+      "group": "needs",
+      "icon": "handyman",
+      "color": "#8B5CF6"
+    },
+    {
+      "id": "cat_e_12",
+      "name": "Domestic Help",
+      "type": "expense",
+      "group": "needs",
+      "icon": "person",
+      "color": "#A78BFA"
+    },
+    {
+      "id": "cat_e_13",
+      "name": "House Rent",
+      "type": "expense",
+      "group": "needs",
+      "icon": "home",
+      "color": "#0284C7"
+    },
+    {
+      "id": "cat_e_14",
+      "name": "Garage Rent",
+      "type": "expense",
+      "group": "needs",
+      "icon": "garage",
+      "color": "#0369A1"
+    },
+    {
+      "id": "cat_e_15",
+      "name": "Online Shopping",
+      "type": "expense",
+      "group": "wants",
+      "icon": "shopping_bag",
+      "color": "#9333EA"
+    },
+    {
+      "id": "cat_e_16",
+      "name": "In-store Shopping",
+      "type": "expense",
+      "group": "wants",
+      "icon": "store",
+      "color": "#7E22CE"
+    },
+    {
+      "id": "cat_e_17",
+      "name": "Clothing & Apparel",
+      "type": "expense",
+      "group": "wants",
+      "icon": "checkroom",
+      "color": "#A855F7"
+    },
+    {
+      "id": "cat_e_18",
+      "name": "Tailoring & Alterations",
+      "type": "expense",
+      "group": "wants",
+      "icon": "content_cut",
+      "color": "#C084FC"
+    },
+    {
+      "id": "cat_e_19",
+      "name": "Footwear",
+      "type": "expense",
+      "group": "wants",
+      "icon": "steps",
+      "color": "#D946EF"
+    },
+    {
+      "id": "cat_e_20",
+      "name": "Bags & Accessories",
+      "type": "expense",
+      "group": "wants",
+      "icon": "backpack",
+      "color": "#E879F9"
+    },
+    {
+      "id": "cat_e_21",
+      "name": "Electronics & Gadgets",
+      "type": "expense",
+      "group": "wants",
+      "icon": "devices",
+      "color": "#6366F1"
+    },
+    {
+      "id": "cat_e_22",
+      "name": "Personal Care Products",
+      "type": "expense",
+      "group": "needs",
+      "icon": "face_retouching_natural",
+      "color": "#EC4899"
+    },
+    {
+      "id": "cat_e_23",
+      "name": "Eyewear",
+      "type": "expense",
+      "group": "needs",
+      "icon": "visibility",
+      "color": "#F43F5E"
+    },
+    {
+      "id": "cat_e_24",
+      "name": "Vehicle Fuel",
+      "type": "expense",
+      "group": "needs",
+      "icon": "local_gas_station",
+      "color": "#2563EB"
+    },
+    {
+      "id": "cat_e_25",
+      "name": "Vehicle Servicing",
+      "type": "expense",
+      "group": "needs",
+      "icon": "build",
+      "color": "#1D4ED8"
+    },
+    {
+      "id": "cat_e_26",
+      "name": "Vehicle Repairs & Spare Parts",
+      "type": "expense",
+      "group": "needs",
+      "icon": "car_repair",
+      "color": "#1E40AF"
+    },
+    {
+      "id": "cat_e_27",
+      "name": "Parking Charges",
+      "type": "expense",
+      "group": "needs",
+      "icon": "local_parking",
+      "color": "#3B82F6"
+    },
+    {
+      "id": "cat_e_28",
+      "name": "Toll & FASTag",
+      "type": "expense",
+      "group": "needs",
+      "icon": "toll",
+      "color": "#60A5FA"
+    },
+    {
+      "id": "cat_e_29",
+      "name": "Local Transportation",
+      "type": "expense",
+      "group": "needs",
+      "icon": "directions_bus",
+      "color": "#93C5FD"
+    },
+    {
+      "id": "cat_e_30",
+      "name": "Outstation Transportation",
+      "type": "expense",
+      "group": "wants",
+      "icon": "train",
+      "color": "#BFDBFE"
+    },
+    {
+      "id": "cat_e_31",
+      "name": "Travel & Accommodation",
+      "type": "expense",
+      "group": "wants",
+      "icon": "flight",
+      "color": "#0EA5E9"
+    },
+    {
+      "id": "cat_e_32",
+      "name": "Medicines",
+      "type": "expense",
+      "group": "needs",
+      "icon": "medication",
+      "color": "#DC2626"
+    },
+    {
+      "id": "cat_e_33",
+      "name": "Doctor Consultation",
+      "type": "expense",
+      "group": "needs",
+      "icon": "stethoscope",
+      "color": "#B91C1C"
+    },
+    {
+      "id": "cat_e_34",
+      "name": "Hospital & Medical Tests",
+      "type": "expense",
+      "group": "needs",
+      "icon": "local_hospital",
+      "color": "#991B1B"
+    },
+    {
+      "id": "cat_e_35",
+      "name": "Dental & Eye Care",
+      "type": "expense",
+      "group": "needs",
+      "icon": "health_and_safety",
+      "color": "#EF4444"
+    },
+    {
+      "id": "cat_e_36",
+      "name": "Physiotherapy & Treatment",
+      "type": "expense",
+      "group": "needs",
+      "icon": "self_improvement",
+      "color": "#F87171"
+    },
+    {
+      "id": "cat_e_37",
+      "name": "Vaccination",
+      "type": "expense",
+      "group": "needs",
+      "icon": "vaccines",
+      "color": "#FCA5A5"
+    },
+    {
+      "id": "cat_e_38",
+      "name": "Salon & Haircut",
+      "type": "expense",
+      "group": "wants",
+      "icon": "content_cut",
+      "color": "#DB2777"
+    },
+    {
+      "id": "cat_e_39",
+      "name": "Beauty & Grooming Services",
+      "type": "expense",
+      "group": "wants",
+      "icon": "spa",
+      "color": "#BE185D"
+    },
+    {
+      "id": "cat_e_40",
+      "name": "OTT & Digital Subscriptions",
+      "type": "expense",
+      "group": "wants",
+      "icon": "tv",
+      "color": "#7C3AED"
+    },
+    {
+      "id": "cat_e_41",
+      "name": "Movies & Events",
+      "type": "expense",
+      "group": "wants",
+      "icon": "movie",
+      "color": "#6D28D9"
+    },
+    {
+      "id": "cat_e_42",
+      "name": "Outings & Recreation",
+      "type": "expense",
+      "group": "wants",
+      "icon": "park",
+      "color": "#059669"
+    },
+    {
+      "id": "cat_e_43",
+      "name": "Games & Hobbies",
+      "type": "expense",
+      "group": "wants",
+      "icon": "sports_esports",
+      "color": "#10B981"
+    },
+    {
+      "id": "cat_e_44",
+      "name": "Mobile Recharge",
+      "type": "expense",
+      "group": "needs",
+      "icon": "phone_android",
+      "color": "#0D9488"
+    },
+    {
+      "id": "cat_e_45",
+      "name": "Internet & Broadband",
+      "type": "expense",
+      "group": "needs",
+      "icon": "wifi",
+      "color": "#0F766E"
+    },
+    {
+      "id": "cat_e_46",
+      "name": "Electricity Bill",
+      "type": "expense",
+      "group": "needs",
+      "icon": "bolt",
+      "color": "#F59E0B"
+    },
+    {
+      "id": "cat_e_47",
+      "name": "Water & Gas Bills",
+      "type": "expense",
+      "group": "needs",
+      "icon": "water_drop",
+      "color": "#38BDF8"
+    },
+    {
+      "id": "cat_e_48",
+      "name": "DTH & Cable",
+      "type": "expense",
+      "group": "needs",
+      "icon": "live_tv",
+      "color": "#6B7280"
+    },
+    {
+      "id": "cat_e_49",
+      "name": "Other Subscriptions",
+      "type": "expense",
+      "group": "wants",
+      "icon": "subscriptions",
+      "color": "#8B5CF6"
+    },
+    {
+      "id": "cat_e_50",
+      "name": "Gifts",
+      "type": "expense",
+      "group": "wants",
+      "icon": "redeem",
+      "color": "#EC4899"
+    },
+    {
+      "id": "cat_e_51",
+      "name": "Birthday & Anniversary",
+      "type": "expense",
+      "group": "wants",
+      "icon": "celebration",
+      "color": "#F472B6"
+    },
+    {
+      "id": "cat_e_52",
+      "name": "Puja & Religious Expenses",
+      "type": "expense",
+      "group": "wants",
+      "icon": "temple_hindu",
+      "color": "#F97316"
+    },
+    {
+      "id": "cat_e_53",
+      "name": "Festivals & Decorations",
+      "type": "expense",
+      "group": "wants",
+      "icon": "festival",
+      "color": "#FBBF24"
+    },
+    {
+      "id": "cat_e_54",
+      "name": "Social Contributions",
+      "type": "expense",
+      "group": "wants",
+      "icon": "group",
+      "color": "#34D399"
+    },
+    {
+      "id": "cat_e_55",
+      "name": "Banking & Transaction Charges",
+      "type": "expense",
+      "group": "needs",
+      "icon": "account_balance",
+      "color": "#6B7280"
+    },
+    {
+      "id": "cat_e_56",
+      "name": "Tax & Government Payments",
+      "type": "expense",
+      "group": "needs",
+      "icon": "account_balance_wallet",
+      "color": "#4B5563"
+    },
+    {
+      "id": "cat_e_57",
+      "name": "Insurance",
+      "type": "expense",
+      "group": "savings",
+      "icon": "shield",
+      "color": "#0D9488"
+    },
+    {
+      "id": "cat_e_58",
+      "name": "Loan & EMI Payments",
+      "type": "expense",
+      "group": "savings",
+      "icon": "credit_score",
+      "color": "#0369A1"
+    },
+    {
+      "id": "cat_e_59",
+      "name": "Cash Withdrawal",
+      "type": "expense",
+      "group": "needs",
+      "icon": "money",
+      "color": "#78716C"
+    },
+    {
+      "id": "cat_e_60",
+      "name": "Money Transfers",
+      "type": "expense",
+      "group": "savings",
+      "icon": "sync_alt",
+      "color": "#0891B2"
+    },
+    {
+      "id": "cat_e_61",
+      "name": "Donations & Charity",
+      "type": "expense",
+      "group": "wants",
+      "icon": "volunteer_activism",
+      "color": "#16A34A"
+    },
+    {
+      "id": "cat_e_62",
+      "name": "Miscellaneous",
+      "type": "expense",
+      "group": "needs",
+      "icon": "more_horiz",
+      "color": "#94A3B8"
+    },
+    {
+      "id": "cat_e_63",
+      "name": "Office Breakfast",
+      "type": "expense",
+      "group": "needs",
+      "icon": "free_breakfast",
+      "color": "#FBBF24"
+    },
+    {
+      "id": "cat_e_64",
+      "name": "Office Lunch",
+      "type": "expense",
+      "group": "needs",
+      "icon": "lunch_dining",
+      "color": "#F97316"
+    },
+    {
+      "id": "cat_e_65",
+      "name": "Office Dinner",
+      "type": "expense",
+      "group": "needs",
+      "icon": "dinner_dining",
+      "color": "#EA580C"
+    },
+    {
+      "id": "cat_e_66",
+      "name": "Office Tea & Snacks",
+      "type": "expense",
+      "group": "needs",
+      "icon": "emoji_food_beverage",
+      "color": "#FDE68A"
+    },
+    {
+      "id": "cat_e_67",
+      "name": "Office Commute",
+      "type": "expense",
+      "group": "needs",
+      "icon": "directions_bus",
+      "color": "#3B82F6"
+    },
+    {
+      "id": "cat_e_68",
+      "name": "Office Parking",
+      "type": "expense",
+      "group": "needs",
+      "icon": "local_parking",
+      "color": "#60A5FA"
+    },
+    {
+      "id": "cat_e_69",
+      "name": "Office Expenses",
+      "type": "expense",
+      "group": "needs",
+      "icon": "business_center",
+      "color": "#64748B"
+    }
+  ],
+  "records": [
+    {
+      "id": "rec_1794198180_0001",
+      "type": "expense",
+      "amount": 60.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_63",
+      "toAccountId": null,
+      "date": "2026-11-09",
+      "payee": "Office Packaged Breakfast Food",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1794153960_0002",
+      "type": "expense",
+      "amount": 1460.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_43",
+      "toAccountId": null,
+      "date": "2026-11-08",
+      "payee": "Diwali Crackers & Fireworks (Baji)",
+      "note": "Credit Spents | Entertainment",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1794144600_0003",
+      "type": "expense",
+      "amount": 1362.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-11-08",
+      "payee": "Rono Car Fuel",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1794127020_0004",
+      "type": "expense",
+      "amount": 400.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-11-08",
+      "payee": "Groceries & Daily Rice",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1794126840_0005",
+      "type": "expense",
+      "amount": 108.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-11-08",
+      "payee": "Farm Fresh Eggs",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1794070620_0006",
+      "type": "expense",
+      "amount": 160.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-11-07",
+      "payee": "Ice Cream Treat",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1794032220_0007",
+      "type": "expense",
+      "amount": 5500.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_13",
+      "toAccountId": null,
+      "date": "2026-11-07",
+      "payee": "Porter House Shifting Full Payment",
+      "note": "Credit Spents | Rental House",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1794029280_0008",
+      "type": "expense",
+      "amount": 130.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-11-07",
+      "payee": "Groceries & Household",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1794026280_0009",
+      "type": "expense",
+      "amount": 140.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-11-07",
+      "payee": "Green Coconut (Daab)",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793990640_0010",
+      "type": "expense",
+      "amount": 250.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-11-07",
+      "payee": "Shopping",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793990580_0011",
+      "type": "expense",
+      "amount": 45.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-11-07",
+      "payee": "Office Tea & Snacks",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1793940120_0012",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_68",
+      "toAccountId": null,
+      "date": "2026-11-06",
+      "payee": "Office Car / Bike Parking",
+      "note": "Office | Parking",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1793906160_0013",
+      "type": "expense",
+      "amount": 800.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-11-06",
+      "payee": "Groceries, Decorative Lights & Salon Grooming",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793906040_0014",
+      "type": "expense",
+      "amount": 70.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-11-06",
+      "payee": "Phuchka",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793906040_0015",
+      "type": "expense",
+      "amount": 30.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-11-06",
+      "payee": "Office Tea & Snacks",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1793904000_0016",
+      "type": "expense",
+      "amount": 500.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-11-06",
+      "payee": "Bhai Dooj (Bhai Phonta) Gift",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793903820_0017",
+      "type": "expense",
+      "amount": 178.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_63",
+      "toAccountId": null,
+      "date": "2026-11-06",
+      "payee": "Office Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1793903700_0018",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_53",
+      "toAccountId": null,
+      "date": "2026-11-06",
+      "payee": "Festive Balloon Lights",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793903640_0019",
+      "type": "expense",
+      "amount": 480.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-11-06",
+      "payee": "Hakka Noodles & Momos (Food Truck)",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793856720_0020",
+      "type": "expense",
+      "amount": 1117.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_48",
+      "toAccountId": null,
+      "date": "2026-11-05",
+      "payee": "Cable TV Bill (Agarpara)",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793853900_0021",
+      "type": "expense",
+      "amount": 35.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-11-05",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1793818140_0022",
+      "type": "expense",
+      "amount": 387.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-11-05",
+      "payee": "Zepto Quick Delivery Groceries",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793809320_0023",
+      "type": "expense",
+      "amount": 110.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-11-04",
+      "payee": "Office Tea & Snacks",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1793809320_0024",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-11-04",
+      "payee": "Daily Groceries",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793809200_0025",
+      "type": "expense",
+      "amount": 1361.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-11-04",
+      "payee": "Rono Car Fuel",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793809140_0026",
+      "type": "expense",
+      "amount": 3300.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-11-04",
+      "payee": "Amazon - Shelf &Amp; Apron",
+      "note": "Credit Spents | Rental House",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793770260_0027",
+      "type": "expense",
+      "amount": 2200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_14",
+      "toAccountId": null,
+      "date": "2026-11-04",
+      "payee": "Garage Monthly Rent",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793769420_0028",
+      "type": "expense",
+      "amount": 3791.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_42",
+      "toAccountId": null,
+      "date": "2026-11-04",
+      "payee": "Durga Puja Festive Spends",
+      "note": "Credit Spents | Entertainment",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793769300_0029",
+      "type": "expense",
+      "amount": 2273.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_46",
+      "toAccountId": null,
+      "date": "2026-11-04",
+      "payee": "Electricity Bill",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793730480_0030",
+      "type": "expense",
+      "amount": 2596.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_13",
+      "toAccountId": null,
+      "date": "2026-11-03",
+      "payee": "Amazon Online Shopping",
+      "note": "Credit Spents | Rental House",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793730420_0031",
+      "type": "expense",
+      "amount": 154.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-11-03",
+      "payee": "Daily Groceries",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793682240_0032",
+      "type": "expense",
+      "amount": 1655.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-11-03",
+      "payee": "Bali Bike Fuel",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793674320_0033",
+      "type": "expense",
+      "amount": 250.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-11-03",
+      "payee": "Fresh Fish & Bread",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793639160_0034",
+      "type": "expense",
+      "amount": 1066.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-11-02",
+      "payee": "Zepto Quick Delivery Groceries",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793639040_0035",
+      "type": "expense",
+      "amount": 325.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-11-02",
+      "payee": "Vegetable &Amp; Chicken",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793628300_0036",
+      "type": "expense",
+      "amount": 8400.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_25",
+      "toAccountId": null,
+      "date": "2026-11-02",
+      "payee": "Bali Bike Service (Handle Ball Socket & Chain Sprocket)",
+      "note": "Credit Spents | 🔧 Vehicle Maintenance",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793628060_0037",
+      "type": "expense",
+      "amount": 500.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_13",
+      "toAccountId": null,
+      "date": "2026-11-02",
+      "payee": "Porter Goods Transport Advance",
+      "note": "Credit Spents | Rental House",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793628000_0038",
+      "type": "expense",
+      "amount": 1900.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_13",
+      "toAccountId": null,
+      "date": "2026-11-02",
+      "payee": "Airtel Broadband New Connection Installation",
+      "note": "Credit Spents | Rental House",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793613060_0039",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-11-02",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1793541780_0040",
+      "type": "expense",
+      "amount": 480.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-11-01",
+      "payee": "Miscellaneous Daily Expenses",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793541720_0041",
+      "type": "expense",
+      "amount": 300.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-11-01",
+      "payee": "Kathi Rolls (Pack of 4)",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793519220_0042",
+      "type": "expense",
+      "amount": 125.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_04",
+      "toAccountId": null,
+      "date": "2026-11-01",
+      "payee": "Mineral Water & Light Snacks",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793473680_0043",
+      "type": "expense",
+      "amount": 299.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-11-01",
+      "payee": "Zepto Quick Delivery Groceries",
+      "note": "Credit Spents | Rental House",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793456100_0044",
+      "type": "expense",
+      "amount": 130.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_13",
+      "toAccountId": null,
+      "date": "2026-10-31",
+      "payee": "Dashakarma Puja Items & Tyre Air Filling",
+      "note": "Credit Spents | Rental House",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793456040_0045",
+      "type": "expense",
+      "amount": 295.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_05",
+      "toAccountId": null,
+      "date": "2026-10-31",
+      "payee": "Mio Amore Bakery & Cakes",
+      "note": "Credit Spents | Rental House",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793455980_0046",
+      "type": "expense",
+      "amount": 841.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_13",
+      "toAccountId": null,
+      "date": "2026-10-31",
+      "payee": "Zepto (Beard Trimmer & Essentials)",
+      "note": "Credit Spents | Rental House",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793431260_0047",
+      "type": "expense",
+      "amount": 17000.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_13",
+      "toAccountId": null,
+      "date": "2026-10-31",
+      "payee": "November House Rent Advance",
+      "note": "Credit Spents | Rental House",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793430240_0048",
+      "type": "expense",
+      "amount": 1150.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-10-31",
+      "payee": "Dada Boudi Biryani",
+      "note": "Credit Spents | Rental House",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793429760_0049",
+      "type": "expense",
+      "amount": 4827.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_13",
+      "toAccountId": null,
+      "date": "2026-10-31",
+      "payee": "Smart Bazaar Grocery & Home Shopping",
+      "note": "Credit Spents | Rental House",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793351700_0050",
+      "type": "expense",
+      "amount": 160.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-10-30",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1793330100_0051",
+      "type": "expense",
+      "amount": 65.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_63",
+      "toAccountId": null,
+      "date": "2026-10-30",
+      "payee": "Office Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1793306220_0052",
+      "type": "expense",
+      "amount": 240.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_04",
+      "toAccountId": null,
+      "date": "2026-10-30",
+      "payee": "Maggi, Eggs, Tea & Parking",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793262960_0053",
+      "type": "expense",
+      "amount": 170.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-10-29",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1793254380_0054",
+      "type": "expense",
+      "amount": 76.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_63",
+      "toAccountId": null,
+      "date": "2026-10-29",
+      "payee": "Office Breakfast Meal",
+      "note": "Office | Parking",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1793254260_0055",
+      "type": "expense",
+      "amount": 150.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_68",
+      "toAccountId": null,
+      "date": "2026-10-29",
+      "payee": "Office Car Parking & Toto Fare",
+      "note": "Office | Parking",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1793197800_0056",
+      "type": "expense",
+      "amount": 190.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-10-28",
+      "payee": "Roll &Amp; Momo",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793118360_0057",
+      "type": "expense",
+      "amount": 23.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-10-27",
+      "payee": "Office Tea & Snacks",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1793118300_0058",
+      "type": "expense",
+      "amount": 89.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_63",
+      "toAccountId": null,
+      "date": "2026-10-27",
+      "payee": "Office Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1793118300_0059",
+      "type": "expense",
+      "amount": 190.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-10-27",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1793031180_0060",
+      "type": "expense",
+      "amount": 199.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-10-26",
+      "payee": "Airtel SIM Recharge",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1793031180_0061",
+      "type": "expense",
+      "amount": 25.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-10-26",
+      "payee": "Office Snacks",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1792872720_0062",
+      "type": "expense",
+      "amount": 210.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-10-25",
+      "payee": "Fresh Raw Chicken",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792872660_0063",
+      "type": "expense",
+      "amount": 229.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-10-25",
+      "payee": "Army Cafe Dining",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792845240_0064",
+      "type": "expense",
+      "amount": 185.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-10-24",
+      "payee": "Baba Mobile Recharge",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792845180_0065",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-10-24",
+      "payee": "Jar",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792845180_0066",
+      "type": "expense",
+      "amount": 546.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_48",
+      "toAccountId": null,
+      "date": "2026-10-24",
+      "payee": "D2H Recharge (Nimta)",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792743300_0067",
+      "type": "expense",
+      "amount": 38.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-10-23",
+      "payee": "Office Tea & Snacks",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1792743300_0068",
+      "type": "expense",
+      "amount": 136.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-10-23",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1792743240_0069",
+      "type": "expense",
+      "amount": 1700.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-10-23",
+      "payee": "Dada Boudi Biryani",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792662720_0070",
+      "type": "expense",
+      "amount": 64.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-10-22",
+      "payee": "Office Tea & Snacks",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1792597260_0071",
+      "type": "expense",
+      "amount": 588.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-10-21",
+      "payee": "Airtel Mobile Recharge (Nimta)",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792597140_0072",
+      "type": "expense",
+      "amount": 649.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_40",
+      "toAccountId": null,
+      "date": "2026-10-21",
+      "payee": "Netflix Monthly Subscription",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792597080_0073",
+      "type": "expense",
+      "amount": 666.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-10-21",
+      "payee": "Wife Mobile Recharge",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792522320_0074",
+      "type": "expense",
+      "amount": 1248.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-10-21",
+      "payee": "Rono Car Fuel (Maha Navami Puja)",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792437780_0075",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_28",
+      "toAccountId": null,
+      "date": "2026-10-20",
+      "payee": "National Highway Toll Tax",
+      "note": "Credit Spents | 🚗 Toll",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792426500_0076",
+      "type": "expense",
+      "amount": 1450.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-10-19",
+      "payee": "Rono Car Fuel (Maha Ashtami Puja)",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792402200_0077",
+      "type": "expense",
+      "amount": 150.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_04",
+      "toAccountId": null,
+      "date": "2026-10-19",
+      "payee": "Mineral Water & Light Snacks",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792400460_0078",
+      "type": "expense",
+      "amount": 181.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_05",
+      "toAccountId": null,
+      "date": "2026-10-19",
+      "payee": "Mio Amore Bakery & Cakes",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792394820_0079",
+      "type": "expense",
+      "amount": 220.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-10-19",
+      "payee": "Fresh Raw Fish",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792307460_0080",
+      "type": "expense",
+      "amount": 180.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-10-18",
+      "payee": "Miscellaneous Daily Expenses",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792307400_0081",
+      "type": "expense",
+      "amount": 786.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-10-18",
+      "payee": "Blinkit Quick Delivery Groceries",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792166580_0082",
+      "type": "expense",
+      "amount": 200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_25",
+      "toAccountId": null,
+      "date": "2026-10-16",
+      "payee": "Tata Service Centre Mechanics Tips",
+      "note": "Credit Spents | 🔧 Vehicle Maintenance",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792166460_0083",
+      "type": "expense",
+      "amount": 12844.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_25",
+      "toAccountId": null,
+      "date": "2026-10-16",
+      "payee": "Punch Car Rear Bumper Repair & Service Fix",
+      "note": "Credit Spents | 🔧 Vehicle Maintenance",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792144800_0084",
+      "type": "expense",
+      "amount": 380.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_16",
+      "toAccountId": null,
+      "date": "2026-10-16",
+      "payee": "Uber Ride to Tata Service Centre",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792144800_0085",
+      "type": "expense",
+      "amount": 580.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-10-16",
+      "payee": "Thakuma Mobile Recharge",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792134720_0086",
+      "type": "expense",
+      "amount": 60.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-10-16",
+      "payee": "Arun Ice Cream",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792134660_0087",
+      "type": "expense",
+      "amount": 60.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_29",
+      "toAccountId": null,
+      "date": "2026-10-16",
+      "payee": "Auto Rickshaw Fare",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792088100_0088",
+      "type": "expense",
+      "amount": 200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-10-15",
+      "payee": "Momo & Fried Snacks",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792088100_0089",
+      "type": "expense",
+      "amount": 70.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-10-15",
+      "payee": "Cold Drinks & Beverages",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792082100_0090",
+      "type": "expense",
+      "amount": 400.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_29",
+      "toAccountId": null,
+      "date": "2026-10-15",
+      "payee": "Rapido Bike Taxi (Puja Pandal Hopping)",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1792046700_0091",
+      "type": "expense",
+      "amount": 1403.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-10-15",
+      "payee": "Bali Bike Fuel",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791995400_0092",
+      "type": "expense",
+      "amount": 655.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_42",
+      "toAccountId": null,
+      "date": "2026-10-14",
+      "payee": "Durga Puja Outing (New Town Sarbojonin)",
+      "note": "Credit Spents | Entertainment",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791992040_0093",
+      "type": "expense",
+      "amount": 185.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-10-14",
+      "payee": "Momo, Fish Fry & Tea",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791991980_0094",
+      "type": "expense",
+      "amount": 512.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_29",
+      "toAccountId": null,
+      "date": "2026-10-14",
+      "payee": "Uber Cab to Nimta",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791991980_0095",
+      "type": "expense",
+      "amount": 81.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_29",
+      "toAccountId": null,
+      "date": "2026-10-14",
+      "payee": "Rapido Bike Taxi (Puja Pandal Hopping)",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791991860_0096",
+      "type": "expense",
+      "amount": 30.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-10-14",
+      "payee": "Office Snacks",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791962160_0097",
+      "type": "expense",
+      "amount": 1070.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-10-14",
+      "payee": "Maa &Amp; Sasuri Maa Medicine",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791908940_0098",
+      "type": "expense",
+      "amount": 59.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-10-13",
+      "payee": "Office Evening Tea",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791881340_0099",
+      "type": "expense",
+      "amount": 130.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-10-13",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791881280_0100",
+      "type": "expense",
+      "amount": 125.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-10-13",
+      "payee": "Office Ice Cream Treat",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791881280_0101",
+      "type": "expense",
+      "amount": 125.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_63",
+      "toAccountId": null,
+      "date": "2026-10-13",
+      "payee": "Office Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791833880_0102",
+      "type": "expense",
+      "amount": 666.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-10-13",
+      "payee": "Jio Mobile Recharge",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791833820_0103",
+      "type": "expense",
+      "amount": 380.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_17",
+      "toAccountId": null,
+      "date": "2026-10-13",
+      "payee": "Blouse Clothing",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791800280_0104",
+      "type": "expense",
+      "amount": 448.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-10-12",
+      "payee": "Mother Mobile Recharge (84 Days Validity)",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791796140_0105",
+      "type": "expense",
+      "amount": 90.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-10-12",
+      "payee": "Office Fresh Fruits",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791786540_0106",
+      "type": "expense",
+      "amount": 190.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-10-12",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791786540_0107",
+      "type": "expense",
+      "amount": 50.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_63",
+      "toAccountId": null,
+      "date": "2026-10-12",
+      "payee": "Office Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791733740_0108",
+      "type": "expense",
+      "amount": 365.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-10-11",
+      "payee": "Celebration Cake for Pampa Di",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791706140_0109",
+      "type": "expense",
+      "amount": 1540.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-10-11",
+      "payee": "Raw Mutton, Cold Drinks, Cooking Oil & Medicines",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791706080_0110",
+      "type": "expense",
+      "amount": 3960.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-10-11",
+      "payee": "Frozen Garden Resort Stay Package",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791647520_0111",
+      "type": "expense",
+      "amount": 130.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_04",
+      "toAccountId": null,
+      "date": "2026-10-10",
+      "payee": "Frozen Garden Resort Snacks",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791638640_0112",
+      "type": "expense",
+      "amount": 40.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-10-10",
+      "payee": "Groceries & Household",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791609240_0113",
+      "type": "expense",
+      "amount": 35.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_04",
+      "toAccountId": null,
+      "date": "2026-10-10",
+      "payee": "Morning Highway Tea (Basanti Highway)",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791600900_0114",
+      "type": "expense",
+      "amount": 136.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-10-10",
+      "payee": "Paneer & Momos",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791558240_0115",
+      "type": "expense",
+      "amount": 370.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-10-09",
+      "payee": "Imon Fish Fry Snacks",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791558180_0116",
+      "type": "expense",
+      "amount": 210.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-10-09",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791524820_0117",
+      "type": "expense",
+      "amount": 125.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_63",
+      "toAccountId": null,
+      "date": "2026-10-09",
+      "payee": "Office Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791445320_0118",
+      "type": "expense",
+      "amount": 110.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-10-08",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791445320_0119",
+      "type": "expense",
+      "amount": 267.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-10-08",
+      "payee": "Gift for Mukti",
+      "note": "Office | Gifting and Celebration",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791438780_0120",
+      "type": "expense",
+      "amount": 109.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_63",
+      "toAccountId": null,
+      "date": "2026-10-08",
+      "payee": "Office Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791428280_0121",
+      "type": "expense",
+      "amount": 6635.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-10-08",
+      "payee": "Sasuri Maa Antibiotics (Course 3)",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791396420_0122",
+      "type": "expense",
+      "amount": 85.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-10-07",
+      "payee": "Local Travel & Commute",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791396360_0123",
+      "type": "expense",
+      "amount": 240.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-10-07",
+      "payee": "Royal Biryani Dinner",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791394320_0124",
+      "type": "expense",
+      "amount": 4786.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-10-07",
+      "payee": "Sasuri Maa Antibiotics (Course 2)",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791362100_0125",
+      "type": "expense",
+      "amount": 461.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-10-07",
+      "payee": "Blinkit Quick Delivery Groceries",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791362040_0126",
+      "type": "expense",
+      "amount": 360.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_29",
+      "toAccountId": null,
+      "date": "2026-10-07",
+      "payee": "Uber Cab to Nimta",
+      "note": "Credit Spents | Rentals",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791352320_0127",
+      "type": "expense",
+      "amount": 200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_25",
+      "toAccountId": null,
+      "date": "2026-10-07",
+      "payee": "Tips to Service Mechanics",
+      "note": "Credit Spents | Rentals",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791352260_0128",
+      "type": "expense",
+      "amount": 315.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_29",
+      "toAccountId": null,
+      "date": "2026-10-07",
+      "payee": "Uber Cab to Service Centre",
+      "note": "Credit Spents | Rentals",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791352260_0129",
+      "type": "expense",
+      "amount": 300.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_29",
+      "toAccountId": null,
+      "date": "2026-10-07",
+      "payee": "Uber Cab to Nimta",
+      "note": "Credit Spents | Rentals",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791352260_0130",
+      "type": "expense",
+      "amount": 3000.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_26",
+      "toAccountId": null,
+      "date": "2026-10-07",
+      "payee": "Car Breakdown Tow Truck Service",
+      "note": "Credit Spents | Rentals",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791314280_0131",
+      "type": "expense",
+      "amount": 5853.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-10-07",
+      "payee": "Sasuri Maa Antibiotics (Course 1)",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791314220_0132",
+      "type": "expense",
+      "amount": 1601.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-10-07",
+      "payee": "Apollo Pharmacy Medicines",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791286440_0133",
+      "type": "expense",
+      "amount": 200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_16",
+      "toAccountId": null,
+      "date": "2026-10-06",
+      "payee": "Durga Puja Judging Car Sticker Pass",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791286320_0134",
+      "type": "expense",
+      "amount": 11485.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-10-06",
+      "payee": "Mother Hospital Discharge Bill",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791280920_0135",
+      "type": "expense",
+      "amount": 70.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_27",
+      "toAccountId": null,
+      "date": "2026-10-06",
+      "payee": "Vehicle Parking Fee",
+      "note": "Credit Spents | Parking",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791280920_0136",
+      "type": "expense",
+      "amount": 1760.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-10-06",
+      "payee": "Momo I Am Restaurant Dinner",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791259920_0137",
+      "type": "expense",
+      "amount": 81.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_63",
+      "toAccountId": null,
+      "date": "2026-10-06",
+      "payee": "Office Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791259860_0138",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_68",
+      "toAccountId": null,
+      "date": "2026-10-06",
+      "payee": "Car Parking Charges",
+      "note": "Office | Parking",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791227460_0139",
+      "type": "expense",
+      "amount": 1296.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-10-06",
+      "payee": "Maa Medicines",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791216480_0140",
+      "type": "expense",
+      "amount": 560.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_29",
+      "toAccountId": null,
+      "date": "2026-10-05",
+      "payee": "Rapido Cab (Manipal Hospital to Nimta)",
+      "note": "Credit Spents | Rentals",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791216480_0141",
+      "type": "expense",
+      "amount": 216.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_04",
+      "toAccountId": null,
+      "date": "2026-10-05",
+      "payee": "Hospital Canteen Snacks",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791184920_0142",
+      "type": "expense",
+      "amount": 215.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-10-05",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791184860_0143",
+      "type": "expense",
+      "amount": 86.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_63",
+      "toAccountId": null,
+      "date": "2026-10-05",
+      "payee": "Office Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1791143220_0144",
+      "type": "expense",
+      "amount": 310.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-10-05",
+      "payee": "Diet Coke (Pack of 6)",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791143160_0145",
+      "type": "expense",
+      "amount": 308.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-10-05",
+      "payee": "Rumali Roti Order",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791117540_0146",
+      "type": "expense",
+      "amount": 189.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_49",
+      "toAccountId": null,
+      "date": "2026-10-04",
+      "payee": "Jio Mobile Recharge",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791117480_0147",
+      "type": "expense",
+      "amount": 937.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-10-04",
+      "payee": "Raw Chicken 4 Kg (Birthday Treat)",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791117300_0148",
+      "type": "expense",
+      "amount": 731.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-10-04",
+      "payee": "Blinkit Cooking Spices & Masalas",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791117240_0149",
+      "type": "expense",
+      "amount": 730.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_16",
+      "toAccountId": null,
+      "date": "2026-10-04",
+      "payee": "Blinkit Raincoat Order",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791096540_0150",
+      "type": "expense",
+      "amount": 230.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_05",
+      "toAccountId": null,
+      "date": "2026-10-04",
+      "payee": "Bakery Cakes",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791096540_0151",
+      "type": "expense",
+      "amount": 70.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-10-04",
+      "payee": "Green Coconut (Daab)",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791090240_0152",
+      "type": "expense",
+      "amount": 2200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_14",
+      "toAccountId": null,
+      "date": "2026-10-04",
+      "payee": "Garage Monthly Rent",
+      "note": "Credit Spents | Rentals",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791090240_0153",
+      "type": "expense",
+      "amount": 1117.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_45",
+      "toAccountId": null,
+      "date": "2026-10-04",
+      "payee": "Alliance Internet & Cable Bill",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791089640_0154",
+      "type": "expense",
+      "amount": 580.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_41",
+      "toAccountId": null,
+      "date": "2026-10-04",
+      "payee": "Movie Tickets (Drishyam)",
+      "note": "Credit Spents | Entertainment",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791089580_0155",
+      "type": "expense",
+      "amount": 205.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-10-04",
+      "payee": "Breakfast at Columbia Asia Hospital",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791055080_0156",
+      "type": "expense",
+      "amount": 130.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-10-04",
+      "payee": "Milton Water Bottles",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791055020_0157",
+      "type": "expense",
+      "amount": 160.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-10-04",
+      "payee": "Flowers for Family / Guests",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791055020_0158",
+      "type": "expense",
+      "amount": 82.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-10-04",
+      "payee": "Pastry Treat / Gift",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791030000_0159",
+      "type": "expense",
+      "amount": 710.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-10-03",
+      "payee": "Movie Snacks at Miraj Cinemas",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1791029820_0160",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-10-03",
+      "payee": "Parking Miraj &Amp; Manipal",
+      "note": "Credit Spents | Parking",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790973120_0161",
+      "type": "expense",
+      "amount": 180.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_04",
+      "toAccountId": null,
+      "date": "2026-10-03",
+      "payee": "Tea & Adda (Goutam's)",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790973120_0162",
+      "type": "expense",
+      "amount": 1227.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-10-03",
+      "payee": "Kfc &Amp; Good Bowl",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790956200_0163",
+      "type": "expense",
+      "amount": 249.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-10-02",
+      "payee": "Gift for Pampa Di",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790945940_0164",
+      "type": "expense",
+      "amount": 90.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-10-02",
+      "payee": "Miscellaneous Items",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790869380_0165",
+      "type": "expense",
+      "amount": 649.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_40",
+      "toAccountId": null,
+      "date": "2026-10-01",
+      "payee": "Netflix Monthly Subscription",
+      "note": "Credit Spents | Entertainment",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790850600_0166",
+      "type": "expense",
+      "amount": 672.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_41",
+      "toAccountId": null,
+      "date": "2026-10-01",
+      "payee": "Movie Tickets (Drishyam)",
+      "note": "Credit Spents | Entertainment",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790849820_0167",
+      "type": "expense",
+      "amount": 717.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-10-01",
+      "payee": "Myntra Clothing Order",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790849640_0168",
+      "type": "expense",
+      "amount": 200.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-10-01",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790832960_0169",
+      "type": "expense",
+      "amount": 800.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_68",
+      "toAccountId": null,
+      "date": "2026-10-01",
+      "payee": "Monthly Office Parking Pass",
+      "note": "Office | Parking",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790832960_0170",
+      "type": "expense",
+      "amount": 122.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-10-01",
+      "payee": "Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790791200_0171",
+      "type": "expense",
+      "amount": 150.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-09-30",
+      "payee": "Baloons And Snacks",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790765700_0172",
+      "type": "expense",
+      "amount": 50.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-09-30",
+      "payee": "Tea / Snacks",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790763600_0173",
+      "type": "expense",
+      "amount": 3570.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_46",
+      "toAccountId": null,
+      "date": "2026-09-30",
+      "payee": "Electricity Bill (Home + Shop)",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790761320_0174",
+      "type": "expense",
+      "amount": 50.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_68",
+      "toAccountId": null,
+      "date": "2026-09-30",
+      "payee": "Office Car / Bike Parking",
+      "note": "Office | Parking",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790695680_0175",
+      "type": "expense",
+      "amount": 1639.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_16",
+      "toAccountId": null,
+      "date": "2026-09-29",
+      "payee": "Smart Bazaar Supermarket Shopping",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790685780_0176",
+      "type": "expense",
+      "amount": 60.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-09-29",
+      "payee": "Phuchka",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790685780_0177",
+      "type": "expense",
+      "amount": 236.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_05",
+      "toAccountId": null,
+      "date": "2026-09-29",
+      "payee": "Mio Amore Bakery & Cakes",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790678400_0178",
+      "type": "expense",
+      "amount": 1601.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-09-29",
+      "payee": "Bali Bike Fuel",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790664420_0179",
+      "type": "expense",
+      "amount": 1752.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_17",
+      "toAccountId": null,
+      "date": "2026-09-29",
+      "payee": "Laptop Bag, Blouse Organizer & Screen Guard",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790662740_0180",
+      "type": "expense",
+      "amount": 180.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-09-29",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790662680_0181",
+      "type": "expense",
+      "amount": 86.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-09-29",
+      "payee": "Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790662680_0182",
+      "type": "expense",
+      "amount": 50.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_68",
+      "toAccountId": null,
+      "date": "2026-09-29",
+      "payee": "Office Car / Bike Parking",
+      "note": "Office | Parking",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790572980_0183",
+      "type": "expense",
+      "amount": 250.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-28",
+      "payee": "Fresh Raw Chicken",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790572680_0184",
+      "type": "expense",
+      "amount": 1445.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-09-28",
+      "payee": "Tiago Car Fuel (Habra Trip)",
+      "note": "Credit Spents | 🚗 Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790489640_0185",
+      "type": "expense",
+      "amount": 390.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_16",
+      "toAccountId": null,
+      "date": "2026-09-27",
+      "payee": "Sweets for Habra Relatives",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790489580_0186",
+      "type": "expense",
+      "amount": 160.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_16",
+      "toAccountId": null,
+      "date": "2026-09-27",
+      "payee": "FASTag Toll Recharge & Travel",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790489580_0187",
+      "type": "expense",
+      "amount": 800.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_16",
+      "toAccountId": null,
+      "date": "2026-09-27",
+      "payee": "Beauty Parlour Grooming",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790427000_0188",
+      "type": "expense",
+      "amount": 4300.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_18",
+      "toAccountId": null,
+      "date": "2026-09-26",
+      "payee": "Tailoring & Festive Stitching",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790426940_0189",
+      "type": "expense",
+      "amount": 1200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_16",
+      "toAccountId": null,
+      "date": "2026-09-26",
+      "payee": "Eyeglasses Spectacle Frame",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790426940_0190",
+      "type": "expense",
+      "amount": 13276.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-09-26",
+      "payee": "Transfer, Withdraw",
+      "note": "Credit Spents | Transfer, withdraw",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790426880_0191",
+      "type": "income",
+      "amount": 5922.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-09-26",
+      "payee": "Transfer, Withdraw",
+      "note": "Office | Transfer, withdraw",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790329380_0192",
+      "type": "expense",
+      "amount": 90.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-09-25",
+      "payee": "Office Fresh Fruits",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790277360_0193",
+      "type": "expense",
+      "amount": 1626.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_41",
+      "toAccountId": null,
+      "date": "2026-09-25",
+      "payee": "Avengers Endgame Movie Tickets & Snacks",
+      "note": "Credit Spents | Entertainment",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790274120_0194",
+      "type": "expense",
+      "amount": 500.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_31",
+      "toAccountId": null,
+      "date": "2026-09-24",
+      "payee": "Frozen Garden Resort Advance Booking",
+      "note": "Credit Spents | Vaccination & Travelling",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790274060_0195",
+      "type": "expense",
+      "amount": 699.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-09-24",
+      "payee": "Groceries & Household",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790225160_0196",
+      "type": "expense",
+      "amount": 115.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-09-24",
+      "payee": "Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790182980_0197",
+      "type": "expense",
+      "amount": 280.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-23",
+      "payee": "Raw Chicken & Daily Groceries",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790170620_0198",
+      "type": "expense",
+      "amount": 160.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-09-23",
+      "payee": "Metro Smart Card Recharge",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1790170560_0199",
+      "type": "expense",
+      "amount": 80.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_49",
+      "toAccountId": null,
+      "date": "2026-09-23",
+      "payee": "Office Commute Local Transport",
+      "note": "Office | Subscriptions & Bills",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790160660_0200",
+      "type": "expense",
+      "amount": 170.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-09-23",
+      "payee": "Snacks",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790149200_0201",
+      "type": "expense",
+      "amount": 140.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-09-23",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790149140_0202",
+      "type": "expense",
+      "amount": 500.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_49",
+      "toAccountId": null,
+      "date": "2026-09-23",
+      "payee": "Uber Ride to Office",
+      "note": "Office | Subscriptions & Bills",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790059980_0203",
+      "type": "expense",
+      "amount": 217.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-09-22",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1790059980_0204",
+      "type": "expense",
+      "amount": 50.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-09-22",
+      "payee": "Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789995600_0205",
+      "type": "expense",
+      "amount": 70.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-09-21",
+      "payee": "Office Fresh Fruits",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789995600_0206",
+      "type": "expense",
+      "amount": 142.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-09-21",
+      "payee": "Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789995540_0207",
+      "type": "expense",
+      "amount": 133.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-09-21",
+      "payee": "Migraine Pain Relief Medicine",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789900560_0208",
+      "type": "expense",
+      "amount": 220.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-20",
+      "payee": "Teflon Polish & Bike Cleaner",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789900560_0209",
+      "type": "expense",
+      "amount": 330.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-20",
+      "payee": "Arun Ice Cream",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789892700_0210",
+      "type": "expense",
+      "amount": 40.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-20",
+      "payee": "Packaged Drinking Water",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789879440_0211",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_04",
+      "toAccountId": null,
+      "date": "2026-09-20",
+      "payee": "Tea & Snacks (One Ride Event)",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789871580_0212",
+      "type": "expense",
+      "amount": 1268.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-09-20",
+      "payee": "Bali Bike Fuel",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789847100_0213",
+      "type": "expense",
+      "amount": 2345.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-09-20",
+      "payee": "Barbeque Nation Buffet Dining",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789846920_0214",
+      "type": "expense",
+      "amount": 1605.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_25",
+      "toAccountId": null,
+      "date": "2026-09-20",
+      "payee": "Bali Bike General Servicing",
+      "note": "Credit Spents | 🔧 Vehicle Maintenance",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789846860_0215",
+      "type": "expense",
+      "amount": 2759.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_16",
+      "toAccountId": null,
+      "date": "2026-09-20",
+      "payee": "Durga Puja Festive Shopping",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789846800_0216",
+      "type": "expense",
+      "amount": 255.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_48",
+      "toAccountId": null,
+      "date": "2026-09-20",
+      "payee": "D2H Recharge (Nimta)",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789792620_0217",
+      "type": "expense",
+      "amount": 718.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-09-19",
+      "payee": "Blinkit Frozen &Amp; Sugar Free",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789738860_0218",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-18",
+      "payee": "Wet Cleaning Wipes",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789738800_0219",
+      "type": "expense",
+      "amount": 2910.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-09-18",
+      "payee": "Maa Medicines",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789718700_0220",
+      "type": "expense",
+      "amount": 103.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-09-18",
+      "payee": "Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789718520_0221",
+      "type": "expense",
+      "amount": 470.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-09-18",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789624500_0222",
+      "type": "expense",
+      "amount": 85.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-09-17",
+      "payee": "Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789590420_0223",
+      "type": "expense",
+      "amount": 234.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-09-17",
+      "payee": "Raw Chicken &Amp; Lunch Grocery",
+      "note": "Office | Groceries & Household",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789590420_0224",
+      "type": "expense",
+      "amount": 345.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-09-17",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789535580_0225",
+      "type": "expense",
+      "amount": 40.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-09-16",
+      "payee": "Phuchka",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789449180_0226",
+      "type": "expense",
+      "amount": 270.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-09-15",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789448460_0227",
+      "type": "expense",
+      "amount": 115.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-09-15",
+      "payee": "Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789409880_0228",
+      "type": "expense",
+      "amount": 970.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-09-14",
+      "payee": "Goutam's Kitchen Dinner",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789379340_0229",
+      "type": "expense",
+      "amount": 76.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-09-14",
+      "payee": "Snacks",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789374060_0230",
+      "type": "expense",
+      "amount": 1023.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-09-14",
+      "payee": "Bali Bike Fuel",
+      "note": "Credit Spents | 🚗 Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789374000_0231",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_25",
+      "toAccountId": null,
+      "date": "2026-09-14",
+      "payee": "Vehicle PUC Pollution Certificate",
+      "note": "Credit Spents | 🔧 Vehicle Maintenance",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789233780_0232",
+      "type": "expense",
+      "amount": 200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-12",
+      "payee": "Fresh Raw Chicken",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789233720_0233",
+      "type": "expense",
+      "amount": 30.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-12",
+      "payee": "Fresh Vegetables",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789233720_0234",
+      "type": "expense",
+      "amount": 55.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-12",
+      "payee": "Curd (Doi)",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789223820_0235",
+      "type": "expense",
+      "amount": 548.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-09-12",
+      "payee": "Sasuri Maa Mobile Recharge",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789223400_0236",
+      "type": "expense",
+      "amount": 589.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-09-12",
+      "payee": "Airtel Mobile Recharge (Nimta)",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789197900_0237",
+      "type": "expense",
+      "amount": 194.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-12",
+      "payee": "Cheese & Mobile Charger Cable",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789124280_0238",
+      "type": "expense",
+      "amount": 55.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-09-11",
+      "payee": "Office Tea & Snacks",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789102800_0239",
+      "type": "expense",
+      "amount": 132.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-09-11",
+      "payee": "Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789048140_0240",
+      "type": "expense",
+      "amount": 337.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-10",
+      "payee": "Daawat Rice & Lunch Meal",
+      "note": "Office | Groceries & Household",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789047600_0241",
+      "type": "expense",
+      "amount": 91.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-10",
+      "payee": "Fresh Raw Chicken",
+      "note": "Office | Groceries & Household",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789047600_0242",
+      "type": "expense",
+      "amount": 270.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-09-10",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1789004760_0243",
+      "type": "expense",
+      "amount": 50.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_39",
+      "toAccountId": null,
+      "date": "2026-09-10",
+      "payee": "Eyebrow Grooming",
+      "note": "Credit Spents | 📦 Miscellaneous",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789004760_0244",
+      "type": "expense",
+      "amount": 281.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-09-10",
+      "payee": "Maa Medicines",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1789004700_0245",
+      "type": "expense",
+      "amount": 170.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-09-10",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1788860400_0246",
+      "type": "expense",
+      "amount": 40.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-09-08",
+      "payee": "Office Evening Snacks",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1788854880_0247",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-09-08",
+      "payee": "Breakfast Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1788803880_0248",
+      "type": "expense",
+      "amount": 20.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_26",
+      "toAccountId": null,
+      "date": "2026-09-07",
+      "payee": "Bali Bike Horn Repair",
+      "note": "Credit Spents | 🔧 Vehicle Maintenance",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788803880_0249",
+      "type": "expense",
+      "amount": 40.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-07",
+      "payee": "Vinegar & Chana (Groceries)",
+      "note": "Office | Groceries & Household",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1788803820_0250",
+      "type": "expense",
+      "amount": 194.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-09-07",
+      "payee": "Office Roll & Tea",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1788758100_0251",
+      "type": "expense",
+      "amount": 60.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-09-07",
+      "payee": "Green Coconut (Daab)",
+      "note": "Office | Medicine & Health",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1788757320_0252",
+      "type": "expense",
+      "amount": 1292.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-09-07",
+      "payee": "Bali Bike Fuel",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788714240_0253",
+      "type": "expense",
+      "amount": 10.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-06",
+      "payee": "Mother Watch Strap Resizing",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788714240_0254",
+      "type": "expense",
+      "amount": 40.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-09-06",
+      "payee": "Phuchka / Golgappa",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788709620_0255",
+      "type": "expense",
+      "amount": 102.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-06",
+      "payee": "Fresh Raw Chicken",
+      "note": "Office | Groceries & Household",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1788709560_0256",
+      "type": "expense",
+      "amount": 118.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-06",
+      "payee": "Cooking Groceries & Ingredients",
+      "note": "Office | Groceries & Household",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1788604860_0257",
+      "type": "expense",
+      "amount": 115.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-09-05",
+      "payee": "Personal Care & Protection",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788604860_0258",
+      "type": "expense",
+      "amount": 200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-05",
+      "payee": "French Fries Snack",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788584160_0259",
+      "type": "expense",
+      "amount": 3100.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_46",
+      "toAccountId": null,
+      "date": "2026-09-05",
+      "payee": "Electricity Bill (Home + Shop)",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788518520_0260",
+      "type": "expense",
+      "amount": 197.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_66",
+      "toAccountId": null,
+      "date": "2026-09-04",
+      "payee": "Baithak Evening Snacks",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1788497280_0261",
+      "type": "expense",
+      "amount": 82.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_63",
+      "toAccountId": null,
+      "date": "2026-09-04",
+      "payee": "Tea, Muri Ghugni & Lunch Curd",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1788458340_0262",
+      "type": "expense",
+      "amount": 25.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-03",
+      "payee": "Raw Paneer",
+      "note": "Office | Groceries & Household",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1788458340_0263",
+      "type": "expense",
+      "amount": 50.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-09-03",
+      "payee": "Fresh Paneer for Home",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788432600_0264",
+      "type": "expense",
+      "amount": 41.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-09-03",
+      "payee": "Post-Lunch Tea & Boiled Egg",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1788379680_0265",
+      "type": "expense",
+      "amount": 649.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_40",
+      "toAccountId": null,
+      "date": "2026-09-03",
+      "payee": "Netflix Monthly Subscription",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788368700_0266",
+      "type": "expense",
+      "amount": 2200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_14",
+      "toAccountId": null,
+      "date": "2026-09-02",
+      "payee": "Garage Monthly Rent",
+      "note": "Credit Spents | Parking",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788368580_0267",
+      "type": "expense",
+      "amount": 1117.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_45",
+      "toAccountId": null,
+      "date": "2026-09-02",
+      "payee": "Alliance Internet & Cable Bill",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788367860_0268",
+      "type": "expense",
+      "amount": 3116.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_07",
+      "toAccountId": null,
+      "date": "2026-09-02",
+      "payee": "Smart Bazaar (Lunch Box, Jeans & Household)",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788367860_0269",
+      "type": "expense",
+      "amount": 342.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-09-02",
+      "payee": "Office Lunch Bowl",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1788326460_0270",
+      "type": "expense",
+      "amount": 49.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_63",
+      "toAccountId": null,
+      "date": "2026-09-02",
+      "payee": "Office Breakfast (Bread, Ghugni, Egg & Tea)",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1788269880_0271",
+      "type": "expense",
+      "amount": 205.0,
+      "accountId": "acc_office",
+      "categoryId": "cat_e_64",
+      "toAccountId": null,
+      "date": "2026-09-01",
+      "payee": "Office Lunch Meal",
+      "note": "Office | Outside Food",
+      "tags": [
+        "Office"
+      ]
+    },
+    {
+      "id": "rec_1788200700_0272",
+      "type": "expense",
+      "amount": 290.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-08-31",
+      "payee": "Biryani & Coke",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788199200_0273",
+      "type": "expense",
+      "amount": 765.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-08-31",
+      "payee": "Bali Bike Fuel",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788193260_0274",
+      "type": "expense",
+      "amount": 1250.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-08-31",
+      "payee": "Hair Care Dandruff & De-Tan Treatment",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788193260_0275",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-08-31",
+      "payee": "Evening Ghugni Snack",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788193200_0276",
+      "type": "expense",
+      "amount": 1000.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_31",
+      "toAccountId": null,
+      "date": "2026-08-31",
+      "payee": "Royal Enfield One Ride 2026 Event Registration",
+      "note": "Credit Spents | Vaccination & Travelling",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788101520_0277",
+      "type": "expense",
+      "amount": 200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-08-30",
+      "payee": "Momo (Apon Zone)",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788095820_0278",
+      "type": "expense",
+      "amount": 523.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-08-30",
+      "payee": "Personal Care & Protection",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788042720_0279",
+      "type": "expense",
+      "amount": 220.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-08-30",
+      "payee": "Fresh Raw Chicken",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788042660_0280",
+      "type": "expense",
+      "amount": 3000.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_36",
+      "toAccountId": null,
+      "date": "2026-08-30",
+      "payee": "Physiotherapy Treatment Session",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1788002220_0281",
+      "type": "expense",
+      "amount": 885.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-08-29",
+      "payee": "Rakhi Celebration Lunch (Aminia Sreerampore)",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787850360_0282",
+      "type": "expense",
+      "amount": 1432.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-08-27",
+      "payee": "Raksha Bandhan Gifts",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787850300_0283",
+      "type": "expense",
+      "amount": 330.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-08-27",
+      "payee": "Personal Care & Protection",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787781240_0284",
+      "type": "expense",
+      "amount": 1410.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-08-27",
+      "payee": "Bali Bike Fuel",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787781180_0285",
+      "type": "expense",
+      "amount": 1730.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-08-27",
+      "payee": "Job Celebration Party (Nimta)",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787781060_0286",
+      "type": "expense",
+      "amount": 400.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-08-27",
+      "payee": "Baithak Khana Kebabs & Cold Drinks",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787747760_0287",
+      "type": "expense",
+      "amount": 1172.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-08-26",
+      "payee": "Bengal Dhaba Dining",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787595660_0288",
+      "type": "expense",
+      "amount": 250.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-08-24",
+      "payee": "Fresh Raw Fish",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787513400_0289",
+      "type": "expense",
+      "amount": 200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-08-24",
+      "payee": "KFC Meal",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787509800_0290",
+      "type": "expense",
+      "amount": 450.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-08-24",
+      "payee": "Army Cafe Dining",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787509740_0291",
+      "type": "expense",
+      "amount": 681.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-08-23",
+      "payee": "Punch Car Fuel",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787478600_0292",
+      "type": "expense",
+      "amount": 55.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-08-23",
+      "payee": "Cooking Spices & Masalas",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787426400_0293",
+      "type": "expense",
+      "amount": 184.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-08-23",
+      "payee": "Baba Mobile Recharge",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787417160_0294",
+      "type": "expense",
+      "amount": 1176.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_07",
+      "toAccountId": null,
+      "date": "2026-08-22",
+      "payee": "Blinkit Household Supplies",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787417100_0295",
+      "type": "expense",
+      "amount": 711.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-08-22",
+      "payee": "Raw Chicken, Eggs & Vegetables",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787403540_0296",
+      "type": "expense",
+      "amount": 1200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_07",
+      "toAccountId": null,
+      "date": "2026-08-22",
+      "payee": "More Supermarket Household Essentials",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787261640_0297",
+      "type": "expense",
+      "amount": 570.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-08-21",
+      "payee": "Clay for Rakhi & Mother's Watch",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787242200_0298",
+      "type": "expense",
+      "amount": 620.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-08-20",
+      "payee": "Family Biryani Dinner",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787152140_0299",
+      "type": "expense",
+      "amount": 400.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_16",
+      "toAccountId": null,
+      "date": "2026-08-19",
+      "payee": "Sakha Pola Traditional Bangles",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787147520_0300",
+      "type": "expense",
+      "amount": 230.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-08-19",
+      "payee": "Festive Gift Cookies",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787147460_0301",
+      "type": "expense",
+      "amount": 110.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-08-19",
+      "payee": "Ghugni, Phuchka & Dahi Vada",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787135160_0302",
+      "type": "expense",
+      "amount": 1242.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-08-19",
+      "payee": "Bali Bike Fuel",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787112600_0303",
+      "type": "expense",
+      "amount": 320.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-08-19",
+      "payee": "Fresh Raw Fish",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1787063400_0304",
+      "type": "expense",
+      "amount": 375.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-08-18",
+      "payee": "Tea & Snacks (Cha Er Bari)",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786983420_0305",
+      "type": "expense",
+      "amount": 467.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-08-17",
+      "payee": "Raw Chicken & Fresh Cream",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786960920_0306",
+      "type": "expense",
+      "amount": 616.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-08-17",
+      "payee": "Sanitary Hygiene Products",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786863180_0307",
+      "type": "expense",
+      "amount": 588.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-08-16",
+      "payee": "Airtel Mobile Recharge (Nimta)",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786822320_0308",
+      "type": "expense",
+      "amount": 507.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-08-16",
+      "payee": "Blinkit Safety &Amp; Sausages",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786804980_0309",
+      "type": "expense",
+      "amount": 380.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_04",
+      "toAccountId": null,
+      "date": "2026-08-15",
+      "payee": "Tea & Snacks Pit Stop (Apon Zone)",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786778760_0310",
+      "type": "expense",
+      "amount": 330.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-08-15",
+      "payee": "Daily Groceries",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786714920_0311",
+      "type": "expense",
+      "amount": 310.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-08-14",
+      "payee": "Bapi Da Momo",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786708260_0312",
+      "type": "expense",
+      "amount": 1200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-08-14",
+      "payee": "Dr. Arindam Ganguly Consultation OPD",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786708260_0313",
+      "type": "expense",
+      "amount": 180.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-08-14",
+      "payee": "Rishi Birthday Cake",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786704180_0314",
+      "type": "expense",
+      "amount": 3880.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-08-14",
+      "payee": "Mother's Monthly Medicines",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786633320_0315",
+      "type": "expense",
+      "amount": 505.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-08-13",
+      "payee": "Spencer's Supermarket Shopping",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786475100_0316",
+      "type": "expense",
+      "amount": 3334.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-08-12",
+      "payee": "Punch Car Fuel (Kharagpur - Medinipur Trip)",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786475040_0317",
+      "type": "expense",
+      "amount": 2532.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_42",
+      "toAccountId": null,
+      "date": "2026-08-12",
+      "payee": "Lunch at Rajbari",
+      "note": "Credit Spents | Entertainment",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786474620_0318",
+      "type": "expense",
+      "amount": 600.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_42",
+      "toAccountId": null,
+      "date": "2026-08-12",
+      "payee": "Day Outing & Recreation",
+      "note": "Credit Spents | Entertainment",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786397100_0319",
+      "type": "expense",
+      "amount": 290.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-08-11",
+      "payee": "Salon & Haircut Grooming",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786388580_0320",
+      "type": "expense",
+      "amount": 810.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-08-11",
+      "payee": "Celebration Dining & Food",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786340460_0321",
+      "type": "expense",
+      "amount": 666.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-08-10",
+      "payee": "Jio Mobile Recharge 70 Days (Megha)",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786296780_0322",
+      "type": "expense",
+      "amount": 5000.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_49",
+      "toAccountId": null,
+      "date": "2026-08-09",
+      "payee": "Domestic Maid Monthly Salary",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786197000_0323",
+      "type": "expense",
+      "amount": 40.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-08-08",
+      "payee": "Phuchka / Golgappa",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786196940_0324",
+      "type": "expense",
+      "amount": 580.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-08-08",
+      "payee": "Annapurna Kashmiri Pulao & Paneer",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786170000_0325",
+      "type": "expense",
+      "amount": 2598.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-08-08",
+      "payee": "Frido Posture Correction Belt",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786108680_0326",
+      "type": "expense",
+      "amount": 1315.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-08-07",
+      "payee": "Vehicle Fuel",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1786023300_0327",
+      "type": "expense",
+      "amount": 425.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-08-06",
+      "payee": "DJ Chai Wala (Shyamnagar)",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785998040_0328",
+      "type": "expense",
+      "amount": 1265.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-08-06",
+      "payee": "Anniversary / Birthday Gift for Wife",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785998040_0329",
+      "type": "expense",
+      "amount": 80.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-08-06",
+      "payee": "Breakfast Meal",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785858840_0330",
+      "type": "expense",
+      "amount": 270.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-08-04",
+      "payee": "Altitude 8848 Momo",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785851700_0331",
+      "type": "expense",
+      "amount": 75.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-08-04",
+      "payee": "Mineral Water, Snacks & Sweets",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785851340_0332",
+      "type": "expense",
+      "amount": 110.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-08-04",
+      "payee": "Fresh Raw Fish",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785851280_0333",
+      "type": "expense",
+      "amount": 649.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-08-04",
+      "payee": "Refrigerator Repair Technician Visit Charge",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785851280_0334",
+      "type": "expense",
+      "amount": 6500.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-08-04",
+      "payee": "MRI Scan Medical Test",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785765060_0335",
+      "type": "expense",
+      "amount": 220.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-08-03",
+      "payee": "Fresh Raw Chicken",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785701700_0336",
+      "type": "expense",
+      "amount": 616.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-08-03",
+      "payee": "Zanskar Pain Relief Cream",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785701340_0337",
+      "type": "expense",
+      "amount": 103.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-08-03",
+      "payee": "Phuchka & Sweets",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785701340_0338",
+      "type": "expense",
+      "amount": 1633.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_17",
+      "toAccountId": null,
+      "date": "2026-08-03",
+      "payee": "Tailoring & Blouse Making",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785670980_0339",
+      "type": "expense",
+      "amount": 3400.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_46",
+      "toAccountId": null,
+      "date": "2026-08-02",
+      "payee": "Electricity Bill (Home + Shop)",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785670560_0340",
+      "type": "expense",
+      "amount": 1117.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_45",
+      "toAccountId": null,
+      "date": "2026-08-02",
+      "payee": "Alliance Internet & Cable Bill",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785670500_0341",
+      "type": "expense",
+      "amount": 2200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_14",
+      "toAccountId": null,
+      "date": "2026-08-02",
+      "payee": "Garage Monthly Rent",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785648000_0342",
+      "type": "expense",
+      "amount": 270.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-08-02",
+      "payee": "Sugar-Free for Maa",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785600000_0343",
+      "type": "expense",
+      "amount": 300.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-08-01",
+      "payee": "Battery &Amp; Eggs",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785511680_0344",
+      "type": "expense",
+      "amount": 111.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-31",
+      "payee": "Notebook / Stationery",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785505500_0345",
+      "type": "expense",
+      "amount": 235.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-07-31",
+      "payee": "Cha &Amp; Chrispy Chicken",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785438060_0346",
+      "type": "expense",
+      "amount": 735.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-07-31",
+      "payee": "Arsalan Biryani Dinner",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785419640_0347",
+      "type": "expense",
+      "amount": 300.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-07-30",
+      "payee": "Cinema Popcorn",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785414360_0348",
+      "type": "expense",
+      "amount": 1351.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-07-30",
+      "payee": "Himalayan Bike Fuel",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785390480_0349",
+      "type": "expense",
+      "amount": 212.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-30",
+      "payee": "Blinkit (Bread, Curd, Maggi)",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785389100_0350",
+      "type": "expense",
+      "amount": 2547.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-07-30",
+      "payee": "Mother's Monthly Medicines",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785337320_0351",
+      "type": "expense",
+      "amount": 310.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-07-29",
+      "payee": "Roll &Amp; Momo",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785149940_0352",
+      "type": "expense",
+      "amount": 210.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_41",
+      "toAccountId": null,
+      "date": "2026-07-27",
+      "payee": "Spider-Man: Brand New Day Movie Tickets",
+      "note": "Credit Spents | Entertainment",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785087120_0353",
+      "type": "expense",
+      "amount": 845.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-07-26",
+      "payee": "Dada Boudi Biryani",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785075060_0354",
+      "type": "expense",
+      "amount": 666.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-07-26",
+      "payee": "Jio Mobile Recharge (70 Days)",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785075060_0355",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-07-26",
+      "payee": "Miscellaneous Daily Expenses",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785074880_0356",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-07-26",
+      "payee": "Momo (Apon Zone)",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785000720_0357",
+      "type": "expense",
+      "amount": 407.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-25",
+      "payee": "Blinkit (Snacks & Plant Spray)",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1785000660_0358",
+      "type": "expense",
+      "amount": 100.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-07-25",
+      "payee": "Phuchka & Sweet Corn",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784780940_0359",
+      "type": "expense",
+      "amount": 661.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-23",
+      "payee": "Raw Chicken & Eggs",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784688300_0360",
+      "type": "expense",
+      "amount": 975.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-22",
+      "payee": "Raw Groceries, Fair & Other Items",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784688060_0361",
+      "type": "expense",
+      "amount": 440.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-07-22",
+      "payee": "Goutam's Kitchen (Mani Square Mall)",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784687940_0362",
+      "type": "expense",
+      "amount": 500.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-22",
+      "payee": "Traffic Fine (Signal Violation)",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784566620_0363",
+      "type": "expense",
+      "amount": 514.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-07-20",
+      "payee": "Outside Food",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784475900_0364",
+      "type": "expense",
+      "amount": 681.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-07-19",
+      "payee": "Bali Bike Fuel",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784403180_0365",
+      "type": "expense",
+      "amount": 588.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-07-19",
+      "payee": "Airtel Mobile Recharge (Nimta)",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784391180_0366",
+      "type": "expense",
+      "amount": 622.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-07-18",
+      "payee": "Nimta House Sugarfree &Amp; Toothpaste",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784391120_0367",
+      "type": "expense",
+      "amount": 76.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_05",
+      "toAccountId": null,
+      "date": "2026-07-18",
+      "payee": "Mio Amore Bakery & Cakes",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784391120_0368",
+      "type": "expense",
+      "amount": 234.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-18",
+      "payee": "Curd & Fruits (Nimta House)",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784311200_0369",
+      "type": "expense",
+      "amount": 1130.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-07-17",
+      "payee": "Food Mania Party Dining",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784266080_0370",
+      "type": "expense",
+      "amount": 275.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-07-17",
+      "payee": "Chicken Rice from Spicy (at Srestha's House)",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784195880_0371",
+      "type": "expense",
+      "amount": 99.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-07-16",
+      "payee": "Pan &Amp; Rath Light",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784181540_0372",
+      "type": "expense",
+      "amount": 80.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-07-16",
+      "payee": "Breakfast Meal",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784098020_0373",
+      "type": "expense",
+      "amount": 170.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_17",
+      "toAccountId": null,
+      "date": "2026-07-15",
+      "payee": "Blouse Clothing",
+      "note": "Credit Spents | Shopping",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784095620_0374",
+      "type": "expense",
+      "amount": 236.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-15",
+      "payee": "Raw Fish & Cooking Masalas",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784049480_0375",
+      "type": "expense",
+      "amount": 170.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-07-14",
+      "payee": "Dosa Dinner",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784013540_0376",
+      "type": "expense",
+      "amount": 219.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_44",
+      "toAccountId": null,
+      "date": "2026-07-14",
+      "payee": "Airtel Mobile Recharge",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1784013480_0377",
+      "type": "expense",
+      "amount": 1300.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_49",
+      "toAccountId": null,
+      "date": "2026-07-14",
+      "payee": "ClearTax Annual ITR E-Filing",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783970220_0378",
+      "type": "expense",
+      "amount": 332.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_01",
+      "toAccountId": null,
+      "date": "2026-07-14",
+      "payee": "Swiggy Late Night Biryani Order",
+      "note": "Credit Spents | 🍽 Orders & Takeaway",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783926960_0379",
+      "type": "expense",
+      "amount": 48.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_62",
+      "toAccountId": null,
+      "date": "2026-07-13",
+      "payee": "Miscellaneous Items",
+      "note": "Credit Spents | 📦 Miscellaneous",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783872840_0380",
+      "type": "expense",
+      "amount": 160.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-07-12",
+      "payee": "Ice Cream for Rishi",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783872780_0381",
+      "type": "expense",
+      "amount": 120.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-07-12",
+      "payee": "Sweets for Swarnosree Di",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783856340_0382",
+      "type": "expense",
+      "amount": 1145.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-07-12",
+      "payee": "Punch Car Fuel (Swarnosree Di Event)",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783776600_0383",
+      "type": "expense",
+      "amount": 320.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-07-11",
+      "payee": "Burger King Meal",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783773000_0384",
+      "type": "expense",
+      "amount": 355.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-07-11",
+      "payee": "Maa Nerve Medicine & Megha Medicines",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783769400_0385",
+      "type": "expense",
+      "amount": 99.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-07-11",
+      "payee": "Gift for Swarnosree Di House Event",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783579020_0386",
+      "type": "expense",
+      "amount": 5000.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_49",
+      "toAccountId": null,
+      "date": "2026-07-09",
+      "payee": "Cook Monthly Salary",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783578960_0387",
+      "type": "expense",
+      "amount": 80.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-09",
+      "payee": "Curd & Raw Eggs",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783578960_0388",
+      "type": "expense",
+      "amount": 4070.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_46",
+      "toAccountId": null,
+      "date": "2026-07-09",
+      "payee": "Electricity Bill",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783447200_0389",
+      "type": "expense",
+      "amount": 234.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-07",
+      "payee": "Mio Amore Bakery & Snacks",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783435020_0390",
+      "type": "expense",
+      "amount": 60.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-07-07",
+      "payee": "Mishti Doi (Sweet Curd)",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783435020_0391",
+      "type": "expense",
+      "amount": 681.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-07-07",
+      "payee": "Himalayan Bike Fuel",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783397580_0392",
+      "type": "expense",
+      "amount": 60.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-07-07",
+      "payee": "Green Coconut (Daab)",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783354320_0393",
+      "type": "expense",
+      "amount": 200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-07-06",
+      "payee": "Pakora & Mineral Water",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783273560_0394",
+      "type": "expense",
+      "amount": 140.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-07-05",
+      "payee": "Momo Evening Snacks",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783233960_0395",
+      "type": "expense",
+      "amount": 231.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_07",
+      "toAccountId": null,
+      "date": "2026-07-05",
+      "payee": "Kitchen Gas Lighter",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783222080_0396",
+      "type": "expense",
+      "amount": 145.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-05",
+      "payee": "Wall Hooks",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783203180_0397",
+      "type": "expense",
+      "amount": 358.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_49",
+      "toAccountId": null,
+      "date": "2026-07-05",
+      "payee": "Upwork Connects Freelance Credits",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783186020_0398",
+      "type": "expense",
+      "amount": 370.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-04",
+      "payee": "Exercise Notebooks & Ice Cream for Family",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783185960_0399",
+      "type": "expense",
+      "amount": 75.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-04",
+      "payee": "Ice Cream & Washing Liquid",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783156140_0400",
+      "type": "expense",
+      "amount": 250.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_25",
+      "toAccountId": null,
+      "date": "2026-07-04",
+      "payee": "Himalayan Bike Tyre Puncture Fix",
+      "note": "Credit Spents | 🔧 Vehicle Maintenance",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783101000_0401",
+      "type": "expense",
+      "amount": 1117.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_45",
+      "toAccountId": null,
+      "date": "2026-07-03",
+      "payee": "Alliance Internet & Cable Bill",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783101000_0402",
+      "type": "expense",
+      "amount": 2200.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_14",
+      "toAccountId": null,
+      "date": "2026-07-03",
+      "payee": "Garage Monthly Rent",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783011600_0403",
+      "type": "expense",
+      "amount": 125.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-02",
+      "payee": "Fresh Raw Paneer",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783009860_0404",
+      "type": "expense",
+      "amount": 30.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_04",
+      "toAccountId": null,
+      "date": "2026-07-02",
+      "payee": "Tea (Chai)",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783003740_0405",
+      "type": "expense",
+      "amount": 60.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_02",
+      "toAccountId": null,
+      "date": "2026-07-02",
+      "payee": "Lassi Cold Drink",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1783003680_0406",
+      "type": "expense",
+      "amount": 360.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-02",
+      "payee": "Garden Plant Pots",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1782929760_0407",
+      "type": "expense",
+      "amount": 490.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-07-01",
+      "payee": "House Indoor Plants",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1782929760_0408",
+      "type": "expense",
+      "amount": 60.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_05",
+      "toAccountId": null,
+      "date": "2026-07-01",
+      "payee": "Mio Amore Bakery & Cakes",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1782929700_0409",
+      "type": "expense",
+      "amount": 180.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-07-01",
+      "payee": "Cake for Sasuri Maa",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1782907980_0410",
+      "type": "expense",
+      "amount": 255.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_48",
+      "toAccountId": null,
+      "date": "2026-07-01",
+      "payee": "D2H Recharge (Nimta)",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1782849120_0411",
+      "type": "expense",
+      "amount": 351.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_49",
+      "toAccountId": null,
+      "date": "2026-07-01",
+      "payee": "Upwork Connects Freelance Credits",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1782838740_0412",
+      "type": "expense",
+      "amount": 2288.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_32",
+      "toAccountId": null,
+      "date": "2026-06-30",
+      "payee": "Mother & Wife Medicines",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1782753660_0413",
+      "type": "expense",
+      "amount": 275.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-06-29",
+      "payee": "Momo & Sweets for Guests",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1782721020_0414",
+      "type": "expense",
+      "amount": 174.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_34",
+      "toAccountId": null,
+      "date": "2026-06-29",
+      "payee": "Apollo Home Blood Sugar Test",
+      "note": "Credit Spents | Medicine & Health",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1782625500_0415",
+      "type": "expense",
+      "amount": 477.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_06",
+      "toAccountId": null,
+      "date": "2026-06-28",
+      "payee": "Raw Chicken, Bread, Eggs, Onions",
+      "note": "Credit Spents | Groceries & Household",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1782599880_0416",
+      "type": "expense",
+      "amount": 150.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_49",
+      "toAccountId": null,
+      "date": "2026-06-28",
+      "payee": "Meghive WhatsApp Ad Campaign",
+      "note": "Credit Spents | Subscriptions & Bills",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1782579600_0417",
+      "type": "expense",
+      "amount": 160.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_50",
+      "toAccountId": null,
+      "date": "2026-06-27",
+      "payee": "Flowers for Family / Guests",
+      "note": "Credit Spents | Gifting and Celebration",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1782576000_0418",
+      "type": "expense",
+      "amount": 681.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_24",
+      "toAccountId": null,
+      "date": "2026-06-27",
+      "payee": "Punch Fuel (Client Meeting at Maddox)",
+      "note": "Credit Spents | Vehicle Fuel",
+      "tags": [
+        "CreditSpents"
+      ]
+    },
+    {
+      "id": "rec_1782487800_0419",
+      "type": "expense",
+      "amount": 80.0,
+      "accountId": "acc_credit_spents",
+      "categoryId": "cat_e_03",
+      "toAccountId": null,
+      "date": "2026-06-26",
+      "payee": "Phuchka / Golgappa",
+      "note": "Credit Spents | Outside Food",
+      "tags": [
+        "CreditSpents"
+      ]
+    }
+  ],
+  "budgets": [],
+  "planned": [],
+  "goals": [],
+  "debts": [],
+  "rent": {
+    "monthlyRent": 0,
+    "maintenance": 0,
+    "securityDeposit": 0,
+    "accountId": "",
+    "landlordName": "",
+    "landlordPan": "",
+    "leaseStart": "",
+    "leaseEnd": "",
+    "escalationPct": 5,
+    "items": []
+  }
+}

@@ -929,15 +929,102 @@
         darkMode: false,
         accounts: [],
         categories: [
-          { id: 'cat_inc_1', name: 'Salary & Income', type: 'income', group: 'income', icon: 'payments', color: '#059669' },
-          { id: 'cat_inc_2', name: 'Freelance & Business', type: 'income', group: 'income', icon: 'laptop_mac', color: '#0D9488' },
-          { id: 'cat_exp_1', name: 'Rent & Housing', type: 'expense', group: 'needs', icon: 'home', color: '#0284C7' },
-          { id: 'cat_exp_2', name: 'Groceries & Daily', type: 'expense', group: 'needs', icon: 'shopping_basket', color: '#16A34A' },
-          { id: 'cat_exp_3', name: 'Bills & Utilities', type: 'expense', group: 'needs', icon: 'bolt', color: '#DC2626' },
-          { id: 'cat_exp_4', name: 'Fuel & Commute', type: 'expense', group: 'needs', icon: 'two_wheeler', color: '#2563EB' },
-          { id: 'cat_exp_5', name: 'Food & Dining Out', type: 'expense', group: 'wants', icon: 'restaurant', color: '#EA580C' },
-          { id: 'cat_exp_6', name: 'Shopping & Lifestyle', type: 'expense', group: 'wants', icon: 'shopping_bag', color: '#9333EA' },
-          { id: 'cat_exp_7', name: 'Investments & SIP', type: 'expense', group: 'savings', icon: 'trending_up', color: '#0D9488' }
+          // ── Income ──────────────────────────────────────────────────────
+          { id: 'cat_inc_1',  name: 'Salary & Income',               type: 'income',  group: 'income',   icon: 'payments',                   color: '#059669' },
+          { id: 'cat_inc_2',  name: 'Freelance & Business',          type: 'income',  group: 'income',   icon: 'laptop_mac',                 color: '#0D9488' },
+
+          // ── Food (Ordered / Eating Out) — WANTS ─────────────────────────
+          { id: 'cat_e_01',   name: 'Online Food Orders',            type: 'expense', group: 'wants',    icon: 'delivery_dining',            color: '#EA580C' },
+          { id: 'cat_e_02',   name: 'Dining Out',                    type: 'expense', group: 'wants',    icon: 'restaurant',                 color: '#F97316' },
+          { id: 'cat_e_03',   name: 'Street Food & Quick Bites',     type: 'expense', group: 'wants',    icon: 'lunch_dining',               color: '#FB923C' },
+          { id: 'cat_e_04',   name: 'Snacks & Beverages',            type: 'expense', group: 'wants',    icon: 'local_cafe',                 color: '#FDBA74' },
+          { id: 'cat_e_05',   name: 'Sweets & Bakery',               type: 'expense', group: 'wants',    icon: 'cake',                       color: '#F59E0B' },
+
+          // ── Groceries & Home — NEEDS ─────────────────────────────────────
+          { id: 'cat_e_06',   name: 'Groceries & Raw Food',          type: 'expense', group: 'needs',    icon: 'shopping_basket',            color: '#16A34A' },
+          { id: 'cat_e_07',   name: 'Household Essentials',          type: 'expense', group: 'needs',    icon: 'cleaning_services',          color: '#15803D' },
+          { id: 'cat_e_08',   name: 'Kitchen & Dining Supplies',     type: 'expense', group: 'needs',    icon: 'kitchen',                    color: '#14532D' },
+          { id: 'cat_e_09',   name: 'Home Furnishing & Decor',       type: 'expense', group: 'wants',    icon: 'chair',                      color: '#7C3AED' },
+          { id: 'cat_e_10',   name: 'Home Appliances',               type: 'expense', group: 'needs',    icon: 'microwave',                  color: '#6D28D9' },
+          { id: 'cat_e_11',   name: 'Home Repairs & Maintenance',    type: 'expense', group: 'needs',    icon: 'handyman',                   color: '#8B5CF6' },
+          { id: 'cat_e_12',   name: 'Domestic Help',                 type: 'expense', group: 'needs',    icon: 'person',                     color: '#A78BFA' },
+          { id: 'cat_e_13',   name: 'House Rent',                    type: 'expense', group: 'needs',    icon: 'home',                       color: '#0284C7' },
+          { id: 'cat_e_14',   name: 'Garage Rent',                   type: 'expense', group: 'needs',    icon: 'garage',                     color: '#0369A1' },
+
+          // ── Shopping — WANTS ─────────────────────────────────────────────
+          { id: 'cat_e_15',   name: 'Online Shopping',               type: 'expense', group: 'wants',    icon: 'shopping_bag',               color: '#9333EA' },
+          { id: 'cat_e_16',   name: 'In-store Shopping',             type: 'expense', group: 'wants',    icon: 'store',                      color: '#7E22CE' },
+          { id: 'cat_e_17',   name: 'Clothing & Apparel',            type: 'expense', group: 'wants',    icon: 'checkroom',                  color: '#A855F7' },
+          { id: 'cat_e_18',   name: 'Tailoring & Alterations',       type: 'expense', group: 'wants',    icon: 'content_cut',                color: '#C084FC' },
+          { id: 'cat_e_19',   name: 'Footwear',                      type: 'expense', group: 'wants',    icon: 'steps',                      color: '#D946EF' },
+          { id: 'cat_e_20',   name: 'Bags & Accessories',            type: 'expense', group: 'wants',    icon: 'backpack',                   color: '#E879F9' },
+          { id: 'cat_e_21',   name: 'Electronics & Gadgets',         type: 'expense', group: 'wants',    icon: 'devices',                    color: '#6366F1' },
+          { id: 'cat_e_22',   name: 'Personal Care Products',        type: 'expense', group: 'needs',    icon: 'face_retouching_natural',    color: '#EC4899' },
+          { id: 'cat_e_23',   name: 'Eyewear',                       type: 'expense', group: 'needs',    icon: 'visibility',                 color: '#F43F5E' },
+
+          // ── Vehicle & Transport — NEEDS ──────────────────────────────────
+          { id: 'cat_e_24',   name: 'Vehicle Fuel',                  type: 'expense', group: 'needs',    icon: 'local_gas_station',          color: '#2563EB' },
+          { id: 'cat_e_25',   name: 'Vehicle Servicing',             type: 'expense', group: 'needs',    icon: 'build',                      color: '#1D4ED8' },
+          { id: 'cat_e_26',   name: 'Vehicle Repairs & Spare Parts', type: 'expense', group: 'needs',    icon: 'car_repair',                 color: '#1E40AF' },
+          { id: 'cat_e_27',   name: 'Parking Charges',               type: 'expense', group: 'needs',    icon: 'local_parking',              color: '#3B82F6' },
+          { id: 'cat_e_28',   name: 'Toll & FASTag',                 type: 'expense', group: 'needs',    icon: 'toll',                       color: '#60A5FA' },
+          { id: 'cat_e_29',   name: 'Local Transportation',          type: 'expense', group: 'needs',    icon: 'directions_bus',             color: '#93C5FD' },
+          { id: 'cat_e_30',   name: 'Outstation Transportation',     type: 'expense', group: 'wants',    icon: 'train',                      color: '#BFDBFE' },
+
+          // ── Travel — WANTS ───────────────────────────────────────────────
+          { id: 'cat_e_31',   name: 'Travel & Accommodation',        type: 'expense', group: 'wants',    icon: 'flight',                     color: '#0EA5E9' },
+
+          // ── Health & Medical — NEEDS ─────────────────────────────────────
+          { id: 'cat_e_32',   name: 'Medicines',                     type: 'expense', group: 'needs',    icon: 'medication',                 color: '#DC2626' },
+          { id: 'cat_e_33',   name: 'Doctor Consultation',           type: 'expense', group: 'needs',    icon: 'stethoscope',                color: '#B91C1C' },
+          { id: 'cat_e_34',   name: 'Hospital & Medical Tests',      type: 'expense', group: 'needs',    icon: 'local_hospital',             color: '#991B1B' },
+          { id: 'cat_e_35',   name: 'Dental & Eye Care',             type: 'expense', group: 'needs',    icon: 'health_and_safety',          color: '#EF4444' },
+          { id: 'cat_e_36',   name: 'Physiotherapy & Treatment',     type: 'expense', group: 'needs',    icon: 'self_improvement',           color: '#F87171' },
+          { id: 'cat_e_37',   name: 'Vaccination',                   type: 'expense', group: 'needs',    icon: 'vaccines',                   color: '#FCA5A5' },
+
+          // ── Personal Grooming — WANTS ────────────────────────────────────
+          { id: 'cat_e_38',   name: 'Salon & Haircut',               type: 'expense', group: 'wants',    icon: 'content_cut',                color: '#DB2777' },
+          { id: 'cat_e_39',   name: 'Beauty & Grooming Services',    type: 'expense', group: 'wants',    icon: 'spa',                        color: '#BE185D' },
+
+          // ── Entertainment & Subscriptions — WANTS ───────────────────────
+          { id: 'cat_e_40',   name: 'OTT & Digital Subscriptions',   type: 'expense', group: 'wants',    icon: 'tv',                         color: '#7C3AED' },
+          { id: 'cat_e_41',   name: 'Movies & Events',               type: 'expense', group: 'wants',    icon: 'movie',                      color: '#6D28D9' },
+          { id: 'cat_e_42',   name: 'Outings & Recreation',          type: 'expense', group: 'wants',    icon: 'park',                       color: '#059669' },
+          { id: 'cat_e_43',   name: 'Games & Hobbies',               type: 'expense', group: 'wants',    icon: 'sports_esports',             color: '#10B981' },
+
+          // ── Utilities & Bills — NEEDS ────────────────────────────────────
+          { id: 'cat_e_44',   name: 'Mobile Recharge',               type: 'expense', group: 'needs',    icon: 'phone_android',              color: '#0D9488' },
+          { id: 'cat_e_45',   name: 'Internet & Broadband',          type: 'expense', group: 'needs',    icon: 'wifi',                       color: '#0F766E' },
+          { id: 'cat_e_46',   name: 'Electricity Bill',              type: 'expense', group: 'needs',    icon: 'bolt',                       color: '#F59E0B' },
+          { id: 'cat_e_47',   name: 'Water & Gas Bills',             type: 'expense', group: 'needs',    icon: 'water_drop',                 color: '#38BDF8' },
+          { id: 'cat_e_48',   name: 'DTH & Cable',                   type: 'expense', group: 'needs',    icon: 'live_tv',                    color: '#6B7280' },
+          { id: 'cat_e_49',   name: 'Other Subscriptions',           type: 'expense', group: 'wants',    icon: 'subscriptions',              color: '#8B5CF6' },
+
+          // ── Festivals & Social — WANTS ───────────────────────────────────
+          { id: 'cat_e_50',   name: 'Gifts',                         type: 'expense', group: 'wants',    icon: 'redeem',                     color: '#EC4899' },
+          { id: 'cat_e_51',   name: 'Birthday & Anniversary',        type: 'expense', group: 'wants',    icon: 'celebration',                color: '#F472B6' },
+          { id: 'cat_e_52',   name: 'Puja & Religious Expenses',     type: 'expense', group: 'wants',    icon: 'temple_hindu',               color: '#F97316' },
+          { id: 'cat_e_53',   name: 'Festivals & Decorations',       type: 'expense', group: 'wants',    icon: 'festival',                   color: '#FBBF24' },
+          { id: 'cat_e_54',   name: 'Social Contributions',          type: 'expense', group: 'wants',    icon: 'group',                      color: '#34D399' },
+
+          // ── Finance & Banking ────────────────────────────────────────────
+          { id: 'cat_e_55',   name: 'Banking & Transaction Charges', type: 'expense', group: 'needs',    icon: 'account_balance',            color: '#6B7280' },
+          { id: 'cat_e_56',   name: 'Tax & Government Payments',     type: 'expense', group: 'needs',    icon: 'account_balance_wallet',     color: '#4B5563' },
+          { id: 'cat_e_57',   name: 'Insurance',                     type: 'expense', group: 'savings',  icon: 'shield',                     color: '#0D9488' },
+          { id: 'cat_e_58',   name: 'Loan & EMI Payments',           type: 'expense', group: 'savings',  icon: 'credit_score',               color: '#0369A1' },
+          { id: 'cat_e_59',   name: 'Cash Withdrawal',               type: 'expense', group: 'needs',    icon: 'money',                      color: '#78716C' },
+          { id: 'cat_e_60',   name: 'Money Transfers',               type: 'expense', group: 'savings',  icon: 'sync_alt',                   color: '#0891B2' },
+          { id: 'cat_e_61',   name: 'Donations & Charity',           type: 'expense', group: 'wants',    icon: 'volunteer_activism',         color: '#16A34A' },
+          { id: 'cat_e_62',   name: 'Miscellaneous',                 type: 'expense', group: 'needs',    icon: 'more_horiz',                 color: '#94A3B8' },
+
+          // ── Office / Work Expenses — NEEDS ───────────────────────────────
+          { id: 'cat_e_63',   name: 'Office Breakfast',              type: 'expense', group: 'needs',    icon: 'free_breakfast',             color: '#FBBF24' },
+          { id: 'cat_e_64',   name: 'Office Lunch',                  type: 'expense', group: 'needs',    icon: 'lunch_dining',               color: '#F97316' },
+          { id: 'cat_e_65',   name: 'Office Dinner',                 type: 'expense', group: 'needs',    icon: 'dinner_dining',              color: '#EA580C' },
+          { id: 'cat_e_66',   name: 'Office Tea & Snacks',           type: 'expense', group: 'needs',    icon: 'emoji_food_beverage',        color: '#FDE68A' },
+          { id: 'cat_e_67',   name: 'Office Commute',                type: 'expense', group: 'needs',    icon: 'directions_bus',             color: '#3B82F6' },
+          { id: 'cat_e_68',   name: 'Office Parking',                type: 'expense', group: 'needs',    icon: 'local_parking',              color: '#60A5FA' },
+          { id: 'cat_e_69',   name: 'Office Expenses',               type: 'expense', group: 'needs',    icon: 'business_center',            color: '#64748B' },
         ],
         records: [],
         budgets: [],

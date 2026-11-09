@@ -1,0 +1,4 @@
+name: mh-finance-manager
+recipe: lamp
+config:
+  webroot: .
