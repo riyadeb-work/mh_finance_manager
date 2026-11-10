@@ -36,46 +36,42 @@
     }
   </script>
   <style>
-    body { background-color: #F7F9FC; color: #191C1B; -webkit-tap-highlight-color: transparent; transition: background-color 0.2s, color 0.2s; }
+    body { background-color: #F8FAFC; color: #0F172A; -webkit-tap-highlight-color: transparent; transition: background-color 0.2s, color 0.2s; }
     .material-symbols-rounded { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    .m3-card { background: #FFFFFF; border-radius: 1.25rem; border: 1px solid rgba(0, 106, 96, 0.08); box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 4px 12px rgba(0, 106, 96, 0.03); }
+    .m3-card { background: #FFFFFF; border-radius: 1.25rem; border: 1px solid rgba(15, 23, 42, 0.06); box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 4px 16px -2px rgba(0, 106, 96, 0.03); }
     .nav-active { background-color: #CCE8E2; color: #00201C; font-weight: 600; }
 
-    /* Mobile / Responsive fixes */
-    @supports (padding-bottom: env(safe-area-inset-bottom)) {
-      nav.mobile-bottom-nav {
-        padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
-      }
-    }
+    /* Mobile Bottom Navigation */
+    .mobile-nav-btn { background: transparent !important; }
+    .mobile-nav-btn .nav-icon-box { color: #64748B; transition: all 0.2s ease; }
+    .mobile-nav-btn .nav-label { color: #64748B; transition: all 0.2s ease; }
+    .mobile-nav-btn.nav-active .nav-icon-box { background-color: #CCE8E2; color: #004D40; }
+    .mobile-nav-btn.nav-active .nav-label { color: #004D40; font-weight: 700; }
 
-    /* Mobile / Responsive fixes */
     @supports (padding-bottom: env(safe-area-inset-bottom)) {
       nav.mobile-bottom-nav {
-        padding-bottom: calc(0.375rem + env(safe-area-inset-bottom));
+        padding-bottom: calc(0.6rem + env(safe-area-inset-bottom));
       }
-    }
-    @media (max-width: 767px) {
-      header .header-actions { gap: 0.375rem; }
-      header .header-add-btn { padding: 0.5rem; border-radius: 1rem; }
-      header .header-add-btn .btn-label { display: none; }
-      header .header-icon-btn { padding: 0.4rem; }
-      header .mobile-month-input { max-width: 7.5rem; padding-inline: 0.5rem; }
     }
 
     /* Material Dark Mode Overrides */
-    html.dark body { background-color: #0F1413; color: #E0E3E1; }
-    html.dark .m3-card { background-color: #18201F; border-color: rgba(116, 248, 229, 0.12); box-shadow: none; }
-    html.dark aside, html.dark header, html.dark nav.md\:hidden, html.dark nav.mobile-bottom-nav { background-color: #141B1A !important; border-color: #24302E !important; }
+    html.dark body { background-color: #0B0F12; color: #E2E8F0; }
+    html.dark .m3-card { background-color: #141B22; border-color: rgba(255, 255, 255, 0.07); box-shadow: none; }
+    html.dark aside, html.dark header, html.dark nav.md\:hidden, html.dark nav.mobile-bottom-nav { background-color: #10161D !important; border-color: rgba(255, 255, 255, 0.08) !important; }
     html.dark .nav-active { background-color: #004F47 !important; color: #74F8E5 !important; }
+    html.dark .mobile-nav-btn .nav-icon-box { color: #94A3B8; }
+    html.dark .mobile-nav-btn .nav-label { color: #94A3B8; }
+    html.dark .mobile-nav-btn.nav-active .nav-icon-box { background-color: #004F47; color: #74F8E5; }
+    html.dark .mobile-nav-btn.nav-active .nav-label { color: #74F8E5; font-weight: 700; }
     html.dark .text-slate-900, html.dark .text-slate-800 { color: #F1F5F9 !important; }
     html.dark .text-slate-700, html.dark .text-slate-600 { color: #CBD5E1 !important; }
     html.dark .text-slate-500, html.dark .text-slate-400 { color: #94A3B8 !important; }
-    html.dark .bg-white { background-color: #18201F !important; }
-    html.dark .bg-slate-50, html.dark .bg-slate-50\/70, html.dark .bg-slate-100 { background-color: #202B29 !important; }
-    html.dark .border-slate-100, html.dark .border-slate-200, html.dark .border-slate-200\/70, html.dark .border-slate-200\/80, html.dark .border-slate-200\/60 { border-color: #2A3836 !important; }
-    html.dark input, html.dark select, html.dark textarea { background-color: #202B29 !important; color: #F1F5F9 !important; border-color: #2F3E3C !important; }
+    html.dark .bg-white { background-color: #141B22 !important; }
+    html.dark .bg-slate-50, html.dark .bg-slate-50\/70, html.dark .bg-slate-100 { background-color: #1C242E !important; }
+    html.dark .border-slate-100, html.dark .border-slate-200, html.dark .border-slate-200\/70, html.dark .border-slate-200\/80, html.dark .border-slate-200\/60 { border-color: #263342 !important; }
+    html.dark input, html.dark select, html.dark textarea { background-color: #1C242E !important; color: #F1F5F9 !important; border-color: #2D3D4E !important; }
   </style>
 </head>
 <body class="h-screen flex flex-col md:flex-row overflow-hidden select-none">
@@ -153,52 +149,66 @@
   <!-- MAIN CONTENT AREA -->
   <div class="flex-1 flex flex-col h-full overflow-hidden">
     <!-- Top App Bar -->
-    <header class="bg-white/80 backdrop-blur-md border-b border-slate-200/70 px-3 md:px-8 py-2.5 md:py-3.5 flex items-center justify-between shrink-0 z-10">
-      <div class="flex items-center gap-2 min-w-0">
-        <div class="md:hidden shrink-0 w-8 h-8 rounded-xl bg-teal-700 flex items-center justify-center text-white">
-          <span class="material-symbols-rounded text-lg">account_balance_wallet</span>
+    <header class="bg-white/85 dark:bg-[#10161D]/85 backdrop-blur-md border-b border-slate-200/70 dark:border-slate-800/80 px-3.5 md:px-8 py-2.5 md:py-3.5 flex items-center justify-between shrink-0 z-20">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div class="md:hidden shrink-0 w-9 h-9 rounded-2xl bg-teal-700 flex items-center justify-center text-white shadow-sm shadow-teal-700/20">
+          <span class="material-symbols-rounded text-xl">account_balance_wallet</span>
         </div>
         <div class="min-w-0">
-          <h2 id="view-title" class="text-base md:text-xl font-bold text-slate-900 truncate">Dashboard</h2>
+          <h2 id="view-title" class="text-base md:text-xl font-bold text-slate-900 dark:text-white truncate">Dashboard</h2>
           <p id="view-subtitle" class="text-xs text-slate-500 hidden sm:block">Real-time multi-account overview & insights</p>
         </div>
       </div>
 
-      <div class="header-actions flex items-center gap-1 md:gap-2 shrink-0 ml-2">
-        <input type="month" id="mobile-month" onchange="changeMonth(this.value)" class="md:hidden bg-slate-100 border-none rounded-xl px-2 py-1.5 text-xs font-semibold text-slate-800 max-w-[7.5rem]">
+      <div class="header-actions flex items-center gap-2 shrink-0">
+        <!-- Sleek Native Month Picker Pill for Mobile -->
+        <div class="md:hidden relative inline-flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800/90 hover:bg-slate-200/70 px-2.5 py-1.5 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 border border-slate-200/60 dark:border-slate-700 transition cursor-pointer">
+          <span class="material-symbols-rounded text-sm text-teal-700 dark:text-teal-400">calendar_month</span>
+          <span id="mobile-month-display">Current Cycle</span>
+          <input type="month" id="mobile-month" onchange="changeMonth(this.value)" class="absolute inset-0 opacity-0 w-full h-full cursor-pointer">
+        </div>
         
         <!-- PWA Install Button (Shown when installable) -->
-        <button onclick="installPWA()" id="pwa-install-btn" class="hidden items-center gap-1 px-2 md:px-3 py-1.5 md:py-2 rounded-2xl bg-teal-50 hover:bg-teal-100 text-teal-800 text-xs font-bold transition" title="Install App">
+        <button onclick="installPWA()" id="pwa-install-btn" class="hidden items-center gap-1 px-2.5 md:px-3 py-1.5 md:py-2 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-800 text-xs font-bold transition" title="Install App">
           <span class="material-symbols-rounded text-base">install_mobile</span>
           <span class="hidden lg:inline">Install App</span>
         </button>
 
         <!-- Dark Theme Toggle -->
-        <button onclick="toggleDarkMode()" class="p-1.5 md:p-2 rounded-2xl bg-slate-100 hover:bg-slate-200/70 text-slate-700 transition" title="Toggle Dark Mode">
+        <button onclick="toggleDarkMode()" class="w-8 h-8 md:w-9 md:h-9 rounded-xl bg-slate-100 hover:bg-slate-200/70 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center transition" title="Toggle Dark Mode">
           <span id="dark-mode-icon" class="material-symbols-rounded text-lg">dark_mode</span>
         </button>
 
-        <!-- Dedicated Manual Sync Button (Shown when signed in) -->
-        <button onclick="syncAllManual()" id="header-manual-sync-btn" class="hidden items-center gap-1 md:gap-1.5 px-2 md:px-3.5 py-1.5 md:py-2 rounded-2xl bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200/80 text-xs font-bold transition active:scale-95" title="Sync all local and cloud data now">
+        <!-- Dedicated Manual Sync Button (Shown on desktop/tablet when signed in) -->
+        <button onclick="syncAllManual()" id="header-manual-sync-btn" class="hidden md:flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200/80 text-xs font-bold transition active:scale-95" title="Sync all local and cloud data now">
           <span id="manual-sync-icon" class="material-symbols-rounded text-base">sync</span>
-          <span id="manual-sync-text" class="hidden sm:inline">Sync Now</span>
+          <span id="manual-sync-text">Sync Now</span>
         </button>
 
         <!-- Account / Cloud Profile Button -->
-        <button onclick="openAuthModal()" id="header-profile-btn" class="flex items-center gap-1 md:gap-1.5 px-1.5 md:px-3 py-1.5 md:py-2 rounded-2xl bg-slate-100 hover:bg-slate-200/70 text-slate-700 text-xs font-semibold transition">
-          <span id="header-profile-icon" class="material-symbols-rounded text-base text-slate-500">account_circle</span>
+        <button onclick="openAuthModal()" id="header-profile-btn" class="relative flex items-center gap-1.5 px-2 md:px-3 py-1.5 md:py-2 rounded-xl bg-slate-100 hover:bg-slate-200/70 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold transition" title="Account & Cloud Sync">
+          <div class="relative flex items-center justify-center">
+            <span id="header-profile-icon" class="material-symbols-rounded text-lg text-slate-500 dark:text-slate-400">account_circle</span>
+            <span id="header-profile-status-dot" class="hidden absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-slate-900"></span>
+          </div>
           <span id="header-profile-text" class="hidden sm:inline">Sign In</span>
         </button>
 
-        <button onclick="openRecordModal()" class="flex items-center gap-1 bg-teal-700 hover:bg-teal-800 text-white p-2 md:px-4 md:py-2.5 rounded-2xl font-semibold shadow-md shadow-teal-700/20 active:scale-95 transition-all">
+        <!-- Add Record Button (Desktop) -->
+        <button onclick="openRecordModal()" class="hidden md:flex items-center gap-1.5 bg-teal-700 hover:bg-teal-800 text-white px-4 py-2 rounded-xl text-xs md:text-sm font-semibold shadow-md shadow-teal-700/20 active:scale-95 transition-all">
           <span class="material-symbols-rounded text-lg">add</span>
-          <span class="hidden sm:inline text-xs md:text-sm">Add Record</span>
+          <span>Add Record</span>
         </button>
       </div>
     </header>
 
+    <!-- MOBILE FLOATING ACTION BUTTON (Add Record) -->
+    <button onclick="openRecordModal()" class="md:hidden fixed right-4 bottom-20 z-40 w-14 h-14 rounded-2xl bg-teal-700 hover:bg-teal-800 active:scale-95 text-white shadow-xl shadow-teal-900/30 flex items-center justify-center transition-all cursor-pointer" aria-label="Add Record" title="Add Record">
+      <span class="material-symbols-rounded text-3xl">add</span>
+    </button>
+
     <!-- Scrollable Views Container -->
-    <main class="flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-10 space-y-6 max-w-7xl w-full mx-auto">
+    <main class="flex-1 overflow-y-auto p-4 md:p-8 pb-28 md:pb-10 space-y-6 max-w-7xl w-full mx-auto">
 
       <!-- VIEW 1: DASHBOARD -->
       <section id="view-dashboard" class="view-section space-y-6">
@@ -209,25 +219,33 @@
               <span class="material-symbols-rounded text-sm">add_circle</span> New Account
             </button>
           </div>
-          <div id="accounts-strip" class="flex gap-3.5 overflow-x-auto no-scrollbar pb-2"></div>
+          <div id="accounts-strip" class="flex gap-4 overflow-x-auto no-scrollbar pb-3 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0"></div>
         </div>
 
         <!-- 5 KPI Cards including Safe-to-Spend Daily Allowance -->
-        <div class="grid grid-cols-2 lg:grid-cols-5 gap-3.5" id="dashboard-kpis"></div>
+        <div class="grid grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4" id="dashboard-kpis"></div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <div class="m3-card p-5 lg:col-span-5 flex flex-col justify-between">
-            <div class="flex items-center justify-between mb-4">
+          <div class="m3-card p-5 lg:col-span-5 flex flex-col justify-between space-y-4">
+            <div class="flex items-center justify-between">
               <div>
-                <h3 class="font-bold text-slate-800">Expense Structure</h3>
+                <h3 class="font-bold text-slate-900 dark:text-white">Expense Structure</h3>
                 <p id="dash-cycle-label" class="text-xs text-slate-500">Current billing cycle breakdown</p>
               </div>
-              <button onclick="switchTab('analytics')" class="text-xs font-semibold text-teal-700 hover:underline">50/30/20 Report</button>
+              <button onclick="switchTab('analytics')" class="text-xs font-semibold text-teal-700 dark:text-teal-400 hover:underline">50/30/20 Report</button>
             </div>
+            <!-- Donut Chart with Centered Total -->
             <div class="relative h-56 flex items-center justify-center">
               <canvas id="dashCategoryChart"></canvas>
+              <div id="dash-chart-center" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Total Spent</span>
+                <span id="dash-chart-center-amt" class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-0.5">₹0</span>
+                <span id="dash-chart-center-sub" class="text-[10px] text-slate-400 font-medium">0 categories</span>
+              </div>
             </div>
-            <div id="dash-Insight-box" class="mt-4 p-3 rounded-xl bg-teal-50/70 border border-teal-200/60 text-xs text-teal-900 flex items-center gap-2.5"></div>
+            <!-- Category Breakdown List with Amounts, Percentages & Progress Bars -->
+            <div id="dash-category-breakdown" class="space-y-2.5 pt-3 border-t border-slate-100 dark:border-slate-800"></div>
+            <div id="dash-Insight-box" class="p-3 rounded-xl bg-teal-50/70 dark:bg-teal-950/40 border border-teal-200/60 dark:border-teal-800/60 text-xs text-teal-900 dark:text-teal-200 flex items-center gap-2.5"></div>
           </div>
 
           <div class="m3-card p-5 lg:col-span-7 flex flex-col">
@@ -244,28 +262,30 @@
       </section>
 
       <!-- VIEW 2: RECORDS (SEARCH & FILTERS) -->
-      <section id="view-records" class="view-section hidden space-y-5">
-        <div class="m3-card p-4 space-y-3">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-            <div class="relative sm:col-span-2">
+      <section id="view-records" class="view-section hidden space-y-4">
+        <div class="m3-card p-4 sm:p-5 space-y-3">
+          <div class="flex flex-col sm:flex-row gap-2.5">
+            <div class="relative flex-1">
               <span class="material-symbols-rounded absolute left-3.5 top-2.5 text-slate-400 text-lg">search</span>
-              <input type="text" id="filter-search" oninput="renderRecords()" placeholder="Search payee, note, #tags..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-teal-600">
+              <input type="text" id="filter-search" oninput="renderRecords()" placeholder="Search payee, note, #tags..." class="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-teal-600 transition">
             </div>
-            <select id="filter-account" onchange="renderRecords()" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-teal-600"></select>
-            <select id="filter-category" onchange="renderRecords()" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-teal-600"></select>
-            <select id="filter-type" onchange="renderRecords()" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-teal-600">
-              <option value="all">All Types</option>
-              <option value="expense">Expenses Only</option>
-              <option value="income">Income Only</option>
-              <option value="transfer">Transfers Only</option>
-            </select>
+            <div class="grid grid-cols-3 gap-2 sm:w-auto shrink-0">
+              <select id="filter-account" onchange="renderRecords()" class="bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl px-2.5 py-2 text-xs font-semibold text-slate-700 dark:text-slate-300 focus:outline-none focus:border-teal-600 truncate"></select>
+              <select id="filter-category" onchange="renderRecords()" class="bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl px-2.5 py-2 text-xs font-semibold text-slate-700 dark:text-slate-300 focus:outline-none focus:border-teal-600 truncate"></select>
+              <select id="filter-type" onchange="renderRecords()" class="bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl px-2.5 py-2 text-xs font-semibold text-slate-700 dark:text-slate-300 focus:outline-none focus:border-teal-600">
+                <option value="all">All Types</option>
+                <option value="expense">Expenses</option>
+                <option value="income">Income</option>
+                <option value="transfer">Transfers</option>
+              </select>
+            </div>
           </div>
-          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 text-xs text-slate-500">
-            <label class="flex items-center gap-1.5 cursor-pointer">
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500">
+            <label class="flex items-center gap-1.5 cursor-pointer text-slate-500 dark:text-slate-400 select-none">
               <input type="checkbox" id="filter-all-months" onchange="renderRecords()" class="rounded text-teal-700 focus:ring-0">
               <span>Search across all billing cycles</span>
             </label>
-            <div id="records-filter-summary" class="font-semibold text-slate-700"></div>
+            <div id="records-filter-summary" class="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-300"></div>
           </div>
         </div>
         <div id="records-list-container" class="space-y-3"></div>
@@ -323,6 +343,11 @@
 
       <!-- VIEW 5: RENT & LEASE MANAGER -->
       <section id="view-rent" class="view-section hidden space-y-6">
+        <div class="md:hidden flex items-center pb-1">
+          <button onclick="switchTab('settings')" class="inline-flex items-center gap-1.5 text-xs font-semibold text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/60 hover:bg-teal-100 px-3 py-1.5 rounded-full transition cursor-pointer">
+            <span class="material-symbols-rounded text-sm">arrow_back</span> Back to More
+          </button>
+        </div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <!-- Lease & Security Deposit Vault -->
           <div class="m3-card p-5 lg:col-span-5 space-y-4">
@@ -410,6 +435,11 @@
 
       <!-- VIEW 6: ANALYTICS, 50/30/20 & ADVANCED REPORTS -->
       <section id="view-analytics" class="view-section hidden space-y-6">
+        <div class="md:hidden flex items-center pb-1">
+          <button onclick="switchTab('settings')" class="inline-flex items-center gap-1.5 text-xs font-semibold text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/60 hover:bg-teal-100 px-3 py-1.5 rounded-full transition cursor-pointer">
+            <span class="material-symbols-rounded text-sm">arrow_back</span> Back to More
+          </button>
+        </div>
         <!-- ADVANCED REPORT FILTERS TOOLBAR -->
         <div class="m3-card p-5 space-y-4">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
@@ -614,6 +644,28 @@
 
       <!-- VIEW 7: SETTINGS, BILLING CYCLE, CATEGORIES & BACKUP -->
       <section id="view-settings" class="view-section hidden space-y-6">
+        <!-- Mobile Hub Navigation Cards -->
+        <div class="md:hidden grid grid-cols-2 gap-3">
+          <button onclick="switchTab('analytics')" class="m3-card p-4 text-left hover:border-teal-400 dark:hover:border-teal-600 transition flex items-center gap-3 cursor-pointer">
+            <div class="w-10 h-10 rounded-2xl bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 flex items-center justify-center shrink-0">
+              <span class="material-symbols-rounded text-xl">monitoring</span>
+            </div>
+            <div class="min-w-0">
+              <p class="font-bold text-sm text-slate-800 dark:text-slate-100 truncate">50/30/20 &amp; Reports</p>
+              <p class="text-[11px] text-slate-500 truncate">Analytics &amp; Trends</p>
+            </div>
+          </button>
+          <button onclick="switchTab('rent')" class="m3-card p-4 text-left hover:border-teal-400 dark:hover:border-teal-600 transition flex items-center gap-3 cursor-pointer">
+            <div class="w-10 h-10 rounded-2xl bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 flex items-center justify-center shrink-0">
+              <span class="material-symbols-rounded text-xl">real_estate_agent</span>
+            </div>
+            <div class="min-w-0">
+              <p class="font-bold text-sm text-slate-800 dark:text-slate-100 truncate">Rent &amp; Lease</p>
+              <p class="text-[11px] text-slate-500 truncate">HRA &amp; Deposits</p>
+            </div>
+          </button>
+        </div>
+
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div class="m3-card p-5 space-y-4">
             <div>
@@ -704,34 +756,36 @@
     </main>
 
     <!-- BOTTOM NAVIGATION BAR (Mobile) -->
-    <nav class="mobile-bottom-nav md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 px-0.5 pt-1 pb-2 flex justify-around items-center z-20">
-      <button onclick="switchTab('dashboard')" data-tab="dashboard" class="nav-btn flex flex-col items-center py-1 px-1.5 rounded-xl text-slate-500 flex-1">
-        <span class="material-symbols-rounded text-[20px]">space_dashboard</span>
-        <span class="text-[9px] font-medium mt-0.5 leading-none">Home</span>
+    <nav class="mobile-bottom-nav md:hidden fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-[#10161D]/95 backdrop-blur-lg border-t border-slate-200/80 dark:border-slate-800/80 px-2 pt-1.5 pb-2 flex justify-around items-center z-30 shadow-lg shadow-slate-900/5">
+      <button onclick="switchTab('dashboard')" data-tab="dashboard" class="nav-btn mobile-nav-btn flex flex-col items-center py-1 px-1 rounded-xl text-slate-500 transition-all flex-1 cursor-pointer">
+        <div class="nav-icon-box w-12 h-7 rounded-full flex items-center justify-center transition-all">
+          <span class="material-symbols-rounded text-[22px]">space_dashboard</span>
+        </div>
+        <span class="nav-label text-[11px] font-medium mt-0.5 tracking-tight">Home</span>
       </button>
-      <button onclick="switchTab('records')" data-tab="records" class="nav-btn flex flex-col items-center py-1 px-1.5 rounded-xl text-slate-500 flex-1">
-        <span class="material-symbols-rounded text-[20px]">receipt_long</span>
-        <span class="text-[9px] font-medium mt-0.5 leading-none">Records</span>
+      <button onclick="switchTab('records')" data-tab="records" class="nav-btn mobile-nav-btn flex flex-col items-center py-1 px-1 rounded-xl text-slate-500 transition-all flex-1 cursor-pointer">
+        <div class="nav-icon-box w-12 h-7 rounded-full flex items-center justify-center transition-all">
+          <span class="material-symbols-rounded text-[22px]">receipt_long</span>
+        </div>
+        <span class="nav-label text-[11px] font-medium mt-0.5 tracking-tight">Records</span>
       </button>
-      <button onclick="switchTab('budgets')" data-tab="budgets" class="nav-btn flex flex-col items-center py-1 px-1.5 rounded-xl text-slate-500 flex-1">
-        <span class="material-symbols-rounded text-[20px]">pie_chart</span>
-        <span class="text-[9px] font-medium mt-0.5 leading-none">Budgets</span>
+      <button onclick="switchTab('budgets')" data-tab="budgets" class="nav-btn mobile-nav-btn flex flex-col items-center py-1 px-1 rounded-xl text-slate-500 transition-all flex-1 cursor-pointer">
+        <div class="nav-icon-box w-12 h-7 rounded-full flex items-center justify-center transition-all">
+          <span class="material-symbols-rounded text-[22px]">pie_chart</span>
+        </div>
+        <span class="nav-label text-[11px] font-medium mt-0.5 tracking-tight">Budgets</span>
       </button>
-      <button onclick="switchTab('planned')" data-tab="planned" class="nav-btn flex flex-col items-center py-1 px-1.5 rounded-xl text-slate-500 flex-1">
-        <span class="material-symbols-rounded text-[20px]">event_repeat</span>
-        <span class="text-[9px] font-medium mt-0.5 leading-none">Planned</span>
+      <button onclick="switchTab('planned')" data-tab="planned" class="nav-btn mobile-nav-btn flex flex-col items-center py-1 px-1 rounded-xl text-slate-500 transition-all flex-1 cursor-pointer">
+        <div class="nav-icon-box w-12 h-7 rounded-full flex items-center justify-center transition-all">
+          <span class="material-symbols-rounded text-[22px]">event_repeat</span>
+        </div>
+        <span class="nav-label text-[11px] font-medium mt-0.5 tracking-tight">Planned</span>
       </button>
-      <button onclick="switchTab('rent')" data-tab="rent" class="nav-btn flex flex-col items-center py-1 px-1.5 rounded-xl text-slate-500 flex-1">
-        <span class="material-symbols-rounded text-[20px]">real_estate_agent</span>
-        <span class="text-[9px] font-medium mt-0.5 leading-none">Rent</span>
-      </button>
-      <button onclick="switchTab('analytics')" data-tab="analytics" class="nav-btn flex flex-col items-center py-1 px-1.5 rounded-xl text-slate-500 flex-1">
-        <span class="material-symbols-rounded text-[20px]">monitoring</span>
-        <span class="text-[9px] font-medium mt-0.5 leading-none">50/30/20</span>
-      </button>
-      <button onclick="switchTab('settings')" data-tab="settings" class="nav-btn flex flex-col items-center py-1 px-1.5 rounded-xl text-slate-500 flex-1">
-        <span class="material-symbols-rounded text-[20px]">tune</span>
-        <span class="text-[9px] font-medium mt-0.5 leading-none">More</span>
+      <button onclick="switchTab('settings')" data-tab="settings" class="nav-btn mobile-nav-btn flex flex-col items-center py-1 px-1 rounded-xl text-slate-500 transition-all flex-1 cursor-pointer">
+        <div class="nav-icon-box w-12 h-7 rounded-full flex items-center justify-center transition-all">
+          <span class="material-symbols-rounded text-[22px]">grid_view</span>
+        </div>
+        <span class="nav-label text-[11px] font-medium mt-0.5 tracking-tight">More</span>
       </button>
     </nav>
   </div>
@@ -1538,12 +1592,14 @@
       const sideAvatar = document.getElementById('sidebar-avatar');
       const manualSyncBtn = document.getElementById('header-manual-sync-btn');
       const profileText = document.getElementById('header-profile-text');
+      const dot = document.getElementById('header-profile-status-dot');
 
       if (user) {
         loggedOutEl.classList.add('hidden');
         loggedInEl.classList.remove('hidden');
         manualSyncBtn.classList.remove('hidden');
-        manualSyncBtn.classList.add('flex');
+        manualSyncBtn.classList.add('md:flex');
+        if (dot) dot.classList.remove('hidden');
 
         const name = user.displayName || user.email.split('@')[0];
         const initial = name.charAt(0).toUpperCase();
@@ -1557,7 +1613,8 @@
         loggedOutEl.classList.remove('hidden');
         loggedInEl.classList.add('hidden');
         manualSyncBtn.classList.add('hidden');
-        manualSyncBtn.classList.remove('flex');
+        manualSyncBtn.classList.remove('md:flex');
+        if (dot) dot.classList.add('hidden');
         sideName.textContent = 'Local Guest';
         profileText.textContent = 'Sign In';
         sideAvatar.innerHTML = `<span class="material-symbols-rounded text-lg">person</span>`;
@@ -1570,41 +1627,45 @@
       const text = document.getElementById('manual-sync-text');
       const sideStatus = document.getElementById('sidebar-sync-status');
       const modalLastSync = document.getElementById('modal-last-sync');
+      const dot = document.getElementById('header-profile-status-dot');
 
       const timeStr = state.lastSyncedAt ? new Date(state.lastSyncedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Never';
+      const baseBtnClass = 'hidden md:flex items-center gap-1.5 px-3 py-1.5 md:py-2 rounded-xl text-xs font-bold transition';
 
       if (status === 'synced') {
-        btn.className = 'flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold transition';
-        icon.textContent = 'cloud_done';
-        icon.className = 'material-symbols-rounded text-base text-emerald-700';
-        text.textContent = 'Synced';
+        if (btn) btn.className = `${baseBtnClass} bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200`;
+        if (icon) { icon.textContent = 'cloud_done'; icon.className = 'material-symbols-rounded text-base text-emerald-700'; }
+        if (text) text.textContent = 'Synced';
+        if (dot) dot.className = 'absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-slate-900';
         sideStatus.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Synced (${timeStr})`;
         if (modalLastSync) modalLastSync.textContent = `Last synced at ${timeStr}`;
       } else if (status === 'unsaved') {
-        btn.className = 'flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold transition animate-pulse';
-        icon.textContent = 'cloud_upload';
-        icon.className = 'material-symbols-rounded text-base text-amber-700';
-        text.textContent = 'Sync Now *';
+        if (btn) btn.className = `${baseBtnClass} bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 animate-pulse`;
+        if (icon) { icon.textContent = 'cloud_upload'; icon.className = 'material-symbols-rounded text-base text-amber-700'; }
+        if (text) text.textContent = 'Sync Now *';
+        if (dot) dot.className = 'absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-amber-500 ring-2 ring-white dark:ring-slate-900 animate-pulse';
         sideStatus.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Unsynced local edits`;
         if (modalLastSync) modalLastSync.textContent = 'Unsaved local changes — Click Sync All Now';
       } else if (status === 'syncing') {
-        icon.textContent = 'sync';
-        icon.className = 'material-symbols-rounded text-base text-teal-700 animate-spin';
-        text.textContent = 'Syncing...';
+        if (btn) btn.className = `${baseBtnClass} bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200`;
+        if (icon) { icon.textContent = 'sync'; icon.className = 'material-symbols-rounded text-base text-teal-700 animate-spin'; }
+        if (text) text.textContent = 'Syncing...';
+        if (dot) dot.className = 'absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-teal-500 ring-2 ring-white dark:ring-slate-900 animate-ping';
         sideStatus.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span> Syncing...`;
       } else if (status === 'ready') {
-        btn.className = 'flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 text-xs font-bold transition';
-        icon.textContent = 'sync';
-        icon.className = 'material-symbols-rounded text-base text-teal-700';
-        text.textContent = 'Sync Now';
+        if (btn) btn.className = `${baseBtnClass} bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200`;
+        if (icon) { icon.textContent = 'sync'; icon.className = 'material-symbols-rounded text-base text-teal-700'; }
+        if (text) text.textContent = 'Sync Now';
+        if (dot) dot.className = 'absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-teal-500 ring-2 ring-white dark:ring-slate-900';
         sideStatus.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-teal-600"></span> Manual Sync Ready`;
       } else if (status === 'error') {
-        btn.className = 'flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold transition';
-        icon.textContent = 'cloud_alert';
-        icon.className = 'material-symbols-rounded text-base text-rose-600';
-        text.textContent = 'Retry Sync';
+        if (btn) btn.className = `${baseBtnClass} bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200`;
+        if (icon) { icon.textContent = 'cloud_alert'; icon.className = 'material-symbols-rounded text-base text-rose-600'; }
+        if (text) text.textContent = 'Retry Sync';
+        if (dot) dot.className = 'absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-rose-500 ring-2 ring-white dark:ring-slate-900';
         sideStatus.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> Sync Error`;
       } else {
+        if (dot) dot.classList.add('hidden');
         sideStatus.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> Sign in to Sync`;
       }
     }
@@ -1707,8 +1768,14 @@
       document.getElementById(`view-${tabId}`).classList.remove('hidden');
 
       document.querySelectorAll('.nav-btn').forEach(btn => {
-        if (btn.dataset.tab === tabId) btn.classList.add('nav-active');
-        else btn.classList.remove('nav-active');
+        const isMobileNav = btn.classList.contains('mobile-nav-btn');
+        if (btn.dataset.tab === tabId) {
+          btn.classList.add('nav-active');
+        } else if (isMobileNav && (tabId === 'rent' || tabId === 'analytics') && btn.dataset.tab === 'settings') {
+          btn.classList.add('nav-active');
+        } else {
+          btn.classList.remove('nav-active');
+        }
       });
 
       const titles = {
@@ -1718,18 +1785,28 @@
         planned: ['Planned Bills, Goals & Debts', 'Auto-recurring payments, savings targets, and IOUs'],
         rent: ['Rent & Lease Manager', 'Security deposit vault, HRA tracker & rented home setup'],
         analytics: ['50/30/20 & Cashflow Reports', 'Needs-Wants-Savings ratio & 6-cycle trend analysis'],
-        settings: ['Categories, Billing Cycle & Data', 'Customize cycle start day, 50/30/20 buckets, and backups']
+        settings: ['More & Preferences', 'Categories, billing cycle start day, backups & accounts']
       };
       document.getElementById('view-title').textContent = titles[tabId][0];
       document.getElementById('view-subtitle').textContent = titles[tabId][1];
       renderAll();
     }
 
+    function updateMobileMonthDisplay(ym) {
+      const mobDisplay = document.getElementById('mobile-month-display');
+      if (!mobDisplay || !ym) return;
+      const [y, m] = ym.split('-');
+      const d = new Date(Number(y), Number(m) - 1, 1);
+      mobDisplay.textContent = d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    }
+
     function changeMonth(ym) {
       if (!ym) return;
       activeMonth = ym;
       document.getElementById('global-month').value = ym;
-      document.getElementById('mobile-month').value = ym;
+      const mobMonth = document.getElementById('mobile-month');
+      if (mobMonth) mobMonth.value = ym;
+      updateMobileMonthDisplay(ym);
       renderAll();
     }
 
@@ -1737,6 +1814,7 @@
       const { startStr, endStr } = getBillingCycleBounds(activeMonth);
       document.getElementById('global-month').value = activeMonth;
       document.getElementById('mobile-month').value = activeMonth;
+      updateMobileMonthDisplay(activeMonth);
       document.getElementById('pref-currency').value = state.currency;
       document.getElementById('pref-cycle-day').value = state.cycleStartDay || 1;
       document.getElementById('cycle-range-badge').textContent = `${startStr} → ${endStr}`;
@@ -1757,17 +1835,17 @@
       const strip = document.getElementById('accounts-strip');
       if (!state.accounts.length) {
         strip.innerHTML = `
-          <div onclick="openAccountModal()" class="m3-card p-4 w-full border-2 border-dashed border-teal-300 bg-teal-50/30 hover:bg-teal-50/60 cursor-pointer flex items-center justify-between transition">
+          <div onclick="openAccountModal()" class="m3-card p-5 w-full border-2 border-dashed border-teal-300 bg-teal-50/30 hover:bg-teal-50/60 cursor-pointer flex items-center justify-between transition">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-2xl bg-teal-700 text-white flex items-center justify-center">
                 <span class="material-symbols-rounded">add</span>
               </div>
               <div>
-                <p class="text-sm font-bold text-slate-800">Add Your First Spending or Credit Account</p>
+                <p class="text-sm font-bold text-slate-800 dark:text-slate-100">Add Your First Spending or Credit Account</p>
                 <p class="text-xs text-slate-500">Create a Bank, Cash Wallet, or Credit Card (with billing & grace period tracking)</p>
               </div>
             </div>
-            <span class="text-xs font-bold text-teal-700 px-3 py-1.5 bg-white rounded-xl border border-teal-200">+ Create</span>
+            <span class="text-xs font-bold text-teal-700 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-xl border border-teal-200">+ Create</span>
           </div>
         `;
       } else {
@@ -1776,28 +1854,35 @@
           let creditMetaHTML = '';
           if (acc.type === 'Credit') {
             const cc = getCreditCardCycleStats(acc);
-            const utilColor = cc.utilPct > 30 ? 'text-rose-600' : 'text-teal-700';
+            const utilColor = cc.utilPct > 30 ? 'bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300' : 'bg-teal-50 text-teal-700 dark:bg-teal-950/60 dark:text-teal-300';
             creditMetaHTML = `
-              <div class="mt-2 pt-2 border-t border-slate-100 text-[10px] space-y-1">
-                <div class="flex justify-between">
-                  <span class="text-slate-400">Stmt: Day ${cc.stmtDay} • Due: Day ${cc.dueDay}</span>
-                  <span class="font-bold ${utilColor}">${cc.utilPct}% Util</span>
+              <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 text-[11px] space-y-1.5">
+                <div class="flex items-center justify-between">
+                  <span class="text-slate-500 dark:text-slate-400">Due: Day ${cc.dueDay} • Stmt: ${cc.stmtDay}</span>
+                  <span class="font-bold text-[10px] px-2 py-0.5 rounded-full ${utilColor}">${cc.utilPct}% Util</span>
                 </div>
-                <div class="text-slate-500">Grace period: ~${cc.graceDays} days</div>
+                <div class="text-[10px] text-slate-400">Grace period: ~${cc.graceDays} days</div>
+              </div>
+            `;
+          } else {
+            creditMetaHTML = `
+              <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
+                <span>Active account</span>
+                <span class="w-2 h-2 rounded-full" style="background-color: ${acc.color}"></span>
               </div>
             `;
           }
           return `
-            <div class="m3-card p-4 min-w-[235px] shrink-0 flex flex-col justify-between border-l-4" style="border-left-color: ${acc.color}">
+            <div class="m3-card p-4 sm:p-5 min-w-[260px] sm:min-w-[280px] shrink-0 flex flex-col justify-between hover:shadow-md transition">
               <div class="flex items-center justify-between gap-2">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">${acc.type}</span>
-                <button onclick="deleteAccount('${acc.id}')" title="Remove Account" class="text-slate-300 hover:text-red-500">
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full" style="background-color: ${acc.color}18; color: ${acc.color}">${acc.type}</span>
+                <button onclick="deleteAccount('${acc.id}')" title="Remove Account" class="w-7 h-7 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-rose-500 flex items-center justify-center transition">
                   <span class="material-symbols-rounded text-sm">delete</span>
                 </button>
               </div>
-              <div class="my-1.5">
-                <p class="text-xs font-semibold text-slate-600 truncate">${acc.name}</p>
-                <p class="text-lg font-bold text-slate-900">${fmt(bal)}</p>
+              <div class="my-3">
+                <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 truncate">${acc.name}</p>
+                <p class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white mt-0.5">${fmt(bal)}</p>
               </div>
               ${creditMetaHTML}
             </div>
@@ -1824,33 +1909,57 @@
       const safeDaily = remainingPool / daysLeft;
 
       document.getElementById('dashboard-kpis').innerHTML = `
-        <div class="m3-card p-4">
-          <span class="text-xs text-slate-500 font-medium">Total Net Worth</span>
-          <p class="text-xl font-bold text-slate-900 mt-1">${fmt(totalNetWorth)}</p>
-          <span class="text-[11px] text-teal-700 font-semibold">${state.accounts.length} active account(s)</span>
-        </div>
-        <div class="m3-card p-4">
-          <span class="text-xs text-slate-500 font-medium">Cycle Income</span>
-          <p class="text-xl font-bold text-emerald-600 mt-1">+${fmt(totalInc)}</p>
-          <span class="text-[11px] text-slate-400">Start Day: ${state.cycleStartDay}</span>
-        </div>
-        <div class="m3-card p-4">
-          <span class="text-xs text-slate-500 font-medium">Cycle Expenses</span>
-          <p class="text-xl font-bold text-rose-600 mt-1">-${fmt(totalExp)}</p>
-          <span class="text-[11px] text-slate-400">${cycleRecs.filter(r => r.type === 'expense').length} transactions</span>
-        </div>
-        <div class="m3-card p-4">
-          <span class="text-xs text-slate-500 font-medium">Cycle Cash Flow</span>
-          <p class="text-xl font-bold ${netFlow >= 0 ? 'text-teal-700' : 'text-rose-600'} mt-1">${netFlow >= 0 ? '+' : ''}${fmt(netFlow)}</p>
-          <span class="text-[11px] font-semibold ${savingsRate >= 20 ? 'text-teal-700' : 'text-slate-400'}">Savings Rate: ${savingsRate}%</span>
-        </div>
-        <div class="m3-card p-4 bg-teal-50/40 border-teal-200 col-span-2 lg:col-span-1">
+        <div class="m3-card p-4 sm:p-5 flex flex-col justify-between">
           <div class="flex items-center justify-between">
-            <span class="text-xs text-teal-800 font-bold">Safe-to-Spend / Day</span>
-            <span class="material-symbols-rounded text-teal-700 text-base">shield_with_heart</span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Total Net Worth</span>
+            <div class="w-7 h-7 rounded-lg bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 flex items-center justify-center">
+              <span class="material-symbols-rounded text-base">account_balance_wallet</span>
+            </div>
           </div>
-          <p class="text-xl font-bold text-teal-900 mt-1">${fmt(safeDaily)}</p>
-          <span class="text-[11px] text-teal-700 font-medium">${daysLeft} day(s) left • ${fmt(unpaidPlannedInCycle)} bills due</span>
+          <p class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-2">${fmt(totalNetWorth)}</p>
+          <span class="text-[11px] text-teal-700 dark:text-teal-400 font-semibold mt-1 inline-block">${state.accounts.length} active account(s)</span>
+        </div>
+        <div class="m3-card p-4 sm:p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Cycle Income</span>
+            <div class="w-7 h-7 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center">
+              <span class="material-symbols-rounded text-base">arrow_downward</span>
+            </div>
+          </div>
+          <p class="text-xl sm:text-2xl font-bold text-emerald-600 dark:text-emerald-400 mt-2">+${fmt(totalInc)}</p>
+          <span class="text-[11px] text-slate-400 mt-1 inline-block">Start Day: ${state.cycleStartDay}</span>
+        </div>
+        <div class="m3-card p-4 sm:p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Cycle Expenses</span>
+            <div class="w-7 h-7 rounded-lg bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 flex items-center justify-center">
+              <span class="material-symbols-rounded text-base">arrow_upward</span>
+            </div>
+          </div>
+          <p class="text-xl sm:text-2xl font-bold text-rose-600 dark:text-rose-400 mt-2">-${fmt(totalExp)}</p>
+          <span class="text-[11px] text-slate-400 mt-1 inline-block">${cycleRecs.filter(r => r.type === 'expense').length} transactions</span>
+        </div>
+        <div class="m3-card p-4 sm:p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Cycle Cash Flow</span>
+            <div class="w-7 h-7 rounded-lg ${netFlow >= 0 ? 'bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300' : 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300'} flex items-center justify-center">
+              <span class="material-symbols-rounded text-base">swap_vert</span>
+            </div>
+          </div>
+          <p class="text-xl sm:text-2xl font-bold ${netFlow >= 0 ? 'text-teal-700 dark:text-teal-400' : 'text-rose-600 dark:text-rose-400'} mt-2">${netFlow >= 0 ? '+' : ''}${fmt(netFlow)}</p>
+          <span class="text-[11px] font-semibold ${savingsRate >= 20 ? 'text-teal-700 dark:text-teal-400' : 'text-slate-400'} mt-1 inline-block">Savings Rate: ${savingsRate}%</span>
+        </div>
+        <div class="m3-card p-4 sm:p-5 bg-gradient-to-br from-teal-50/80 to-emerald-50/40 dark:from-teal-950/40 dark:to-emerald-950/20 border border-teal-200/80 dark:border-teal-800/60 col-span-2 lg:col-span-1 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-teal-800 dark:text-teal-200 font-bold uppercase tracking-wider">Safe-to-Spend / Day</span>
+            <div class="w-7 h-7 rounded-lg bg-teal-100 dark:bg-teal-900/60 text-teal-700 dark:text-teal-300 flex items-center justify-center">
+              <span class="material-symbols-rounded text-base">shield_with_heart</span>
+            </div>
+          </div>
+          <p class="text-2xl sm:text-3xl font-black text-teal-900 dark:text-teal-100 mt-2">${fmt(safeDaily)}</p>
+          <div class="text-[11px] text-teal-700 dark:text-teal-300 font-medium mt-1 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>${daysLeft} day(s) left • ${fmt(unpaidPlannedInCycle)} bills due
+          </div>
         </div>
       `;
 
@@ -1859,9 +1968,26 @@
         expByCat[r.categoryId] = (expByCat[r.categoryId] || 0) + Number(r.amount);
       });
       const catIds = Object.keys(expByCat);
-      const labels = catIds.map(id => getCategory(id).name);
-      const data = catIds.map(id => expByCat[id]);
-      const colors = catIds.map(id => getCategory(id).color);
+
+      // Sort categories descending by amount
+      const sortedCats = catIds
+        .map(id => ({
+          id,
+          cat: getCategory(id),
+          amount: expByCat[id],
+          pct: totalExp > 0 ? Math.round((expByCat[id] / totalExp) * 100) : 0
+        }))
+        .sort((a, b) => b.amount - a.amount);
+
+      const labels = sortedCats.map(item => item.cat.name);
+      const data = sortedCats.map(item => item.amount);
+      const colors = sortedCats.map(item => item.cat.color);
+
+      // Update Center Hole of Donut
+      const centerAmtEl = document.getElementById('dash-chart-center-amt');
+      const centerSubEl = document.getElementById('dash-chart-center-sub');
+      if (centerAmtEl) centerAmtEl.textContent = fmt(totalExp);
+      if (centerSubEl) centerSubEl.textContent = `${catIds.length} ${catIds.length === 1 ? 'category' : 'categories'}`;
 
       const ctx = document.getElementById('dashCategoryChart').getContext('2d');
       if (dashChartInstance) dashChartInstance.destroy();
@@ -1872,16 +1998,71 @@
           datasets: [{
             data: data.length ? data : [1],
             backgroundColor: colors.length ? colors : ['#E2E8F0'],
-            borderWidth: 0
+            borderWidth: 2,
+            borderColor: document.documentElement.classList.contains('dark') ? '#141B22' : '#FFFFFF'
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          cutout: '70%',
-          plugins: { legend: { position: 'right', labels: { boxWidth: 10, font: { size: 11 } } } }
+          cutout: '75%',
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const val = context.raw || 0;
+                  const pct = totalExp > 0 ? Math.round((val / totalExp) * 100) : 0;
+                  return ` ${context.label}: ${fmt(val)} (${pct}%)`;
+                }
+              }
+            }
+          }
         }
       });
+
+      // Render custom category breakdown list with clean typography and bars
+      const breakdownEl = document.getElementById('dash-category-breakdown');
+      if (!sortedCats.length) {
+        breakdownEl.innerHTML = `<div class="text-xs text-slate-400 text-center py-2">No category expenses recorded in this cycle.</div>`;
+      } else {
+        const primaryCats = sortedCats.slice(0, 5);
+        const secondaryCats = sortedCats.slice(5);
+
+        const renderCatItem = item => `
+          <div class="space-y-1">
+            <div class="flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs" style="background-color: ${item.cat.color}"></span>
+                <span class="font-semibold text-slate-800 dark:text-slate-200 truncate">${item.cat.name}</span>
+              </div>
+              <div class="flex items-center gap-2 shrink-0 ml-2">
+                <span class="font-bold text-slate-900 dark:text-white">${fmt(item.amount)}</span>
+                <span class="text-[10px] font-bold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-1.5 py-0.5 rounded-md min-w-[2.2rem] text-center">${item.pct}%</span>
+              </div>
+            </div>
+            <div class="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+              <div class="h-full rounded-full transition-all duration-300" style="width: ${Math.max(3, item.pct)}%; background-color: ${item.cat.color}"></div>
+            </div>
+          </div>
+        `;
+
+        let html = primaryCats.map(renderCatItem).join('');
+
+        if (secondaryCats.length > 0) {
+          const isExp = window.dashCatsExpanded;
+          html += `
+            <div id="dash-cats-more" class="${isExp ? '' : 'hidden'} space-y-2.5 pt-1.5 border-t border-dashed border-slate-200/60 dark:border-slate-800">
+              ${secondaryCats.map(renderCatItem).join('')}
+            </div>
+            <button type="button" onclick="toggleDashCategories()" class="w-full py-1.5 mt-1 text-center text-xs font-bold text-teal-700 dark:text-teal-400 hover:bg-teal-50/60 dark:hover:bg-teal-950/30 rounded-xl transition flex items-center justify-center gap-1 cursor-pointer">
+              <span id="dash-cats-toggle-text">${isExp ? 'Show Fewer Categories' : `Show ${secondaryCats.length} More Categories`}</span>
+              <span id="dash-cats-toggle-icon" class="material-symbols-rounded text-base">${isExp ? 'expand_less' : 'expand_more'}</span>
+            </button>
+          `;
+        }
+        breakdownEl.innerHTML = html;
+      }
 
       const insightEl = document.getElementById('dash-Insight-box');
       if (catIds.length > 0) {
@@ -1911,30 +2092,61 @@
       const acc = getAccount(r.accountId);
       const toAcc = r.toAccountId ? getAccount(r.toAccountId) : null;
       const sign = r.type === 'income' ? '+' : r.type === 'expense' ? '-' : '⇄';
-      const amtColor = r.type === 'income' ? 'text-emerald-600' : r.type === 'expense' ? 'text-rose-600' : 'text-sky-600';
+      const amtColor = r.type === 'income' ? 'text-emerald-600 dark:text-emerald-400' : r.type === 'expense' ? 'text-rose-600 dark:text-rose-400' : 'text-sky-600 dark:text-sky-400';
+      const transferLabel = r.type === 'transfer' && toAcc ? `${acc.name} → ${toAcc.name}` : acc.name;
+      const title = r.payee || cat.name;
 
       return `
-        <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-50/70 hover:bg-slate-100/80 transition border border-slate-100">
-          <div class="flex items-center gap-3 min-w-0">
-            <div class="w-10 h-10 rounded-2xl flex items-center justify-center text-white shrink-0" style="background-color: ${cat.color}">
-              <span class="material-symbols-rounded text-lg">${cat.icon || 'payments'}</span>
+        <div class="m3-card p-3.5 sm:p-4 hover:shadow-md transition">
+          <div class="flex items-start gap-3 sm:gap-3.5">
+            <!-- Category Icon -->
+            <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-xs mt-0.5" style="background-color: ${cat.color}">
+              <span class="material-symbols-rounded text-lg sm:text-xl">${cat.icon || 'payments'}</span>
             </div>
-            <div class="min-w-0">
-              <div class="flex items-center gap-2">
-                <p class="text-sm font-bold text-slate-900 truncate">${r.payee || cat.name}</p>
-                <span class="text-[11px] px-2 py-0.5 rounded-md bg-white border border-slate-200 text-slate-600 font-medium">${r.type === 'transfer' && toAcc ? `${acc.name} → ${toAcc.name}` : acc.name}</span>
+
+            <!-- Content Area -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between gap-2.5">
+                <!-- Title & Category Info -->
+                <div class="min-w-0 flex-1">
+                  <h4 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-snug break-words">
+                    ${title}
+                  </h4>
+                  <div class="flex items-center gap-1.5 flex-wrap text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    <span class="inline-flex items-center text-[10px] font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-md">
+                      ${transferLabel}
+                    </span>
+                    ${r.payee ? `<span class="text-[11px] text-slate-400 dark:text-slate-500 font-medium">• ${cat.name}</span>` : ''}
+                  </div>
+                </div>
+
+                <!-- Amount -->
+                <div class="text-right shrink-0">
+                  <span class="text-base sm:text-lg font-black tracking-tight ${amtColor}">
+                    ${sign}${fmt(r.amount)}
+                  </span>
+                </div>
               </div>
-              <div class="flex items-center gap-2 text-xs text-slate-500 truncate mt-0.5">
-                <span>${r.date}</span>
-                ${r.note ? `<span>• ${r.note}</span>` : ''}
-                ${(r.tags || []).map(t => `<span class="text-[10px] text-teal-700 bg-teal-50 px-1.5 rounded">#${t}</span>`).join('')}
+
+              <!-- Metadata & Actions Row -->
+              <div class="flex items-center justify-between gap-2 pt-2 mt-2 border-t border-slate-100 dark:border-slate-800/80 text-xs">
+                <div class="flex items-center gap-1.5 flex-wrap min-w-0 text-slate-500 dark:text-slate-400">
+                  <span class="font-medium text-[11px]">${r.date}</span>
+                  ${r.note ? `<span class="break-words text-[11px]">• ${r.note}</span>` : ''}
+                  ${(r.tags || []).map(t => `<span class="text-[10px] font-semibold text-teal-700 bg-teal-50 dark:bg-teal-950/60 dark:text-teal-300 px-1.5 py-0.5 rounded-md">#${t}</span>`).join('')}
+                </div>
+
+                <!-- Action buttons -->
+                <div class="flex items-center gap-1 shrink-0 ml-auto">
+                  <button onclick="openRecordModal('${r.id}')" class="w-7 h-7 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-750 text-slate-400 hover:text-teal-700 dark:hover:text-teal-300 flex items-center justify-center transition cursor-pointer" title="Edit">
+                    <span class="material-symbols-rounded text-base">edit</span>
+                  </button>
+                  <button onclick="deleteRecord('${r.id}')" class="w-7 h-7 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/60 text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 flex items-center justify-center transition cursor-pointer" title="Delete">
+                    <span class="material-symbols-rounded text-base">delete</span>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="flex items-center gap-2 shrink-0 ml-2">
-            <span class="text-sm font-bold ${amtColor}">${sign}${fmt(r.amount)}</span>
-            <button onclick="openRecordModal('${r.id}')" class="text-slate-400 hover:text-teal-700 p-1"><span class="material-symbols-rounded text-base">edit</span></button>
-            <button onclick="deleteRecord('${r.id}')" class="text-slate-400 hover:text-rose-600 p-1"><span class="material-symbols-rounded text-base">delete</span></button>
           </div>
         </div>
       `;
@@ -1976,15 +2188,23 @@
 
       const sumInc = filtered.filter(r => r.type === 'income').reduce((s, r) => s + Number(r.amount), 0);
       const sumExp = filtered.filter(r => r.type === 'expense').reduce((s, r) => s + Number(r.amount), 0);
-      document.getElementById('records-filter-summary').textContent =
-        `Showing ${filtered.length} records | In: ${fmt(sumInc)} | Out: ${fmt(sumExp)}`;
+      const summaryEl = document.getElementById('records-filter-summary');
+      if (summaryEl) {
+        summaryEl.innerHTML = `
+          <span>${filtered.length} records</span>
+          <span class="text-slate-300 dark:text-slate-600">•</span>
+          <span class="text-emerald-600 dark:text-emerald-400 font-bold">+${fmt(sumInc)}</span>
+          <span class="text-slate-300 dark:text-slate-600">•</span>
+          <span class="text-rose-600 dark:text-rose-400 font-bold">-${fmt(sumExp)}</span>
+        `;
+      }
 
       const container = document.getElementById('records-list-container');
       if (!filtered.length) {
         container.innerHTML = `<div class="m3-card p-8 text-center text-slate-400 text-sm">No transactions found in this billing cycle.</div>`;
         return;
       }
-      container.innerHTML = `<div class="m3-card p-4 space-y-2.5">${filtered.map(r => renderRecordItemHTML(r)).join('')}</div>`;
+      container.innerHTML = `<div class="space-y-3">${filtered.map(r => renderRecordItemHTML(r)).join('')}</div>`;
     }
 
     function renderBudgets() {
@@ -3308,6 +3528,12 @@
       }
     }
 
+    window.dashCatsExpanded = false;
+    function toggleDashCategories() {
+      window.dashCatsExpanded = !window.dashCatsExpanded;
+      renderDashboard();
+    }
+
     // Expose handlers to global scope
     Object.assign(window, {
       switchTab, changeMonth, openRecordModal, closeModal, setRecordType, saveRecord, deleteRecord,
@@ -3321,7 +3547,7 @@
       renderRecords, openAuthModal, loginWithGoogle, handleEmailAuth, logoutFirebase,
       syncAllManual, pushStateToCloud, pullStateFromCloud,
       renderAnalytics, onReportPeriodChange, resetReportFilters, exportFilteredReportCSV,
-      toggleReportDrilldown, getCurrentCycleYearMonth
+      toggleReportDrilldown, getCurrentCycleYearMonth, toggleDashCategories
     });
 
     // Boot Application
