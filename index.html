@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#006A60">
-  <title>WalletPro — Material Finance Manager</title>
+  <title>MH Wallet</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Chart.js -->
@@ -89,7 +89,7 @@
             <span class="material-symbols-rounded">account_balance_wallet</span>
           </div>
           <div>
-            <h1 class="font-bold text-lg leading-tight text-slate-900">Wallet<span class="text-teal-700">Pro</span></h1>
+            <h1 class="font-bold text-lg leading-tight text-slate-900">MH <span class="text-teal-700">Wallet</span></h1>
             <span class="text-[11px] font-semibold uppercase tracking-wider px-1.5 py-0.5 bg-teal-50 text-teal-700 rounded-md">PWA + Sync</span>
           </div>
         </div>
@@ -139,7 +139,10 @@
       <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200/60 space-y-1.5">
         <div class="flex items-center justify-between text-xs text-slate-500">
           <span>Billing Cycle</span>
-          <button onclick="switchTab('settings')" class="text-[11px] font-bold text-teal-700 hover:underline">Edit Start Day</button>
+          <div class="flex items-center gap-2">
+            <button onclick="changeMonth(getCurrentCycleYearMonth())" class="text-[11px] font-bold text-teal-700 hover:underline" title="Jump to current active billing cycle">Current</button>
+            <button onclick="switchTab('settings')" class="text-[11px] font-bold text-teal-700 hover:underline">Edit Start Day</button>
+          </div>
         </div>
         <input type="month" id="global-month" onchange="changeMonth(this.value)" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-teal-600">
         <p id="cycle-range-badge" class="text-[11px] text-slate-500 font-medium pt-0.5 truncate"></p>
@@ -405,33 +408,207 @@
         </div>
       </section>
 
-      <!-- VIEW 6: ANALYTICS, 50/30/20 & CASHFLOW -->
+      <!-- VIEW 6: ANALYTICS, 50/30/20 & ADVANCED REPORTS -->
       <section id="view-analytics" class="view-section hidden space-y-6">
+        <!-- ADVANCED REPORT FILTERS TOOLBAR -->
+        <div class="m3-card p-5 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-rounded text-teal-700">filter_alt</span>
+                <h3 class="font-bold text-slate-900 text-base">Report Filters &amp; Analytics Scope</h3>
+              </div>
+              <p id="report-filter-subtitle" class="text-xs text-slate-500 mt-0.5">Filter by billing cycle, custom date range, accounts, 50/30/20 buckets, categories, tags, and amounts</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="resetReportFilters()" class="text-xs font-semibold px-3 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 transition flex items-center gap-1 shadow-xs">
+                <span class="material-symbols-rounded text-sm">restart_alt</span> Reset Filters
+              </button>
+              <button onclick="exportFilteredReportCSV()" class="text-xs font-bold px-3 py-1.5 rounded-xl bg-teal-700 hover:bg-teal-800 text-white transition flex items-center gap-1 shadow-sm shadow-teal-700/20">
+                <span class="material-symbols-rounded text-sm">download</span> Export Report CSV
+              </button>
+            </div>
+          </div>
+
+          <!-- Filter Controls Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+            <!-- 1. Time Scope / Period -->
+            <div class="space-y-1">
+              <label class="font-semibold text-slate-600 block">Period / Time Range</label>
+              <select id="report-filter-period" onchange="onReportPeriodChange()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium focus:outline-none focus:border-teal-600">
+                <option value="active_cycle">Current Active Billing Cycle</option>
+                <option value="prev_cycle">Previous Billing Cycle</option>
+                <option value="last_3">Last 3 Billing Cycles</option>
+                <option value="last_6">Last 6 Billing Cycles</option>
+                <option value="last_12">Last 12 Billing Cycles</option>
+                <option value="specific_cycle">Select Specific Billing Cycle...</option>
+                <option value="ytd">Year to Date (YTD)</option>
+                <option value="all_time">All Time (All Records)</option>
+                <option value="custom">Custom Date Range...</option>
+              </select>
+            </div>
+
+            <!-- Specific Cycle Picker (Conditional) -->
+            <div id="report-cycle-container" class="space-y-1 hidden">
+              <label class="font-semibold text-slate-600 block">Specific Cycle Month</label>
+              <input type="month" id="report-cycle-picker" onchange="renderAnalytics()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-teal-600">
+            </div>
+
+            <!-- Custom Date Range From & To (Conditional) -->
+            <div id="report-custom-date-container" class="sm:col-span-2 grid grid-cols-2 gap-2 hidden">
+              <div class="space-y-1">
+                <label class="font-semibold text-slate-600 block">From Date</label>
+                <input type="date" id="report-date-from" onchange="renderAnalytics()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-medium focus:outline-none focus:border-teal-600">
+              </div>
+              <div class="space-y-1">
+                <label class="font-semibold text-slate-600 block">To Date</label>
+                <input type="date" id="report-date-to" onchange="renderAnalytics()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-medium focus:outline-none focus:border-teal-600">
+              </div>
+            </div>
+
+            <!-- 2. Account Filter -->
+            <div class="space-y-1">
+              <label class="font-semibold text-slate-600 block">Account</label>
+              <select id="report-filter-account" onchange="renderAnalytics()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium focus:outline-none focus:border-teal-600"></select>
+            </div>
+
+            <!-- 3. 50/30/20 Bucket -->
+            <div class="space-y-1">
+              <label class="font-semibold text-slate-600 block">50/30/20 Bucket</label>
+              <select id="report-filter-bucket" onchange="renderAnalytics()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium focus:outline-none focus:border-teal-600">
+                <option value="all">All 50/30/20 Buckets</option>
+                <option value="needs">Needs (50% Essentials)</option>
+                <option value="wants">Wants (30% Lifestyle)</option>
+                <option value="savings">Savings &amp; Investments (20%)</option>
+                <option value="income">Income Only</option>
+              </select>
+            </div>
+
+            <!-- 4. Category Filter -->
+            <div class="space-y-1">
+              <label class="font-semibold text-slate-600 block">Category</label>
+              <select id="report-filter-category" onchange="renderAnalytics()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium focus:outline-none focus:border-teal-600"></select>
+            </div>
+
+            <!-- 5. Transaction Type -->
+            <div class="space-y-1">
+              <label class="font-semibold text-slate-600 block">Transaction Type</label>
+              <select id="report-filter-type" onchange="renderAnalytics()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium focus:outline-none focus:border-teal-600">
+                <option value="all">All Types (Income, Expense, Transfer)</option>
+                <option value="expense">Expenses Only</option>
+                <option value="income">Income Only</option>
+                <option value="transfer">Transfers Only</option>
+              </select>
+            </div>
+
+            <!-- 6. Tag Filter -->
+            <div class="space-y-1">
+              <label class="font-semibold text-slate-600 block">Tag / Label</label>
+              <select id="report-filter-tag" onchange="renderAnalytics()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium focus:outline-none focus:border-teal-600"></select>
+            </div>
+
+            <!-- 7. Min Amount -->
+            <div class="space-y-1">
+              <label class="font-semibold text-slate-600 block">Min Amount (₹)</label>
+              <input type="number" min="0" id="report-filter-min-amt" placeholder="e.g. 500" oninput="renderAnalytics()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium focus:outline-none focus:border-teal-600">
+            </div>
+
+            <!-- 8. Max Amount -->
+            <div class="space-y-1">
+              <label class="font-semibold text-slate-600 block">Max Amount (₹)</label>
+              <input type="number" min="0" id="report-filter-max-amt" placeholder="e.g. 50000" oninput="renderAnalytics()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium focus:outline-none focus:border-teal-600">
+            </div>
+
+            <!-- 9. Search Payee / Note / Tags -->
+            <div class="space-y-1 sm:col-span-2">
+              <label class="font-semibold text-slate-600 block">Search Payee, Note, Keyword</label>
+              <div class="relative">
+                <span class="material-symbols-rounded absolute left-3 top-2.5 text-slate-400 text-sm">search</span>
+                <input type="text" id="report-filter-search" placeholder="Filter by payee, note, #tags, or merchant..." oninput="renderAnalytics()" class="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:outline-none focus:border-teal-600">
+              </div>
+            </div>
+
+            <!-- 10. Sort By -->
+            <div class="space-y-1 sm:col-span-2">
+              <label class="font-semibold text-slate-600 block">Sort Drilldown Transactions</label>
+              <select id="report-filter-sort" onchange="renderAnalytics()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium focus:outline-none focus:border-teal-600">
+                <option value="date_desc">Date (Newest First)</option>
+                <option value="date_asc">Date (Oldest First)</option>
+                <option value="amt_desc">Amount (Highest First)</option>
+                <option value="amt_asc">Amount (Lowest First)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- REPORT EXECUTIVE KPIS STRIP -->
+        <div id="report-kpi-strip" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"></div>
+
         <!-- 50/30/20 Needs-Wants-Savings Breakdown -->
         <div class="m3-card p-5 space-y-4">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
               <h3 class="font-bold text-slate-900">50/30/20 Needs–Wants–Savings Breakdown</h3>
-              <p class="text-xs text-slate-500">Compares your cycle spending & savings against the ideal 50% Needs / 30% Wants / 20% Savings rule</p>
+              <p class="text-xs text-slate-500">Compares your filtered spending &amp; savings against the ideal 50% Needs / 30% Wants / 20% Savings rule</p>
             </div>
             <span id="rule-income-basis" class="text-xs font-bold px-3 py-1 rounded-xl bg-teal-50 text-teal-800"></span>
           </div>
           <div id="breakdown-503020" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
         </div>
 
+        <!-- Visual Charts Grid (Cash Flow Trend + Category Donut Chart) -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div class="m3-card p-5">
-            <h3 class="font-bold text-slate-800 mb-1">6-Cycle Cash Flow Trend</h3>
-            <p class="text-xs text-slate-500 mb-4">Income vs Expense comparison across billing cycles</p>
+            <h3 class="font-bold text-slate-800 mb-1" id="report-trend-title">Cash Flow Trend</h3>
+            <p class="text-xs text-slate-500 mb-4" id="report-trend-subtitle">Income vs Expense comparison across billing cycles</p>
             <div class="h-64">
               <canvas id="cashflowTrendChart"></canvas>
             </div>
           </div>
           <div class="m3-card p-5">
-            <h3 class="font-bold text-slate-800 mb-1">Category Spending Ranking</h3>
-            <p class="text-xs text-slate-500 mb-4">Where your money went in the current billing cycle</p>
-            <div id="category-ranking-list" class="space-y-3 max-h-64 overflow-y-auto pr-1"></div>
+            <h3 class="font-bold text-slate-800 mb-1">Expense Distribution</h3>
+            <p class="text-xs text-slate-500 mb-4">Share of spending by category under current filters</p>
+            <div class="h-64 relative flex items-center justify-center">
+              <canvas id="reportCategoryChart"></canvas>
+              <div id="report-cat-chart-empty" class="hidden text-xs text-slate-400 text-center">No expense data to chart under these filters.</div>
+            </div>
           </div>
+        </div>
+
+        <!-- Breakdowns Grid: Category Ranking & Account Outflow Breakdown -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="m3-card p-5">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-slate-800">Category Spending Ranking</h3>
+              <span id="category-ranking-count" class="text-xs text-slate-400 font-medium"></span>
+            </div>
+            <div id="category-ranking-list" class="space-y-2.5 max-h-72 overflow-y-auto pr-1"></div>
+          </div>
+          <div class="m3-card p-5 space-y-4">
+            <div>
+              <h3 class="font-bold text-slate-800 mb-2">Spending by Payment Account</h3>
+              <div id="report-account-ranking-list" class="space-y-2 max-h-36 overflow-y-auto pr-1"></div>
+            </div>
+            <div class="pt-3 border-t border-slate-100">
+              <h3 class="font-bold text-slate-800 mb-2">Top Payees &amp; Merchants</h3>
+              <div id="report-top-payees-list" class="space-y-2 max-h-32 overflow-y-auto pr-1"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filtered Transactions Drilldown Ledger -->
+        <div class="m3-card p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-rounded text-teal-700">receipt_long</span>
+              <h3 class="font-bold text-slate-800" id="report-drilldown-title">Matching Transactions (0)</h3>
+            </div>
+            <button onclick="toggleReportDrilldown()" id="report-drilldown-toggle-btn" class="text-xs font-semibold text-teal-700 hover:underline flex items-center gap-1 cursor-pointer">
+              <span id="report-drilldown-toggle-text">Show Transactions</span>
+              <span class="material-symbols-rounded text-base" id="report-drilldown-toggle-icon">expand_more</span>
+            </button>
+          </div>
+          <div id="report-drilldown-container" class="hidden space-y-2 pt-2 border-t border-slate-100 max-h-[500px] overflow-y-auto pr-1"></div>
         </div>
       </section>
 
@@ -899,13 +1076,15 @@
     // See firebase-config.example.js for the template.
     const FIREBASE_CONFIG = window.FIREBASE_CONFIG;
 
-    const STORAGE_KEY = 'walletpro_m3_blank_v2';
+    const STORAGE_KEY = 'mh_wallet_m3_v2';
+    const LEGACY_STORAGE_KEY = 'walletpro_m3_blank_v2';
 
     let state = null;
-    let activeMonth = getCurrentYearMonth();
+    let activeMonth = getCurrentCycleYearMonth();
     let hasUnsavedCloudChanges = false;
     let dashChartInstance = null;
     let trendChartInstance = null;
+    let reportCatChartInstance = null;
     let deferredPwaPrompt = null;
 
     // Cloud Sync State (Manual Only)
@@ -914,9 +1093,43 @@
     let fbDb = null;
     let currentUser = null;
 
+    function getCurrentCycleYearMonth(dateInput = new Date(), startDay = (state && state.cycleStartDay) || 1) {
+      if (!state) {
+        try {
+          const raw = localStorage.getItem('mh_wallet_m3_v2') || localStorage.getItem('walletpro_m3_blank_v2');
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (parsed && parsed.cycleStartDay) {
+              startDay = parsed.cycleStartDay;
+            }
+          }
+        } catch {}
+      }
+      let yr, mo, currentDay;
+      const day = Math.min(28, Math.max(1, Number(startDay) || 1));
+      if (typeof dateInput === 'string' && dateInput.includes('-')) {
+        const parts = dateInput.split('-').map(Number);
+        yr = parts[0];
+        mo = parts[1];
+        currentDay = parts[2] || 1;
+      } else {
+        const d = new Date(dateInput);
+        yr = d.getFullYear();
+        mo = d.getMonth() + 1;
+        currentDay = d.getDate();
+      }
+      if (currentDay < day) {
+        mo -= 1;
+        if (mo < 1) {
+          mo = 12;
+          yr -= 1;
+        }
+      }
+      return `${yr}-${String(mo).padStart(2, '0')}`;
+    }
+
     function getCurrentYearMonth() {
-      const now = new Date();
-      return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+      return getCurrentCycleYearMonth();
     }
 
     // Blank Slate State with 50/30/20 Category Groups, Billing Cycle Start Day & Rent Manager
@@ -1059,7 +1272,7 @@
     }
 
     function loadState() {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
       if (raw) {
         try {
           state = JSON.parse(raw);
@@ -1071,7 +1284,9 @@
       } else {
         state = createBlankState();
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        localStorage.setItem(LEGACY_STORAGE_KEY, JSON.stringify(state));
       }
+      activeMonth = getCurrentCycleYearMonth();
       applyTheme();
     }
 
@@ -1079,6 +1294,7 @@
       state.updatedAt = Date.now();
       hasUnsavedCloudChanges = true;
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      localStorage.setItem(LEGACY_STORAGE_KEY, JSON.stringify(state));
       if (currentUser) {
         updateSyncIndicator('unsaved');
       }
@@ -1143,8 +1359,8 @@
       const iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" rx="28" fill="#006A60"/><path d="M35 42h50v36H35z" fill="#74F8E5"/></svg>`;
       const iconUrl = `data:image/svg+xml;base64,${btoa(iconSvg)}`;
       const manifest = {
-        name: "WalletPro Finance Manager",
-        short_name: "WalletPro",
+        name: "MH Wallet",
+        short_name: "MH Wallet",
         start_url: ".",
         display: "standalone",
         background_color: "#F7F9FC",
@@ -1222,6 +1438,7 @@
           await setDoc(userRef, state);
           hasUnsavedCloudChanges = false;
           localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        localStorage.setItem(LEGACY_STORAGE_KEY, JSON.stringify(state));
           updateSyncIndicator('synced');
           showAuthAlert('Initial backup synced to Cloud!', false);
           return;
@@ -1238,14 +1455,18 @@
           await setDoc(userRef, state);
           hasUnsavedCloudChanges = false;
           localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        localStorage.setItem(LEGACY_STORAGE_KEY, JSON.stringify(state));
           updateSyncIndicator('synced');
           showAuthAlert('All local changes pushed to Cloud!', false);
         } else if (cloudTime > localTime) {
           state = cloudData;
           ensureStateSchema();
+          activeMonth = getCurrentCycleYearMonth();
           state.lastSyncedAt = cloudTime;
           hasUnsavedCloudChanges = false;
           localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        localStorage.setItem(LEGACY_STORAGE_KEY, JSON.stringify(state));
+          localStorage.setItem(LEGACY_STORAGE_KEY, JSON.stringify(state));
           applyTheme();
           renderAll();
           updateSyncIndicator('synced');
@@ -1272,6 +1493,7 @@
         await setDoc(userRef, state);
         hasUnsavedCloudChanges = false;
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        localStorage.setItem(LEGACY_STORAGE_KEY, JSON.stringify(state));
         updateSyncIndicator('synced');
         showAuthAlert('Local data force-pushed to Cloud Firestore!', false);
       } catch (err) {
@@ -1289,9 +1511,12 @@
         if (snap.exists()) {
           state = snap.data();
           ensureStateSchema();
+          activeMonth = getCurrentCycleYearMonth();
           state.lastSyncedAt = state.updatedAt || Date.now();
           hasUnsavedCloudChanges = false;
           localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        localStorage.setItem(LEGACY_STORAGE_KEY, JSON.stringify(state));
+          localStorage.setItem(LEGACY_STORAGE_KEY, JSON.stringify(state));
           applyTheme();
           renderAll();
           updateSyncIndicator('synced');
@@ -1718,13 +1943,15 @@
     function populateFilterDropdowns() {
       const accSel = document.getElementById('filter-account');
       const catSel = document.getElementById('filter-category');
-      const curAcc = accSel.value || 'all';
-      const curCat = catSel.value || 'all';
-
-      accSel.innerHTML = `<option value="all">All Accounts</option>` + state.accounts.map(a => `<option value="${a.id}">${a.name}</option>`).join('');
-      catSel.innerHTML = `<option value="all">All Categories</option>` + state.categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
-      accSel.value = curAcc;
-      catSel.value = curCat;
+      if (accSel && catSel) {
+        const curAcc = accSel.value || 'all';
+        const curCat = catSel.value || 'all';
+        accSel.innerHTML = `<option value="all">All Accounts</option>` + state.accounts.map(a => `<option value="${a.id}">${a.name}</option>`).join('');
+        catSel.innerHTML = `<option value="all">All Categories</option>` + state.categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+        accSel.value = curAcc;
+        catSel.value = curCat;
+      }
+      populateReportFilterDropdowns();
     }
 
     function renderRecords() {
@@ -2019,13 +2246,379 @@
       renderRentView();
     }
 
-    // --- 50/30/20 & ANALYTICS VIEW ---
+    // --- ADVANCED 50/30/20 & FINANCIAL REPORTS ENGINE ---
+    function populateReportFilterDropdowns() {
+      const accSel = document.getElementById('report-filter-account');
+      const catSel = document.getElementById('report-filter-category');
+      const tagSel = document.getElementById('report-filter-tag');
+      const cyclePicker = document.getElementById('report-cycle-picker');
+
+      if (cyclePicker && !cyclePicker.value) {
+        cyclePicker.value = activeMonth;
+      }
+
+      if (accSel) {
+        const curVal = accSel.value || 'all';
+        let html = `<option value="all">All Accounts</option>`;
+        
+        const types = [...new Set(state.accounts.map(a => a.type).filter(Boolean))];
+        if (types.length > 1) {
+          html += `<optgroup label="Filter by Account Type">`;
+          types.forEach(t => {
+            html += `<option value="type_${t}">All ${t} Accounts</option>`;
+          });
+          html += `</optgroup>`;
+        }
+        if (state.accounts.length) {
+          html += `<optgroup label="Individual Accounts">`;
+          state.accounts.forEach(a => {
+            html += `<option value="${a.id}">${a.name} (${a.type})</option>`;
+          });
+          html += `</optgroup>`;
+        }
+        accSel.innerHTML = html;
+        accSel.value = curVal;
+      }
+
+      if (catSel) {
+        const curCat = catSel.value || 'all';
+        let html = `<option value="all">All Categories</option>`;
+        
+        const groups = [
+          { id: 'needs', label: 'Needs (50% Essentials)' },
+          { id: 'wants', label: 'Wants (30% Lifestyle)' },
+          { id: 'savings', label: 'Savings & Investments (20%)' },
+          { id: 'income', label: 'Income Categories' }
+        ];
+        groups.forEach(g => {
+          const catsInGroup = state.categories.filter(c => {
+            if (g.id === 'income') return c.type === 'income';
+            return c.type === 'expense' && (c.group || 'needs') === g.id;
+          });
+          if (catsInGroup.length) {
+            html += `<optgroup label="${g.label}">`;
+            catsInGroup.forEach(c => {
+              html += `<option value="${c.id}">${c.name}</option>`;
+            });
+            html += `</optgroup>`;
+          }
+        });
+        catSel.innerHTML = html;
+        catSel.value = curCat;
+      }
+
+      if (tagSel) {
+        const curTag = tagSel.value || 'all';
+        const allTags = new Set();
+        state.records.forEach(r => {
+          (r.tags || []).forEach(t => {
+            if (t && t.trim()) allTags.add(t.trim());
+          });
+        });
+        const sortedTags = [...allTags].sort((a, b) => a.localeCompare(b));
+        let html = `<option value="all">All Tags / Labels</option>`;
+        sortedTags.forEach(t => {
+          const display = t.startsWith('#') ? t : `#${t}`;
+          html += `<option value="${t}">${display}</option>`;
+        });
+        tagSel.innerHTML = html;
+        tagSel.value = curTag;
+      }
+    }
+
+    function onReportPeriodChange() {
+      const period = document.getElementById('report-filter-period')?.value || 'active_cycle';
+      const cycleContainer = document.getElementById('report-cycle-container');
+      const customDateContainer = document.getElementById('report-custom-date-container');
+
+      if (cycleContainer) {
+        if (period === 'specific_cycle') cycleContainer.classList.remove('hidden');
+        else cycleContainer.classList.add('hidden');
+      }
+
+      if (customDateContainer) {
+        if (period === 'custom') customDateContainer.classList.remove('hidden');
+        else customDateContainer.classList.add('hidden');
+      }
+
+      renderAnalytics();
+    }
+
+    function resetReportFilters() {
+      if (document.getElementById('report-filter-period')) document.getElementById('report-filter-period').value = 'active_cycle';
+      if (document.getElementById('report-cycle-picker')) document.getElementById('report-cycle-picker').value = activeMonth;
+      if (document.getElementById('report-date-from')) document.getElementById('report-date-from').value = '';
+      if (document.getElementById('report-date-to')) document.getElementById('report-date-to').value = '';
+      if (document.getElementById('report-filter-account')) document.getElementById('report-filter-account').value = 'all';
+      if (document.getElementById('report-filter-bucket')) document.getElementById('report-filter-bucket').value = 'all';
+      if (document.getElementById('report-filter-category')) document.getElementById('report-filter-category').value = 'all';
+      if (document.getElementById('report-filter-type')) document.getElementById('report-filter-type').value = 'all';
+      if (document.getElementById('report-filter-tag')) document.getElementById('report-filter-tag').value = 'all';
+      if (document.getElementById('report-filter-min-amt')) document.getElementById('report-filter-min-amt').value = '';
+      if (document.getElementById('report-filter-max-amt')) document.getElementById('report-filter-max-amt').value = '';
+      if (document.getElementById('report-filter-search')) document.getElementById('report-filter-search').value = '';
+      if (document.getElementById('report-filter-sort')) document.getElementById('report-filter-sort').value = 'date_desc';
+
+      const cycleContainer = document.getElementById('report-cycle-container');
+      const customDateContainer = document.getElementById('report-custom-date-container');
+      if (cycleContainer) cycleContainer.classList.add('hidden');
+      if (customDateContainer) customDateContainer.classList.add('hidden');
+
+      renderAnalytics();
+    }
+
+    function toggleReportDrilldown() {
+      const container = document.getElementById('report-drilldown-container');
+      const textEl = document.getElementById('report-drilldown-toggle-text');
+      const iconEl = document.getElementById('report-drilldown-toggle-icon');
+      if (!container) return;
+      const isHidden = container.classList.contains('hidden');
+      if (isHidden) {
+        container.classList.remove('hidden');
+        if (textEl) textEl.textContent = 'Hide Transactions';
+        if (iconEl) iconEl.textContent = 'expand_less';
+      } else {
+        container.classList.add('hidden');
+        if (textEl) textEl.textContent = 'Show Transactions';
+        if (iconEl) iconEl.textContent = 'expand_more';
+      }
+    }
+
+    function getReportDateRange() {
+      const period = document.getElementById('report-filter-period')?.value || 'active_cycle';
+      const startDay = state.cycleStartDay || 1;
+      const today = new Date();
+
+      if (period === 'active_cycle') {
+        const bounds = getBillingCycleBounds(activeMonth, startDay);
+        return { ...bounds, label: `Active Cycle (${activeMonth})`, periodKey: 'active_cycle' };
+      }
+
+      if (period === 'prev_cycle') {
+        const [yr, mo] = activeMonth.split('-').map(Number);
+        let prevMo = mo - 1;
+        let prevYr = yr;
+        if (prevMo < 1) { prevMo = 12; prevYr -= 1; }
+        const prevYm = `${prevYr}-${String(prevMo).padStart(2, '0')}`;
+        const bounds = getBillingCycleBounds(prevYm, startDay);
+        return { ...bounds, label: `Previous Cycle (${prevYm})`, periodKey: 'prev_cycle' };
+      }
+
+      if (period === 'specific_cycle') {
+        const ym = document.getElementById('report-cycle-picker')?.value || activeMonth;
+        const bounds = getBillingCycleBounds(ym, startDay);
+        return { ...bounds, label: `Billing Cycle (${ym})`, periodKey: 'specific_cycle', targetYm: ym };
+      }
+
+      if (period === 'last_3' || period === 'last_6' || period === 'last_12') {
+        const count = period === 'last_3' ? 3 : period === 'last_6' ? 6 : 12;
+        const [yr, mo] = activeMonth.split('-').map(Number);
+        let startMo = mo - count + 1;
+        let startYr = yr;
+        while (startMo < 1) {
+          startMo += 12;
+          startYr -= 1;
+        }
+        const startYm = `${startYr}-${String(startMo).padStart(2, '0')}`;
+        const startBounds = getBillingCycleBounds(startYm, startDay);
+        const endBounds = getBillingCycleBounds(activeMonth, startDay);
+        return {
+          startStr: startBounds.startStr,
+          endStr: endBounds.endStr,
+          startObj: startBounds.startObj,
+          endObj: endBounds.endObj,
+          cyclesCount: count,
+          label: `Last ${count} Billing Cycles`,
+          periodKey: period
+        };
+      }
+
+      if (period === 'ytd') {
+        const yr = today.getFullYear();
+        const start = new Date(yr, 0, 1);
+        const end = today;
+        return {
+          startStr: fmtDateISO(start),
+          endStr: fmtDateISO(end),
+          startObj: start,
+          endObj: end,
+          label: `Year to Date (${yr})`,
+          periodKey: 'ytd'
+        };
+      }
+
+      if (period === 'custom') {
+        const fromVal = document.getElementById('report-date-from')?.value;
+        const toVal = document.getElementById('report-date-to')?.value;
+        const startStr = fromVal || '1970-01-01';
+        const endStr = toVal || fmtDateISO(new Date());
+        return {
+          startStr,
+          endStr,
+          startObj: new Date(startStr),
+          endObj: new Date(endStr),
+          label: `Custom Range (${startStr} to ${endStr})`,
+          periodKey: 'custom'
+        };
+      }
+
+      // 'all_time'
+      return {
+        startStr: '1970-01-01',
+        endStr: '2099-12-31',
+        startObj: new Date(1970, 0, 1),
+        endObj: new Date(2099, 11, 31),
+        label: 'All Time (All Records)',
+        periodKey: 'all_time'
+      };
+    }
+
+    function getFilteredReportData() {
+      const range = getReportDateRange();
+      const accFilter = document.getElementById('report-filter-account')?.value || 'all';
+      const bucketFilter = document.getElementById('report-filter-bucket')?.value || 'all';
+      const catFilter = document.getElementById('report-filter-category')?.value || 'all';
+      const typeFilter = document.getElementById('report-filter-type')?.value || 'all';
+      const tagFilter = document.getElementById('report-filter-tag')?.value || 'all';
+      const minAmt = parseFloat(document.getElementById('report-filter-min-amt')?.value);
+      const maxAmt = parseFloat(document.getElementById('report-filter-max-amt')?.value);
+      const searchQ = (document.getElementById('report-filter-search')?.value || '').toLowerCase().trim();
+      const sortOrder = document.getElementById('report-filter-sort')?.value || 'date_desc';
+
+      const filtered = state.records.filter(r => {
+        // 1. Date Range
+        if (r.date < range.startStr || r.date > range.endStr) return false;
+
+        // 2. Account Filter
+        if (accFilter !== 'all') {
+          if (accFilter.startsWith('type_')) {
+            const requiredType = accFilter.replace('type_', '');
+            const fromAcc = getAccount(r.accountId);
+            const toAcc = getAccount(r.toAccountId);
+            const matchFrom = fromAcc && fromAcc.type === requiredType;
+            const matchTo = toAcc && toAcc.type === requiredType;
+            if (!matchFrom && !matchTo) return false;
+          } else {
+            if (r.accountId !== accFilter && r.toAccountId !== accFilter) return false;
+          }
+        }
+
+        // 3. Category Filter
+        if (catFilter !== 'all' && r.categoryId !== catFilter) return false;
+
+        // 4. Transaction Type Filter
+        if (typeFilter !== 'all' && r.type !== typeFilter) return false;
+
+        // 5. 50/30/20 Bucket Filter
+        if (bucketFilter !== 'all') {
+          if (bucketFilter === 'income') {
+            if (r.type !== 'income') return false;
+          } else {
+            if (r.type === 'expense') {
+              const cat = getCategory(r.categoryId);
+              if ((cat.group || 'needs') !== bucketFilter) return false;
+            } else if (r.type === 'transfer') {
+              const toAcc = getAccount(r.toAccountId);
+              const isSavingsTransfer = toAcc && (toAcc.type === 'Savings' || toAcc.type === 'Investment');
+              if (bucketFilter === 'savings') {
+                if (!isSavingsTransfer) return false;
+              } else {
+                return false;
+              }
+            } else {
+              return false;
+            }
+          }
+        }
+
+        // 6. Tag Filter
+        if (tagFilter !== 'all') {
+          const recTags = (r.tags || []).map(t => t.trim());
+          if (!recTags.includes(tagFilter)) return false;
+        }
+
+        // 7. Amount Bounds
+        const amt = Number(r.amount) || 0;
+        if (!isNaN(minAmt) && amt < minAmt) return false;
+        if (!isNaN(maxAmt) && amt > maxAmt) return false;
+
+        // 8. Keyword / Payee / Note Search
+        if (searchQ) {
+          const cat = getCategory(r.categoryId);
+          const acc = getAccount(r.accountId);
+          const toAcc = getAccount(r.toAccountId);
+          const hay = `${r.payee || ''} ${r.note || ''} ${(r.tags || []).join(' ')} ${cat.name || ''} ${acc.name || ''} ${toAcc.name || ''}`.toLowerCase();
+          if (!hay.includes(searchQ)) return false;
+        }
+
+        return true;
+      });
+
+      // Sort filtered records
+      filtered.sort((a, b) => {
+        if (sortOrder === 'date_desc') return b.date.localeCompare(a.date);
+        if (sortOrder === 'date_asc') return a.date.localeCompare(b.date);
+        if (sortOrder === 'amt_desc') return Number(b.amount) - Number(a.amount);
+        if (sortOrder === 'amt_asc') return Number(a.amount) - Number(b.amount);
+        return 0;
+      });
+
+      return { filteredRecords: filtered, rangeInfo: range };
+    }
+
+    function exportFilteredReportCSV() {
+      const { filteredRecords } = getFilteredReportData();
+      if (!filteredRecords.length) {
+        alert('No transactions match the current report filters to export.');
+        return;
+      }
+      const rows = [['Date', 'Type', 'Account', 'Category', '50-30-20 Group', 'Amount', 'Payee', 'Note', 'Tags']];
+      filteredRecords.forEach(r => {
+        const cat = getCategory(r.categoryId);
+        const acc = getAccount(r.accountId);
+        rows.push([
+          r.date,
+          r.type,
+          acc ? acc.name : '',
+          cat ? cat.name : '',
+          cat ? (cat.group || '') : '',
+          r.amount,
+          `"${(r.payee || '').replace(/"/g, '""')}"`,
+          `"${(r.note || '').replace(/"/g, '""')}"`,
+          `"${(r.tags || []).join(', ')}"`
+        ]);
+      });
+      const csv = rows.map(r => r.join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      const period = document.getElementById('report-filter-period')?.value || 'report';
+      a.download = `mh_wallet_report_${period}_${fmtDateISO(new Date())}.csv`;
+      a.click();
+    }
+
     function renderAnalytics() {
-      const cycleRecs = state.records.filter(r => isDateInCycle(r.date, activeMonth));
-      const cycleInc = cycleRecs.filter(r => r.type === 'income').reduce((s, r) => s + Number(r.amount), 0);
+      populateReportFilterDropdowns();
+
+      const { filteredRecords, rangeInfo } = getFilteredReportData();
+
+      // Update subtitle scope text
+      const subEl = document.getElementById('report-filter-subtitle');
+      if (subEl) {
+        subEl.textContent = `${rangeInfo.label} (${rangeInfo.startStr} → ${rangeInfo.endStr}) · ${filteredRecords.length} transaction(s) matching criteria`;
+      }
+
+      // Calculations
+      const incRecords = filteredRecords.filter(r => r.type === 'income');
+      const expRecords = filteredRecords.filter(r => r.type === 'expense');
+      const trfRecords = filteredRecords.filter(r => r.type === 'transfer');
+
+      const totalInc = incRecords.reduce((s, r) => s + Number(r.amount), 0);
+      const totalExp = expRecords.reduce((s, r) => s + Number(r.amount), 0);
+      const netFlow = totalInc - totalExp;
 
       let needsAmt = 0, wantsAmt = 0, savingsAmt = 0;
-      cycleRecs.forEach(r => {
+      filteredRecords.forEach(r => {
         const amt = Number(r.amount) || 0;
         if (r.type === 'expense') {
           const grp = getCategory(r.categoryId).group || 'needs';
@@ -2040,8 +2633,59 @@
         }
       });
 
-      const base = cycleInc > 0 ? cycleInc : Math.max(1, needsAmt + wantsAmt + savingsAmt);
-      document.getElementById('rule-income-basis').textContent = cycleInc > 0 ? `Based on Cycle Income: ${fmt(cycleInc)}` : `Based on Total Outflow: ${fmt(base)}`;
+      // Days count for daily avg
+      let dayDiff = 1;
+      if (rangeInfo.startObj && rangeInfo.endObj) {
+        const diffMs = Math.abs(new Date(rangeInfo.endStr) - new Date(rangeInfo.startStr));
+        dayDiff = Math.max(1, Math.round(diffMs / 86400000) + 1);
+      }
+      const dailyAvg = totalExp / dayDiff;
+
+      // 1. Executive KPI Strip
+      const kpiStrip = document.getElementById('report-kpi-strip');
+      if (kpiStrip) {
+        const netColor = netFlow >= 0 ? 'text-emerald-600' : 'text-rose-600';
+        const netSign = netFlow >= 0 ? '+' : '';
+        kpiStrip.innerHTML = `
+          <div class="m3-card p-3.5 space-y-1">
+            <span class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Total Inflow</span>
+            <p class="text-lg font-bold text-emerald-600">+${fmt(totalInc)}</p>
+            <span class="text-[10px] text-slate-400">${incRecords.length} income credit(s)</span>
+          </div>
+          <div class="m3-card p-3.5 space-y-1">
+            <span class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Total Outflow</span>
+            <p class="text-lg font-bold text-rose-600">-${fmt(totalExp)}</p>
+            <span class="text-[10px] text-slate-400">${expRecords.length} expense debit(s)</span>
+          </div>
+          <div class="m3-card p-3.5 space-y-1">
+            <span class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Net Cash Flow</span>
+            <p class="text-lg font-bold ${netColor}">${netSign}${fmt(netFlow)}</p>
+            <span class="text-[10px] text-slate-400">${netFlow >= 0 ? 'Surplus Saved' : 'Net Outflow'}</span>
+          </div>
+          <div class="m3-card p-3.5 space-y-1">
+            <span class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Savings &amp; Inv</span>
+            <p class="text-lg font-bold text-teal-700">${fmt(savingsAmt)}</p>
+            <span class="text-[10px] text-slate-400">${totalInc > 0 ? Math.round((savingsAmt / totalInc) * 100) + '% of Income' : 'Tracked savings'}</span>
+          </div>
+          <div class="m3-card p-3.5 space-y-1">
+            <span class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Daily Avg Spend</span>
+            <p class="text-lg font-bold text-slate-900">${fmt(dailyAvg)}</p>
+            <span class="text-[10px] text-slate-400">Over ${dayDiff} day(s)</span>
+          </div>
+          <div class="m3-card p-3.5 space-y-1">
+            <span class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Filtered Records</span>
+            <p class="text-lg font-bold text-slate-900">${filteredRecords.length}</p>
+            <span class="text-[10px] text-teal-700 font-semibold">${trfRecords.length} transfer(s)</span>
+          </div>
+        `;
+      }
+
+      // 2. 50/30/20 Breakdown
+      const base = totalInc > 0 ? totalInc : Math.max(1, needsAmt + wantsAmt + savingsAmt);
+      const basisBadge = document.getElementById('rule-income-basis');
+      if (basisBadge) {
+        basisBadge.textContent = totalInc > 0 ? `Based on Filtered Income: ${fmt(totalInc)}` : `Based on Total Outflow: ${fmt(base)}`;
+      }
 
       const buckets = [
         { label: 'Needs (Essentials)', actual: needsAmt, targetPct: 50, color: 'bg-sky-600', badgeBg: 'bg-sky-50 text-sky-800' },
@@ -2049,75 +2693,215 @@
         { label: 'Savings & Investments', actual: savingsAmt, targetPct: 20, color: 'bg-emerald-600', badgeBg: 'bg-emerald-50 text-emerald-800' }
       ];
 
-      document.getElementById('breakdown-503020').innerHTML = buckets.map(b => {
-        const targetAmt = (base * b.targetPct) / 100;
-        const actualPct = Math.round((b.actual / base) * 100);
-        const barW = Math.min(100, Math.round((b.actual / Math.max(1, targetAmt)) * 100));
-        return `
-          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 space-y-2.5">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-800">${b.label}</span>
-              <span class="text-[11px] font-bold px-2 py-0.5 rounded-md ${b.badgeBg}">Target: ${b.targetPct}% (${fmt(targetAmt)})</span>
+      const breakdownEl = document.getElementById('breakdown-503020');
+      if (breakdownEl) {
+        breakdownEl.innerHTML = buckets.map(b => {
+          const targetAmt = (base * b.targetPct) / 100;
+          const actualPct = Math.round((b.actual / base) * 100);
+          const barW = Math.min(100, Math.round((b.actual / Math.max(1, targetAmt)) * 100));
+          return `
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-800">${b.label}</span>
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded-md ${b.badgeBg}">Target: ${b.targetPct}% (${fmt(targetAmt)})</span>
+              </div>
+              <div class="flex items-baseline justify-between">
+                <p class="text-lg font-bold text-slate-900">${fmt(b.actual)}</p>
+                <span class="text-xs font-bold text-slate-500">${actualPct}% of base</span>
+              </div>
+              <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                <div class="h-full ${b.color}" style="width:${barW}%"></div>
+              </div>
             </div>
-            <div class="flex items-baseline justify-between">
-              <p class="text-lg font-bold text-slate-900">${fmt(b.actual)}</p>
-              <span class="text-xs font-bold text-slate-500">${actualPct}% of base</span>
-            </div>
-            <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
-              <div class="h-full ${b.color}" style="width:${barW}%"></div>
-            </div>
-          </div>
-        `;
-      }).join('');
-
-      // 6-Cycle Bar Chart
-      const [yr, mo] = activeMonth.split('-').map(Number);
-      const months = [];
-      for (let i = 5; i >= 0; i--) {
-        const d = new Date(yr, mo - 1 - i, 1);
-        months.push(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`);
+          `;
+        }).join('');
       }
 
-      const incSeries = months.map(m => state.records.filter(r => isDateInCycle(r.date, m) && r.type === 'income').reduce((s, r) => s + Number(r.amount), 0));
-      const expSeries = months.map(m => state.records.filter(r => isDateInCycle(r.date, m) && r.type === 'expense').reduce((s, r) => s + Number(r.amount), 0));
+      // 3. Cash Flow Trend Chart
+      const startDay = state.cycleStartDay || 1;
+      const trendCanvas = document.getElementById('cashflowTrendChart');
+      if (trendCanvas) {
+        let trendMonths = [];
+        const [yr, mo] = (rangeInfo.targetYm || activeMonth).split('-').map(Number);
+        const count = rangeInfo.cyclesCount || 6;
+        for (let i = count - 1; i >= 0; i--) {
+          const d = new Date(yr, mo - 1 - i, 1);
+          trendMonths.push(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`);
+        }
 
-      const ctx = document.getElementById('cashflowTrendChart').getContext('2d');
-      if (trendChartInstance) trendChartInstance.destroy();
-      trendChartInstance = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: months,
-          datasets: [
-            { label: 'Income', data: incSeries, backgroundColor: '#0D9488', borderRadius: 6 },
-            { label: 'Expense', data: expSeries, backgroundColor: '#E11D48', borderRadius: 6 }
-          ]
-        },
-        options: { responsive: true, maintainAspectRatio: false }
-      });
+        const incSeries = trendMonths.map(m => state.records.filter(r => isDateInCycle(r.date, m) && r.type === 'income').reduce((s, r) => s + Number(r.amount), 0));
+        const expSeries = trendMonths.map(m => state.records.filter(r => isDateInCycle(r.date, m) && r.type === 'expense').reduce((s, r) => s + Number(r.amount), 0));
 
-      const cycleExp = cycleRecs.filter(r => r.type === 'expense');
-      const totalExp = cycleExp.reduce((s, r) => s + Number(r.amount), 0) || 1;
+        const trendTitleEl = document.getElementById('report-trend-title');
+        const trendSubEl = document.getElementById('report-trend-subtitle');
+        if (trendTitleEl) trendTitleEl.textContent = `${count}-Cycle Cash Flow Trend`;
+        if (trendSubEl) trendSubEl.textContent = `Billing cycles comparison (Cycle start day: ${startDay})`;
+
+        const ctx = trendCanvas.getContext('2d');
+        if (trendChartInstance) trendChartInstance.destroy();
+        trendChartInstance = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: trendMonths,
+            datasets: [
+              { label: 'Income', data: incSeries, backgroundColor: '#0D9488', borderRadius: 6 },
+              { label: 'Expense', data: expSeries, backgroundColor: '#E11D48', borderRadius: 6 }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { position: 'top', labels: { boxWidth: 12, font: { size: 11 } } }
+            }
+          }
+        });
+      }
+
+      // 4. Category Expense Distribution Doughnut Chart & Ranking List
+      const catChartCanvas = document.getElementById('reportCategoryChart');
+      const catChartEmpty = document.getElementById('report-cat-chart-empty');
       const byCat = {};
-      cycleExp.forEach(r => { byCat[r.categoryId] = (byCat[r.categoryId] || 0) + Number(r.amount); });
-
+      expRecords.forEach(r => {
+        byCat[r.categoryId] = (byCat[r.categoryId] || 0) + Number(r.amount);
+      });
       const sortedCats = Object.entries(byCat).sort((a, b) => b[1] - a[1]);
-      document.getElementById('category-ranking-list').innerHTML = sortedCats.length ? sortedCats.map(([cid, amt]) => {
-        const c = getCategory(cid);
-        const pct = Math.round((amt / totalExp) * 100);
-        return `
-          <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50">
-            <div class="flex items-center gap-2.5">
-              <span class="w-3 h-3 rounded-full" style="background:${c.color}"></span>
-              <span class="text-sm font-semibold text-slate-800">${c.name}</span>
-              <span class="text-[10px] uppercase px-1.5 py-0.5 rounded bg-white border border-slate-200 text-slate-500">${c.group || 'needs'}</span>
+      const totalExpBase = totalExp > 0 ? totalExp : 1;
+
+      if (catChartCanvas) {
+        if (reportCatChartInstance) reportCatChartInstance.destroy();
+        if (sortedCats.length > 0) {
+          catChartCanvas.classList.remove('hidden');
+          if (catChartEmpty) catChartEmpty.classList.add('hidden');
+
+          const topCats = sortedCats.slice(0, 6);
+          const othersAmt = sortedCats.slice(6).reduce((s, c) => s + c[1], 0);
+          const labels = topCats.map(([cid]) => getCategory(cid).name);
+          const dataValues = topCats.map(([, amt]) => amt);
+          const bgColors = topCats.map(([cid]) => getCategory(cid).color || '#64748B');
+
+          if (othersAmt > 0) {
+            labels.push('Others');
+            dataValues.push(othersAmt);
+            bgColors.push('#94A3B8');
+          }
+
+          const ctx = catChartCanvas.getContext('2d');
+          reportCatChartInstance = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+              labels,
+              datasets: [{
+                data: dataValues,
+                backgroundColor: bgColors,
+                borderWidth: 2,
+                borderColor: '#FFFFFF'
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
+              },
+              cutout: '65%'
+            }
+          });
+        } else {
+          catChartCanvas.classList.add('hidden');
+          if (catChartEmpty) catChartEmpty.classList.remove('hidden');
+        }
+      }
+
+      // 5. Category Spending Ranking List
+      const rankingList = document.getElementById('category-ranking-list');
+      const rankingCount = document.getElementById('category-ranking-count');
+      if (rankingCount) rankingCount.textContent = `${sortedCats.length} categories`;
+      if (rankingList) {
+        rankingList.innerHTML = sortedCats.length ? sortedCats.map(([cid, amt]) => {
+          const c = getCategory(cid);
+          const pct = Math.round((amt / totalExpBase) * 100);
+          const catTxnCount = expRecords.filter(r => r.categoryId === cid).length;
+          return `
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100/70 transition">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-3 h-3 rounded-full shrink-0" style="background:${c.color}"></span>
+                <span class="text-xs font-semibold text-slate-800 truncate">${c.name}</span>
+                <span class="text-[10px] uppercase px-1.5 py-0.5 rounded bg-white border border-slate-200 text-slate-500 shrink-0">${c.group || 'needs'}</span>
+                <span class="text-[10px] text-slate-400 hidden sm:inline">(${catTxnCount} txns)</span>
+              </div>
+              <div class="text-right shrink-0 ml-2">
+                <span class="text-xs font-bold text-slate-900">${fmt(amt)}</span>
+                <span class="text-[11px] text-slate-400 ml-1">(${pct}%)</span>
+              </div>
             </div>
-            <div class="text-right">
-              <span class="text-sm font-bold text-slate-900">${fmt(amt)}</span>
-              <span class="text-xs text-slate-400 ml-1">(${pct}%)</span>
+          `;
+        }).join('') : `<p class="text-xs text-slate-400 p-2">No expense transactions matching current filters.</p>`;
+      }
+
+      // 6. Spending by Account Breakdown
+      const accRankingList = document.getElementById('report-account-ranking-list');
+      if (accRankingList) {
+        const byAcc = {};
+        expRecords.forEach(r => {
+          byAcc[r.accountId] = (byAcc[r.accountId] || 0) + Number(r.amount);
+        });
+        const sortedAccs = Object.entries(byAcc).sort((a, b) => b[1] - a[1]);
+        accRankingList.innerHTML = sortedAccs.length ? sortedAccs.map(([accId, amt]) => {
+          const acc = getAccount(accId);
+          const pct = Math.round((amt / totalExpBase) * 100);
+          return `
+            <div class="flex items-center justify-between p-2 rounded-xl bg-slate-50 text-xs">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background:${acc.color || '#64748B'}"></span>
+                <span class="font-semibold text-slate-800 truncate">${acc.name}</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded bg-white border border-slate-200 text-slate-500">${acc.type || 'Account'}</span>
+              </div>
+              <div class="text-right shrink-0 ml-2">
+                <span class="font-bold text-slate-900">${fmt(amt)}</span>
+                <span class="text-[10px] text-slate-400 ml-1">(${pct}%)</span>
+              </div>
             </div>
-          </div>
+          `;
+        }).join('') : `<p class="text-xs text-slate-400">No account outflows logged.</p>`;
+      }
+
+      // 7. Top Payees & Merchants
+      const topPayeesList = document.getElementById('report-top-payees-list');
+      if (topPayeesList) {
+        const byPayee = {};
+        expRecords.forEach(r => {
+          const payee = (r.payee || '').trim() || 'Unspecified Payee';
+          if (!byPayee[payee]) byPayee[payee] = { total: 0, count: 0 };
+          byPayee[payee].total += Number(r.amount);
+          byPayee[payee].count += 1;
+        });
+        const sortedPayees = Object.entries(byPayee).sort((a, b) => b[1].total - a[1].total).slice(0, 5);
+        topPayeesList.innerHTML = sortedPayees.length ? sortedPayees.map(([payee, info]) => {
+          return `
+            <div class="flex items-center justify-between p-2 rounded-xl bg-slate-50 text-xs">
+              <div class="flex items-center gap-1.5 min-w-0">
+                <span class="material-symbols-rounded text-sm text-slate-400">store</span>
+                <span class="font-medium text-slate-800 truncate">${payee}</span>
+                <span class="text-[10px] text-slate-400">(${info.count}x)</span>
+              </div>
+              <span class="font-bold text-slate-900 shrink-0 ml-2">${fmt(info.total)}</span>
+            </div>
+          `;
+        }).join('') : `<p class="text-xs text-slate-400">No merchant details in filtered records.</p>`;
+      }
+
+      // 8. Filtered Transactions Drilldown Ledger
+      const drilldownTitle = document.getElementById('report-drilldown-title');
+      const drilldownContainer = document.getElementById('report-drilldown-container');
+      if (drilldownTitle) {
+        drilldownTitle.textContent = `Matching Transactions (${filteredRecords.length})`;
+      }
+      if (drilldownContainer) {
+        drilldownContainer.innerHTML = filteredRecords.length ? filteredRecords.map(r => renderRecordItemHTML(r)).join('') : `
+          <div class="p-6 text-center text-slate-400 text-xs">No transactions found matching your report filter criteria.</div>
         `;
-      }).join('') : `<p class="text-xs text-slate-400">No expenses logged in this billing cycle.</p>`;
+      }
     }
 
     function renderSettings() {
@@ -2454,6 +3238,7 @@
     function updateCycleStartDay(day) {
       const d = Math.min(28, Math.max(1, parseInt(day) || 1));
       state.cycleStartDay = d;
+      activeMonth = getCurrentCycleYearMonth();
       saveState();
       renderAll();
     }
@@ -2478,7 +3263,7 @@
       const blob = new Blob([csv], { type: 'text/csv' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = `walletpro_records_${activeMonth}.csv`;
+      a.download = `mh_wallet_records_${activeMonth}.csv`;
       a.click();
     }
 
@@ -2486,7 +3271,7 @@
       const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = `walletpro_backup_${activeMonth}.json`;
+      a.download = `mh_wallet_backup_${activeMonth}.json`;
       a.click();
     }
 
@@ -2498,6 +3283,7 @@
         try {
           state = JSON.parse(evt.target.result);
           ensureStateSchema();
+          activeMonth = getCurrentCycleYearMonth();
           saveState();
           applyTheme();
           renderAll();
@@ -2513,6 +3299,9 @@
       if (confirm('Wipe all local accounts, records, budgets, and goals back to a blank state?')) {
         state = createBlankState();
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        localStorage.setItem(LEGACY_STORAGE_KEY, JSON.stringify(state));
+        localStorage.setItem(LEGACY_STORAGE_KEY, JSON.stringify(state));
+        activeMonth = getCurrentCycleYearMonth();
         hasUnsavedCloudChanges = false;
         applyTheme();
         renderAll();
@@ -2530,7 +3319,9 @@
       addRentItem, toggleRentItem, deleteRentItem, installPWA,
       exportCSV, exportJSON, importJSON, clearAllLocalData,
       renderRecords, openAuthModal, loginWithGoogle, handleEmailAuth, logoutFirebase,
-      syncAllManual, pushStateToCloud, pullStateFromCloud
+      syncAllManual, pushStateToCloud, pullStateFromCloud,
+      renderAnalytics, onReportPeriodChange, resetReportFilters, exportFilteredReportCSV,
+      toggleReportDrilldown, getCurrentCycleYearMonth
     });
 
     // Boot Application

@@ -1,7 +1,7 @@
 /**
  * firebase-config.example.js
  *
- * Template for firebase-config.js — SAFE to commit.
+ * Template for firebase-config.js for MH Wallet — SAFE to commit.
  *
  * Instructions:
  *   1. Copy this file: cp firebase-config.example.js firebase-config.js

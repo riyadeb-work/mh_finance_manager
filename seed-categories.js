@@ -1,8 +1,8 @@
 /**
- * seed-categories.js — WalletPro Category Seeder
+ * seed-categories.js — MH Wallet Category Seeder
  *
  * Paste the entire contents of this file into the browser DevTools console
- * while the WalletPro app is open.
+ * while the MH Wallet app is open.
  *
  * ✅ Re-run safe — will NOT create duplicates (matches by name, case-insensitive).
  * ✅ Preserves all existing categories and all other app data.
@@ -15,7 +15,8 @@
  */
 
 (function seedCategories() {
-  const STORAGE_KEY = 'walletpro_m3_blank_v2';
+  const STORAGE_KEY = 'mh_wallet_m3_v2';
+  const LEGACY_STORAGE_KEY = 'walletpro_m3_blank_v2';
 
   // ── Category definitions ─────────────────────────────────────────────────
   // Each entry: [name, group, icon, color]
@@ -116,9 +117,9 @@
   ];
 
   // ── Load state from localStorage ─────────────────────────────────────────
-  const raw = localStorage.getItem(STORAGE_KEY);
+  const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
   if (!raw) {
-    console.error('[Seed] ❌ App state not found in localStorage. Make sure WalletPro is loaded first.');
+    console.error('[Seed] ❌ App state not found in localStorage. Make sure MH Wallet is loaded first.');
     return;
   }
 
@@ -166,6 +167,7 @@
   // ── Save & refresh UI ─────────────────────────────────────────────────────
   state.updatedAt = Date.now();
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  localStorage.setItem(LEGACY_STORAGE_KEY, JSON.stringify(state));
 
   // Trigger live UI refresh if the app is running
   if (typeof renderAll === 'function') {
